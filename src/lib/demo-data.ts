@@ -372,3 +372,28 @@ export const demoTickets = [
   { id: "ticket-2", eventName: "Elite Awards Night 2026", reportedBy: "VIP - Jennifer Liu", category: "Logistics", subject: "Need wheelchair access to VIP lounge", priority: "high" as const, status: "Resolved", assignedTo: "Rachel Green", createdAt: "2026-07-07T18:30:00" },
   { id: "ticket-3", eventName: "Summer Music Festival", reportedBy: "Staff - Section B", category: "Medical", subject: "First aid kit needed at Stage 2", priority: "urgent" as const, status: "Open", assignedTo: "", createdAt: "2026-07-07T14:00:00" },
 ];
+
+export const demoTransportation = [
+  { id: "trans-1", guestName: "Robert Anderson", eventName: "Elite Awards Night 2026", vehicleType: "Luxury Sedan", route: "SFO Airport → Grand Hyatt", pickupTime: "2026-07-07T16:00:00", driver: "James Carter", status: "Confirmed", cost: 120 },
+  { id: "trans-2", guestName: "Jennifer Liu", eventName: "Elite Awards Night 2026", vehicleType: "VIP Shuttle", route: "Hotel → Venue", pickupTime: "2026-07-07T18:30:00", driver: "Maria Lopez", status: "Scheduled", cost: 0 },
+  { id: "trans-3", guestName: "Priya Sharma", eventName: "NexGen Series X Launch", vehicleType: "SUV", route: "Airport → Convention Center", pickupTime: "2026-08-19T09:00:00", driver: "Unassigned", status: "Pending", cost: 95 },
+];
+
+export const demoCatering = [
+  { id: "cat-1", eventName: "Elite Awards Night 2026", mealType: "Gala Dinner", menu: "3-course plated dinner", servings: 350, vendor: "Gourmet Events Co.", dietaryNotes: "12 vegan, 8 gluten-free", status: "Confirmed", cost: 18500 },
+  { id: "cat-2", eventName: "NexGen Series X Launch", mealType: "Welcome Reception", menu: "Canapés & cocktails", servings: 200, vendor: "Fresh Bites Catering", dietaryNotes: "5 nut-free", status: "In Review", cost: 6200 },
+  { id: "cat-3", eventName: "Summer Music Festival", mealType: "Artist Hospitality", menu: "Backstage buffet", servings: 80, vendor: "Local Eats LLC", dietaryNotes: "All vegetarian options", status: "Confirmed", cost: 3400 },
+];
+
+export const demoVipServices = [
+  { id: "vip-1", guestName: "Robert Anderson", eventName: "Elite Awards Night 2026", service: "Personal Concierge", details: "Airport meet & greet, luggage handling", assignedTo: "Rachel Green", status: "Active" },
+  { id: "vip-2", guestName: "Jennifer Liu", eventName: "Elite Awards Night 2026", service: "Green Room Access", details: "Private lounge with refreshments", assignedTo: "Miguel Santos", status: "Scheduled" },
+  { id: "vip-3", guestName: "Kenji Tanaka", eventName: "NexGen Series X Launch", service: "Interpreter", details: "Japanese-English simultaneous translation", assignedTo: "Unassigned", status: "Pending" },
+];
+
+export const demoVendorContracts = [
+  { id: "con-1", vendorName: "Gourmet Events Co.", eventName: "Elite Awards Night 2026", type: "Catering", value: 18500, startDate: "2026-06-01", endDate: "2026-07-08", status: "Active" },
+  { id: "con-2", vendorName: "SoundWave AV", eventName: "NexGen Series X Launch", type: "AV Equipment", value: 12000, startDate: "2026-07-15", endDate: "2026-08-22", status: "Active" },
+  { id: "con-3", vendorName: "Floral Dreams", eventName: "Elite Awards Night 2026", type: "Decor", value: 8500, startDate: "2026-05-20", endDate: "2026-07-08", status: "Completed" },
+  { id: "con-4", vendorName: "SecureGuard Services", eventName: "Summer Music Festival", type: "Security", value: 15000, startDate: "2026-06-01", endDate: "2026-07-15", status: "Pending Signature" },
+];

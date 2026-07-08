@@ -6,15 +6,15 @@ import { demoTeam } from "@/lib/demo-data";
 import { Search, Plus, Mail, Phone, Shield, MoreVertical, UserCheck, UserX, Users, Crown } from "lucide-react";
 
 const roleColors: Record<string, string> = {
-  EVENT_DIRECTOR: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+  EVENT_DIRECTOR: "bg-purple-500/10 text-purple-600 border-purple-500/20",
   EVENT_MANAGER: "bg-teal-50 text-teal-600 border-violet-500/20",
-  OPERATIONS_MANAGER: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-  HOSPITALITY_MANAGER: "bg-pink-500/10 text-pink-400 border-pink-500/20",
-  VENDOR_MANAGER: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-  GUEST_MANAGER: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+  OPERATIONS_MANAGER: "bg-cyan-500/10 text-cyan-600 border-cyan-500/20",
+  HOSPITALITY_MANAGER: "bg-pink-500/10 text-pink-600 border-pink-500/20",
+  VENDOR_MANAGER: "bg-amber-500/10 text-amber-600 border-amber-500/20",
+  GUEST_MANAGER: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
   FINANCE_MANAGER: "bg-green-500/10 text-green-400 border-green-500/20",
-  TEAM_LEADER: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-  STAFF_MEMBER: "bg-slate-500/10 text-slate-400 border-slate-500/20",
+  TEAM_LEADER: "bg-blue-500/10 text-blue-600 border-blue-500/20",
+  STAFF_MEMBER: "bg-slate-500/10 text-slate-600 border-slate-500/20",
 };
 
 const eventTeams = [
@@ -46,9 +46,9 @@ export default function TeamsPage() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: "Total Members", value: demoTeam.length.toString(), icon: Users, color: "text-teal-600" },
-          { label: "Active", value: demoTeam.filter((m) => m.isActive).length.toString(), icon: UserCheck, color: "text-emerald-400" },
-          { label: "Inactive", value: demoTeam.filter((m) => !m.isActive).length.toString(), icon: UserX, color: "text-red-400" },
-          { label: "Event Teams", value: eventTeams.length.toString(), icon: Crown, color: "text-amber-400" },
+          { label: "Active", value: demoTeam.filter((m) => m.isActive).length.toString(), icon: UserCheck, color: "text-emerald-600" },
+          { label: "Inactive", value: demoTeam.filter((m) => !m.isActive).length.toString(), icon: UserX, color: "text-red-600" },
+          { label: "Event Teams", value: eventTeams.length.toString(), icon: Crown, color: "text-amber-600" },
         ].map((s) => (
           <div key={s.label} className="glass-card p-4"><div className="flex items-center justify-between"><div><p className="text-xs text-slate-500">{s.label}</p><p className={cn("text-xl font-bold mt-1", s.color)}>{s.value}</p></div><s.icon className={cn("w-5 h-5", s.color)} /></div></div>
         ))}
@@ -69,8 +69,8 @@ export default function TeamsPage() {
               </select></div>
           </div>
           <div className="flex gap-3 mt-4">
-            <button className="px-4 py-2 bg-teal-600 hover:bg-violet-500 text-white text-sm rounded-lg">Save Member</button>
-            <button onClick={() => setShowForm(false)} className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-700 text-sm rounded-lg">Cancel</button>
+            <button className="px-4 py-2 bg-teal-600 hover:bg-teal-600 text-white text-sm rounded-lg">Save Member</button>
+            <button onClick={() => setShowForm(false)} className="px-4 py-2 bg-slate-100 hover:bg-slate-700 text-slate-700 text-sm rounded-lg">Cancel</button>
           </div>
         </div>
       )}
@@ -97,9 +97,9 @@ export default function TeamsPage() {
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-500 to-purple-600 flex items-center justify-center text-xs font-bold text-white">{getInitials(member.name)}</div>
                   <span className="text-sm font-medium text-slate-800">{member.name}</span></div></td>
                 <td className="px-4 py-3"><span className={cn("text-[10px] px-2 py-0.5 rounded-full border", roleColors[member.role] || roleColors.STAFF_MEMBER)}>{member.role.replace(/_/g, " ")}</span></td>
-                <td className="px-4 py-3 text-sm text-slate-400">{member.email}</td>
-                <td className="px-4 py-3 text-sm text-slate-400">{member.phone}</td>
-                <td className="px-4 py-3"><span className={cn("text-[10px] px-2 py-0.5 rounded-full border", member.isActive ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-red-500/10 text-red-400 border-red-500/20")}>{member.isActive ? "Active" : "Inactive"}</span></td>
+                <td className="px-4 py-3 text-sm text-slate-600">{member.email}</td>
+                <td className="px-4 py-3 text-sm text-slate-600">{member.phone}</td>
+                <td className="px-4 py-3"><span className={cn("text-[10px] px-2 py-0.5 rounded-full border", member.isActive ? "bg-emerald-500/10 text-emerald-600 border-emerald-500/20" : "bg-red-500/10 text-red-600 border-red-500/20")}>{member.isActive ? "Active" : "Inactive"}</span></td>
               </tr>
             ))}
           </tbody>
@@ -120,7 +120,7 @@ export default function TeamsPage() {
                 <span className="text-xs bg-slate-100 text-slate-400 px-2 py-0.5 rounded-full">{team.members} members</span>
               </div>
               <div className="flex items-center gap-2 mt-3 pt-3 border-t border-slate-200">
-                <Crown className="w-3 h-3 text-amber-400" />
+                <Crown className="w-3 h-3 text-amber-600" />
                 <span className="text-xs text-slate-400">Leader: {team.leader}</span>
               </div>
             </div>

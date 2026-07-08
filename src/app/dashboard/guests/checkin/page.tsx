@@ -33,9 +33,9 @@ const initialCheckins: CheckInRecord[] = [
 
 function getCategoryColor(category: string) {
   switch (category) {
-    case 'VIP': return 'bg-amber-500/20 text-amber-400';
-    case 'Speaker': return 'bg-purple-500/20 text-purple-400';
-    case 'Media': return 'bg-cyan-500/20 text-cyan-400';
+    case 'VIP': return 'bg-amber-500/20 text-amber-600';
+    case 'Speaker': return 'bg-purple-500/20 text-purple-600';
+    case 'Media': return 'bg-cyan-500/20 text-cyan-600';
     default: return 'bg-slate-700/50 text-slate-700';
   }
 }
@@ -119,7 +119,7 @@ export default function CheckInDashboardPage() {
       {/* ─── Header ─── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white">Check-in Dashboard</h1>
+          <h1 className="text-2xl font-bold text-slate-900">Check-in Dashboard</h1>
           <p className="text-slate-400 text-sm mt-1">
             Elite Awards Night 2026 — Live check-in monitoring
           </p>
@@ -127,7 +127,7 @@ export default function CheckInDashboardPage() {
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
             <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-live" />
-            <span className="text-xs font-medium text-emerald-400">Live</span>
+            <span className="text-xs font-medium text-emerald-600">Live</span>
           </div>
         </div>
       </div>
@@ -135,10 +135,10 @@ export default function CheckInDashboardPage() {
       {/* ─── Big Stats Row ─── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: 'Checked In', value: checkedInCount, total: totalGuests, icon: UserCheck, color: 'text-emerald-400', gradient: 'kpi-gradient-2', showTotal: true },
+          { label: 'Checked In', value: checkedInCount, total: totalGuests, icon: UserCheck, color: 'text-emerald-600', gradient: 'kpi-gradient-2', showTotal: true },
           { label: 'Remaining', value: notCheckedIn, total: totalGuests, icon: Users, color: 'text-teal-600', gradient: 'kpi-gradient-1', showTotal: false },
-          { label: 'Arrival Rate', value: `${arrivalRate}`, total: 0, icon: TrendingUp, color: 'text-amber-400', gradient: 'kpi-gradient-3', showTotal: false, suffix: '/min' },
-          { label: 'Check-in %', value: `${checkinPercent}`, total: 0, icon: Zap, color: 'text-pink-400', gradient: 'kpi-gradient-4', showTotal: false, suffix: '%' },
+          { label: 'Arrival Rate', value: `${arrivalRate}`, total: 0, icon: TrendingUp, color: 'text-amber-600', gradient: 'kpi-gradient-3', showTotal: false, suffix: '/min' },
+          { label: 'Check-in %', value: `${checkinPercent}`, total: 0, icon: Zap, color: 'text-pink-600', gradient: 'kpi-gradient-4', showTotal: false, suffix: '%' },
         ].map((s, i) => (
           <motion.div
             key={s.label}
@@ -149,14 +149,14 @@ export default function CheckInDashboardPage() {
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-400">{s.label}</p>
+                <p className="text-sm text-slate-600">{s.label}</p>
                 <div className="flex items-baseline gap-1 mt-1">
-                  <p className="text-3xl font-bold text-white font-mono">{s.value}</p>
+                  <p className="text-3xl font-bold text-slate-900 font-mono">{s.value}</p>
                   {s.showTotal && <span className="text-lg text-slate-500 font-mono">/{s.total}</span>}
                   {'suffix' in s && <span className="text-lg text-slate-500">{s.suffix}</span>}
                 </div>
               </div>
-              <div className={cn('p-3 rounded-xl bg-slate-800/60', s.color)}>
+              <div className={cn('p-3 rounded-xl bg-teal-50', s.color)}>
                 <s.icon className="w-6 h-6" />
               </div>
             </div>
@@ -172,10 +172,10 @@ export default function CheckInDashboardPage() {
         className="glass-card p-6"
       >
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-white">Check-in Progress</h3>
+          <h3 className="text-sm font-semibold text-slate-900">Check-in Progress</h3>
           <span className="text-sm font-bold font-mono text-teal-600">{checkinPercent}%</span>
         </div>
-        <div className="h-4 rounded-full bg-slate-800 overflow-hidden">
+        <div className="h-4 rounded-full bg-slate-100 overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${checkinPercent}%` }}
@@ -201,7 +201,7 @@ export default function CheckInDashboardPage() {
           className="glass-card p-6 space-y-4"
         >
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-white flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
               <QrCode className="w-4 h-4 text-teal-600" /> QR Scanner
             </h3>
             <button
@@ -209,8 +209,8 @@ export default function CheckInDashboardPage() {
               className={cn(
                 'px-3 py-1 rounded-full text-xs font-medium border transition-colors',
                 scannerActive
-                  ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
-                  : 'bg-slate-700/50 text-slate-400 border-slate-600'
+                  ? 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20'
+                  : 'bg-slate-700/50 text-slate-600 border-slate-600'
               )}
             >
               {scannerActive ? 'Active' : 'Paused'}
@@ -245,7 +245,7 @@ export default function CheckInDashboardPage() {
                 'w-12 h-12 mx-auto mb-2',
                 scannerActive ? 'text-teal-600' : 'text-slate-600'
               )} />
-              <p className="text-sm text-slate-400">
+              <p className="text-sm text-slate-600">
                 {scannerActive ? 'Ready to scan' : 'Scanner paused'}
               </p>
             </div>
@@ -257,8 +257,8 @@ export default function CheckInDashboardPage() {
             className={cn(
               'w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-colors',
               scannerActive
-                ? 'bg-teal-600 hover:bg-violet-500 text-white'
-                : 'bg-slate-800 text-slate-500 cursor-not-allowed'
+                ? 'bg-teal-600 hover:bg-teal-600 text-white'
+                : 'bg-slate-100 text-slate-500 cursor-not-allowed'
             )}
           >
             <QrCode className="w-4 h-4" /> Simulate QR Scan
@@ -274,7 +274,7 @@ export default function CheckInDashboardPage() {
                 className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20"
               >
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                   <span className="text-sm text-emerald-300 font-medium">{lastScan} checked in!</span>
                 </div>
               </motion.div>
@@ -282,7 +282,7 @@ export default function CheckInDashboardPage() {
           </AnimatePresence>
 
           <div className="flex items-center gap-2 p-2 rounded-lg bg-slate-100">
-            <Wifi className="w-3.5 h-3.5 text-emerald-400" />
+            <Wifi className="w-3.5 h-3.5 text-emerald-600" />
             <span className="text-xs text-slate-400">Scanner connected · Camera 1</span>
           </div>
         </motion.div>
@@ -295,8 +295,8 @@ export default function CheckInDashboardPage() {
           className="glass-card p-6 space-y-4"
         >
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-              <Clock className="w-4 h-4 text-amber-400" /> Recent Check-ins
+            <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
+              <Clock className="w-4 h-4 text-amber-600" /> Recent Check-ins
             </h3>
             <div className="flex items-center gap-1 text-xs text-slate-500">
               <RefreshCw className="w-3 h-3" /> Auto-refresh
@@ -320,7 +320,7 @@ export default function CheckInDashboardPage() {
                     {getInitials(ci.guestName)}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-white truncate">{ci.guestName}</p>
+                    <p className="text-sm font-medium text-slate-900 truncate">{ci.guestName}</p>
                     <p className="text-[10px] text-slate-500">{ci.company} · {ci.method}</p>
                   </div>
                   <div className="text-right shrink-0">
@@ -331,7 +331,7 @@ export default function CheckInDashboardPage() {
                       'inline-block mt-0.5 px-1.5 py-0.5 rounded text-[9px] font-medium',
                       ci.method === 'QR Code'
                         ? 'bg-violet-500/20 text-teal-600'
-                        : 'bg-amber-500/20 text-amber-400'
+                        : 'bg-amber-500/20 text-amber-600'
                     )}>
                       {ci.method}
                     </span>
@@ -349,8 +349,8 @@ export default function CheckInDashboardPage() {
           transition={{ delay: 0.45 }}
           className="glass-card p-6 space-y-4"
         >
-          <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-            <UserPlus className="w-4 h-4 text-emerald-400" /> Manual Check-in
+          <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
+            <UserPlus className="w-4 h-4 text-emerald-600" /> Manual Check-in
           </h3>
           <p className="text-xs text-slate-500">Search for a guest to manually check them in</p>
 
@@ -361,7 +361,7 @@ export default function CheckInDashboardPage() {
               placeholder="Search by name, email, or company..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-colors"
             />
           </div>
 
@@ -385,7 +385,7 @@ export default function CheckInDashboardPage() {
                   {getInitials(`${guest.firstName} ${guest.lastName}`)}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-white truncate">{guest.firstName} {guest.lastName}</p>
+                  <p className="text-sm font-medium text-slate-900 truncate">{guest.firstName} {guest.lastName}</p>
                   <p className="text-[10px] text-slate-500">{guest.email}</p>
                 </div>
                 <button
@@ -410,7 +410,7 @@ export default function CheckInDashboardPage() {
           <div className="p-3 rounded-lg bg-slate-100 border border-slate-200">
             <div className="flex items-center justify-between">
               <span className="text-xs text-slate-400">Already checked in</span>
-              <span className="text-xs font-bold text-emerald-400 font-mono">{checkedInCount} guests</span>
+              <span className="text-xs font-bold text-emerald-600 font-mono">{checkedInCount} guests</span>
             </div>
           </div>
         </motion.div>

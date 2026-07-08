@@ -109,7 +109,7 @@ export default function DashboardPage() {
       trend: "up",
       icon: DollarSign,
       gradient: "kpi-gradient-2",
-      iconColor: "text-emerald-400",
+      iconColor: "text-emerald-600",
       link: "/dashboard/finance",
     },
     {
@@ -119,7 +119,7 @@ export default function DashboardPage() {
       trend: "down",
       icon: CheckCircle2,
       gradient: "kpi-gradient-3",
-      iconColor: "text-amber-400",
+      iconColor: "text-amber-600",
       link: "/dashboard/events",
     },
     {
@@ -129,7 +129,7 @@ export default function DashboardPage() {
       trend: "up",
       icon: Target,
       gradient: "kpi-gradient-4",
-      iconColor: "text-pink-400",
+      iconColor: "text-pink-600",
       link: "/dashboard/crm",
     },
   ];
@@ -179,15 +179,15 @@ export default function DashboardPage() {
           >
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-sm text-slate-400">{card.title}</p>
+                <p className="text-sm text-slate-600">{card.title}</p>
                 <p className="text-2xl font-bold text-slate-900 mt-1">{card.value}</p>
                 <div className="flex items-center gap-1 mt-2">
                   {card.trend === "up" ? (
-                    <ArrowUpRight className="w-3 h-3 text-emerald-400" />
+                    <ArrowUpRight className="w-3 h-3 text-emerald-600" />
                   ) : (
-                    <ArrowDownRight className="w-3 h-3 text-amber-400" />
+                    <ArrowDownRight className="w-3 h-3 text-amber-600" />
                   )}
-                  <span className={cn("text-xs", card.trend === "up" ? "text-emerald-400" : "text-amber-400")}>
+                  <span className={cn("text-xs", card.trend === "up" ? "text-emerald-600" : "text-amber-600")}>
                     {card.change}
                   </span>
                 </div>
@@ -331,7 +331,7 @@ export default function DashboardPage() {
         <div className="glass-card p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-slate-800">Priority Tasks</h2>
-            <span className="text-xs text-amber-400 flex items-center gap-1">
+            <span className="text-xs text-amber-600 flex items-center gap-1">
               <AlertTriangle className="w-3 h-3" /> {pendingTasks} pending
             </span>
           </div>
@@ -355,7 +355,7 @@ export default function DashboardPage() {
                     <div className="flex items-center gap-2 mt-1">
                       <span className="text-[10px] text-slate-500">{task.assignee}</span>
                       <span className="text-[10px] text-slate-600">·</span>
-                      <span className={cn("text-[10px]", new Date(task.dueDate) < new Date() ? "text-red-400" : "text-slate-500")}>
+                      <span className={cn("text-[10px]", new Date(task.dueDate) < new Date() ? "text-red-600" : "text-slate-500")}>
                         Due {task.dueDate}
                       </span>
                     </div>
@@ -406,11 +406,11 @@ export default function DashboardPage() {
           <div className="space-y-4">
             {[
               { label: "Events This Month", value: "5", icon: Calendar, color: "text-teal-600", bg: "bg-teal-50" },
-              { label: "Guests Managed", value: "2,450", icon: Users, color: "text-purple-400", bg: "bg-purple-500/10" },
-              { label: "Vendors Active", value: "24", icon: UserCheck, color: "text-cyan-400", bg: "bg-cyan-500/10" },
-              { label: "Check-in Rate", value: "94.2%", icon: Zap, color: "text-emerald-400", bg: "bg-emerald-500/10" },
-              { label: "Avg Event Rating", value: "4.8/5", icon: TrendingUp, color: "text-amber-400", bg: "bg-amber-500/10" },
-              { label: "Revenue Growth", value: "+18.2%", icon: BarChart3, color: "text-pink-400", bg: "bg-pink-500/10" },
+              { label: "Guests Managed", value: "2,450", icon: Users, color: "text-purple-600", bg: "bg-purple-500/10" },
+              { label: "Vendors Active", value: "24", icon: UserCheck, color: "text-cyan-600", bg: "bg-cyan-500/10" },
+              { label: "Check-in Rate", value: "94.2%", icon: Zap, color: "text-emerald-600", bg: "bg-emerald-500/10" },
+              { label: "Avg Event Rating", value: "4.8/5", icon: TrendingUp, color: "text-amber-600", bg: "bg-amber-500/10" },
+              { label: "Revenue Growth", value: "+18.2%", icon: BarChart3, color: "text-pink-600", bg: "bg-pink-500/10" },
             ].map((stat) => (
               <div key={stat.label} className="flex items-center gap-3">
                 <div className={cn("p-2 rounded-lg", stat.bg)}>

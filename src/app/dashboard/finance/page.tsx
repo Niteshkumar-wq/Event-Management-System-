@@ -39,9 +39,9 @@ export default function FinancePage() {
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: "Total Revenue", value: formatCurrency(totalRevenue), icon: DollarSign, color: "text-emerald-400", change: "+18.2%", gradient: "kpi-gradient-2" , mono: true},
-          { label: "Outstanding", value: formatCurrency(outstanding), icon: CreditCard, color: "text-amber-400", change: `${overdueCount} overdue`, gradient: "kpi-gradient-3" },
-          { label: "Total Expenses", value: formatCurrency(345000), icon: TrendingDown, color: "text-red-400", change: "+5.4%", gradient: "kpi-gradient-4" },
+          { label: "Total Revenue", value: formatCurrency(totalRevenue), icon: DollarSign, color: "text-emerald-600", change: "+18.2%", gradient: "kpi-gradient-2" , mono: true},
+          { label: "Outstanding", value: formatCurrency(outstanding), icon: CreditCard, color: "text-amber-600", change: `${overdueCount} overdue`, gradient: "kpi-gradient-3" },
+          { label: "Total Expenses", value: formatCurrency(345000), icon: TrendingDown, color: "text-red-600", change: "+5.4%", gradient: "kpi-gradient-4" },
           { label: "Profit Margin", value: "34.2%", icon: TrendingUp, color: "text-teal-600", change: "+2.1%", gradient: "kpi-gradient-1" },
         ].map((s) => <div key={s.label} className={cn("glass-card p-4 group", s.gradient)}>
                 <div className="flex items-center justify-between"><div><p className="text-xs text-slate-500">{s.label}</p><p className="text-xl font-bold text-slate-900 mt-1 font-mono">{s.value}</p><p className="text-[10px] text-slate-500 mt-1">{s.change}</p></div><div className="p-2.5 rounded-xl bg-slate-100 group-hover:scale-110 transition-transform"><s.icon className={cn("w-5 h-5", s.color)} /></div></div>
@@ -113,10 +113,10 @@ export default function FinancePage() {
                 <div className="text-right">
                   <p className="text-sm font-bold font-mono text-slate-800">{formatCurrency(inv.total)}</p>
                   <span className={cn("text-[10px] px-2 py-0.5 rounded-full border",
-                    inv.status === "paid" ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" :
-                    inv.status === "overdue" ? "bg-red-500/10 text-red-400 border-red-500/20" :
-                    inv.status === "partially_paid" ? "bg-amber-500/10 text-amber-400 border-amber-500/20" :
-                    "bg-blue-500/10 text-blue-400 border-blue-500/20"
+                    inv.status === "paid" ? "bg-emerald-500/10 text-emerald-600 border-emerald-500/20" :
+                    inv.status === "overdue" ? "bg-red-500/10 text-red-600 border-red-500/20" :
+                    inv.status === "partially_paid" ? "bg-amber-500/10 text-amber-600 border-amber-500/20" :
+                    "bg-blue-500/10 text-blue-600 border-blue-500/20"
                   )}>{inv.status.replace("_", " ")}</span>
                 </div>
               </div>

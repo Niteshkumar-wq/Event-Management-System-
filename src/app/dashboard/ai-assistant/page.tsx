@@ -5,11 +5,11 @@ import { Send, Bot, User, Sparkles, Lightbulb, Calendar, Users, DollarSign, BarC
 
 const suggestions = [
   { icon: Calendar, text: "What events are happening this week?", color: "text-teal-600" },
-  { icon: Users, text: "Show me VIP guest list for NexGen Launch", color: "text-purple-400" },
-  { icon: DollarSign, text: "Generate a budget summary for Q2 2026", color: "text-emerald-400" },
-  { icon: BarChart3, text: "Compare revenue across all events", color: "text-amber-400" },
-  { icon: Lightbulb, text: "Suggest cost optimizations for upcoming events", color: "text-cyan-400" },
-  { icon: Sparkles, text: "Create a risk assessment for Summer Music Festival", color: "text-pink-400" },
+  { icon: Users, text: "Show me VIP guest list for NexGen Launch", color: "text-purple-600" },
+  { icon: DollarSign, text: "Generate a budget summary for Q2 2026", color: "text-emerald-600" },
+  { icon: BarChart3, text: "Compare revenue across all events", color: "text-amber-600" },
+  { icon: Lightbulb, text: "Suggest cost optimizations for upcoming events", color: "text-cyan-600" },
+  { icon: Sparkles, text: "Create a risk assessment for Summer Music Festival", color: "text-pink-600" },
 ];
 
 type Message = { role: "user" | "assistant"; content: string; timestamp: Date };
@@ -52,7 +52,7 @@ export default function AIAssistantPage() {
           {messages.map((msg, i) => (
             <div key={i} className={cn("flex gap-3", msg.role === "user" ? "flex-row-reverse" : "")}>
               <div className={cn("w-8 h-8 rounded-full flex items-center justify-center shrink-0", msg.role === "user" ? "bg-gradient-to-br from-teal-500 to-purple-600" : "bg-gradient-to-br from-cyan-500/20 to-blue-500/20")}>
-                {msg.role === "user" ? <User className="w-4 h-4 text-white" /> : <Bot className="w-4 h-4 text-cyan-400" />}
+                {msg.role === "user" ? <User className="w-4 h-4 text-slate-900" /> : <Bot className="w-4 h-4 text-cyan-600" />}
               </div>
               <div className={cn("max-w-[70%] rounded-xl px-4 py-3", msg.role === "user" ? "bg-teal-600/20 border border-violet-500/20" : "bg-slate-100 border border-slate-200")}>
                 <div className="text-sm text-slate-800 whitespace-pre-line">{msg.content}</div>
@@ -62,7 +62,7 @@ export default function AIAssistantPage() {
           ))}
           {isTyping && (
             <div className="flex gap-3">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center"><Bot className="w-4 h-4 text-cyan-400" /></div>
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center"><Bot className="w-4 h-4 text-cyan-600" /></div>
               <div className="bg-slate-100 border border-slate-200 rounded-xl px-4 py-3">
                 <div className="flex gap-1"><span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0s" }} /><span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0.15s" }} /><span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0.3s" }} /></div>
               </div>
@@ -77,7 +77,7 @@ export default function AIAssistantPage() {
             <p className="text-xs text-slate-500 mb-2">Try asking:</p>
             <div className="flex gap-2 flex-wrap">
               {suggestions.map((s) => (
-                <button key={s.text} onClick={() => handleSend(s.text)} className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-800 rounded-lg text-xs text-slate-400 hover:text-slate-800 transition-colors border border-slate-200">
+                <button key={s.text} onClick={() => handleSend(s.text)} className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-100 rounded-lg text-xs text-slate-400 hover:text-slate-800 transition-colors border border-slate-200">
                   <s.icon className={cn("w-3 h-3", s.color)} /><span className="truncate max-w-[200px]">{s.text}</span>
                 </button>
               ))}
@@ -90,7 +90,7 @@ export default function AIAssistantPage() {
           <div className="flex items-center gap-3">
             <input type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSend()}
               placeholder="Ask me anything about your events..." className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 placeholder-slate-500 focus:outline-none focus:border-violet-500/50" />
-            <button onClick={() => handleSend()} disabled={!input.trim()} className="p-2.5 bg-teal-600 hover:bg-violet-500 disabled:bg-slate-800 disabled:text-slate-600 text-white rounded-lg transition-colors">
+            <button onClick={() => handleSend()} disabled={!input.trim()} className="p-2.5 bg-teal-600 hover:bg-teal-600 disabled:bg-slate-100 disabled:text-slate-600 text-white rounded-lg transition-colors">
               <Send className="w-4 h-4" />
             </button>
           </div>

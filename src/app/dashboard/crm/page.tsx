@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { cn, formatCurrency, formatDate, getStatusColor, getPriorityColor, getInitials } from "@/lib/utils";
-import { demoLeads } from "@/lib/demo-data";
+import { useLeads } from "@/lib/data-store";
 import {
   Search, Filter, Plus, LayoutGrid, List, ChevronRight,
   Phone, Mail, Building2, Calendar, Users, DollarSign,
@@ -23,12 +23,13 @@ const statusColumns = [
 ];
 
 export default function CRMPage() {
+  const { leads } = useLeads();
   const [view, setView] = useState<"kanban" | "table">("kanban");
   const [searchQuery, setSearchQuery] = useState("");
   const [filterPriority, setFilterPriority] = useState("all");
   const [filterSource, setFilterSource] = useState("all");
 
-  const filtered = demoLeads.filter((lead) => {
+  const filtered = leads.filter((lead) => {
     const matchSearch = lead.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       lead.clientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       lead.clientCompany?.toLowerCase().includes(searchQuery.toLowerCase());
@@ -57,9 +58,9 @@ export default function CRMPage() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: "Total Leads", value: filtered.length, icon: Target, color: "text-teal-600" },
-          { label: "Pipeline Value", value: formatCurrency(totalPipeline), icon: DollarSign, color: "text-emerald-400" },
-          { label: "Conversion Rate", value: `${filtered.length > 0 ? Math.round((approvedLeads / filtered.length) * 100) : 0}%`, icon: TrendingUp, color: "text-amber-400" },
-          { label: "Avg Deal Size", value: formatCurrency(filtered.length > 0 ? totalPipeline / filtered.length : 0), icon: UserCheck, color: "text-pink-400" },
+          { label: "Pipeline Value", value: formatCurrency(totalPipeline), icon: DollarSign, color: "text-emerald-600" },
+          { label: "Conversion Rate", value: `${filtered.length > 0 ? Math.round((approvedLeads / filtered.length) * 100) : 0}%`, icon: TrendingUp, color: "text-amber-600" },
+          { label: "Avg Deal Size", value: formatCurrency(filtered.length > 0 ? totalPipeline / filtered.length : 0), icon: UserCheck, color: "text-pink-600" },
         ].map((s) => (
           <div key={s.label} className="glass-card p-4">
             <div className="flex items-center justify-between">
@@ -179,9 +180,9 @@ export default function CRMPage() {
                       <p className="text-sm text-slate-700">{lead.clientName}</p>
                       <p className="text-xs text-slate-500">{lead.clientCompany}</p>
                     </td>
-                    <td className="px-4 py-3 text-sm text-slate-400">{lead.eventType}</td>
+                    <td className="px-4 py-3 text-sm text-slate-600">{lead.eventType}</td>
                     <td className="px-4 py-3 text-sm font-medium text-slate-800 font-mono">{formatCurrency(lead.estimatedBudget || 0)}</td>
-                    <td className="px-4 py-3 text-sm text-slate-400">{lead.estimatedGuests}</td>
+                    <td className="px-4 py-3 text-sm text-slate-600">{lead.estimatedGuests}</td>
                     <td className="px-4 py-3">
                       <span className={cn("text-[10px] px-2 py-0.5 rounded-full border font-medium", getStatusColor(lead.status))}>{lead.status.replace(/_/g, " ")}</span>
                     </td>

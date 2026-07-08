@@ -1,7 +1,10 @@
 "use client";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Settings as SettingsIcon, User, Bell, Shield, Palette, Globe, Database, Mail, Save, Check, Eye, EyeOff } from "lucide-react";
+import { getAllLeads, getAllEvents, getAllGuests } from "@/lib/data-store";
+import { demoInvoices, demoVendors } from "@/lib/demo-data";
+import { downloadCsv, downloadJson } from "@/lib/download-utils";
+import { Settings as SettingsIcon, User, Bell, Shield, Palette, Globe, Database, Mail, Save, Check, Eye, EyeOff, Download } from "lucide-react";
 
 const settingsSections = [
   { id: "profile", label: "Profile", icon: User },
@@ -23,6 +26,15 @@ export default function SettingsPage() {
   });
 
   const handleSave = () => { setSaved(true); setTimeout(() => setSaved(false), 2000); };
+
+  const exportOptions = [
+    { label: "Leads (CSV)", action: () => downloadCsv(getAllLeads() as unknown as Record<string, unknown>[], "eventpro-leads.csv") },
+    { label: "Events (CSV)", action: () => downloadCsv(getAllEvents() as unknown as Record<string, unknown>[], "eventpro-events.csv") },
+    { label: "Guests (CSV)", action: () => downloadCsv(getAllGuests() as unknown as Record<string, unknown>[], "eventpro-guests.csv") },
+    { label: "Invoices (CSV)", action: () => downloadCsv(demoInvoices as unknown as Record<string, unknown>[], "eventpro-invoices.csv") },
+    { label: "Vendors (CSV)", action: () => downloadCsv(demoVendors as unknown as Record<string, unknown>[], "eventpro-vendors.csv") },
+    { label: "Full Backup (JSON)", action: () => downloadJson({ leads: getAllLeads(), events: getAllEvents(), guests: getAllGuests(), invoices: demoInvoices, vendors: demoVendors, exportedAt: new Date().toISOString() }, "eventpro-backup.json") },
+  ];
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -62,7 +74,7 @@ export default function SettingsPage() {
               </div>
               <div><label className="text-xs text-slate-500 block mb-1">Bio</label>
                 <textarea rows={3} defaultValue="Experienced event director with 10+ years in corporate events and luxury gatherings." className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-violet-500/50" /></div>
-              <button onClick={handleSave} className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-violet-500 text-white text-sm rounded-lg transition-colors">
+              <button onClick={handleSave} className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-600 text-white text-sm rounded-lg transition-colors">
                 {saved ? <><Check className="w-4 h-4" /> Saved!</> : <><Save className="w-4 h-4" /> Save Changes</>}
               </button>
             </div>
@@ -72,7 +84,7 @@ export default function SettingsPage() {
             <div className="glass-card p-6 space-y-6">
               <h3 className="text-base font-semibold text-slate-800">Notification Preferences</h3>
               <div className="space-y-4">
-                <h4 className="text-sm text-slate-400 uppercase tracking-wider">Channels</h4>
+                <h4 className="text-sm text-slate-600 uppercase tracking-wider">Channels</h4>
                 {[
                   { key: "emailNotifs" as const, label: "Email Notifications", desc: "Receive notifications via email" },
                   { key: "smsNotifs" as const, label: "SMS Notifications", desc: "Receive SMS for urgent updates" },
@@ -88,7 +100,7 @@ export default function SettingsPage() {
                 ))}
               </div>
               <div className="space-y-4 pt-4 border-t border-slate-200">
-                <h4 className="text-sm text-slate-400 uppercase tracking-wider">Events</h4>
+                <h4 className="text-sm text-slate-600 uppercase tracking-wider">Events</h4>
                 {[
                   { key: "newLead" as const, label: "New Lead Received" },
                   { key: "taskAssigned" as const, label: "Task Assigned" },
@@ -105,7 +117,7 @@ export default function SettingsPage() {
                   </div>
                 ))}
               </div>
-              <button onClick={handleSave} className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-violet-500 text-white text-sm rounded-lg">
+              <button onClick={handleSave} className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-600 text-white text-sm rounded-lg">
                 {saved ? <><Check className="w-4 h-4" /> Saved!</> : <><Save className="w-4 h-4" /> Save Preferences</>}
               </button>
             </div>
@@ -125,18 +137,37 @@ export default function SettingsPage() {
                 <div className="flex items-center justify-between"><div><p className="text-sm text-slate-800">Two-Factor Authentication</p><p className="text-xs text-slate-500">Add an extra layer of security</p></div>
                   <button className="px-3 py-1.5 bg-teal-600/10 text-teal-600 border border-violet-500/20 text-xs rounded-lg hover:bg-teal-600/20">Enable 2FA</button></div>
               </div>
-              <button onClick={handleSave} className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-violet-500 text-white text-sm rounded-lg">
+              <button onClick={handleSave} className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-600 text-white text-sm rounded-lg">
                 {saved ? <><Check className="w-4 h-4" /> Saved!</> : <><Save className="w-4 h-4" /> Update Password</>}
               </button>
             </div>
           )}
 
-          {!["profile", "notifications", "security"].includes(activeSection) && (
+          {activeSection === "data" && (
+            <div className="glass-card p-6 space-y-6">
+              <h3 className="text-base font-semibold text-slate-800">Data & Export</h3>
+              <p className="text-sm text-slate-500">Download your platform data for backup or reporting.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {exportOptions.map((opt) => (
+                  <button
+                    key={opt.label}
+                    onClick={opt.action}
+                    className="flex items-center justify-between p-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-teal-50 hover:border-teal-200 transition-colors text-left"
+                  >
+                    <span className="text-sm font-medium text-slate-800">{opt.label}</span>
+                    <Download className="w-4 h-4 text-teal-600" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {!["profile", "notifications", "security", "data"].includes(activeSection) && (
             <div className="glass-card p-10 text-center">
               <SettingsIcon className="w-12 h-12 text-slate-600 mx-auto mb-3" />
               <h3 className="text-lg font-semibold text-slate-700 capitalize">{activeSection} Settings</h3>
               <p className="text-sm text-slate-500 mt-2">Configure your {activeSection} preferences</p>
-              <button className="mt-4 px-4 py-2 bg-teal-600 hover:bg-violet-500 text-white text-sm rounded-lg">Configure</button>
+              <button className="mt-4 px-4 py-2 bg-teal-600 hover:bg-teal-600 text-white text-sm rounded-lg">Configure</button>
             </div>
           )}
         </div>

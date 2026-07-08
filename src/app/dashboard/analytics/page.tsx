@@ -34,10 +34,10 @@ export default function AnalyticsPage() {
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: "Avg Satisfaction", value: "4.6/5", icon: TrendingUp, color: "text-emerald-400", change: "+0.3 vs last quarter" },
+          { label: "Avg Satisfaction", value: "4.6/5", icon: TrendingUp, color: "text-emerald-600", change: "+0.3 vs last quarter" },
           { label: "Guest Retention", value: "78%", icon: Users, color: "text-teal-600", change: "+5% YoY" },
-          { label: "On-time Delivery", value: "92%", icon: Clock, color: "text-cyan-400", change: "+3% vs last month" },
-          { label: "Budget Accuracy", value: "96.2%", icon: Percent, color: "text-amber-400", change: "Avg across events" },
+          { label: "On-time Delivery", value: "92%", icon: Clock, color: "text-cyan-600", change: "+3% vs last month" },
+          { label: "Budget Accuracy", value: "96.2%", icon: Percent, color: "text-amber-600", change: "Avg across events" },
         ].map((s) => (
           <div key={s.label} className="glass-card p-4">
             <div className="flex items-center justify-between">

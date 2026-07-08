@@ -48,10 +48,10 @@ function getRsvpIcon(status: string) {
 
 function getRsvpColor(status: string) {
   switch (status) {
-    case 'Accepted': return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
-    case 'Declined': return 'bg-red-500/10 text-red-400 border-red-500/20';
-    case 'Maybe': return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
-    default: return 'bg-slate-500/10 text-slate-400 border-slate-500/20';
+    case 'Accepted': return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20';
+    case 'Declined': return 'bg-red-500/10 text-red-600 border-red-500/20';
+    case 'Maybe': return 'bg-amber-500/10 text-amber-600 border-amber-500/20';
+    default: return 'bg-slate-500/10 text-slate-600 border-slate-500/20';
   }
 }
 
@@ -59,8 +59,8 @@ function getRsvpColor(status: string) {
 function ChartTooltip({ active, payload }: { active?: boolean; payload?: Array<{ name: string; value: number }> }) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 shadow-xl">
-      <p className="text-xs text-white font-medium">{payload[0].name}: {payload[0].value}</p>
+    <div className="bg-slate-100 border border-slate-700 rounded-lg px-3 py-2 shadow-xl">
+      <p className="text-xs text-slate-900 font-medium">{payload[0].name}: {payload[0].value}</p>
     </div>
   );
 }
@@ -114,7 +114,7 @@ export default function RsvpTrackingPage() {
     >
       {/* ─── Header ─── */}
       <div>
-        <h1 className="text-2xl font-bold text-white">RSVP Tracking</h1>
+        <h1 className="text-2xl font-bold text-slate-900">RSVP Tracking</h1>
         <p className="text-slate-400 text-sm mt-1">Monitor guest responses across all events</p>
       </div>
 
@@ -158,7 +158,7 @@ export default function RsvpTrackingPage() {
                   style={{ backgroundColor: CHART_COLORS[d.name as keyof typeof CHART_COLORS] }}
                 />
                 <span className="text-xs text-slate-400">{d.name}</span>
-                <span className="text-xs font-medium text-white ml-auto font-mono">{d.value}</span>
+                <span className="text-xs font-medium text-slate-900 ml-auto font-mono">{d.value}</span>
               </div>
             ))}
           </div>
@@ -168,11 +168,11 @@ export default function RsvpTrackingPage() {
         <div className="lg:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-4">
           {[
             { label: 'Total Invited', value: stats.total, icon: Users, color: 'text-teal-600', gradient: 'kpi-gradient-1' },
-            { label: 'Accepted', value: stats.accepted, icon: CheckCircle2, color: 'text-emerald-400', gradient: 'kpi-gradient-2' },
-            { label: 'Declined', value: stats.declined, icon: XCircle, color: 'text-red-400', gradient: 'from-red-500/10 to-red-500/5' },
-            { label: 'Maybe', value: stats.maybe, icon: HelpCircle, color: 'text-amber-400', gradient: 'kpi-gradient-3' },
+            { label: 'Accepted', value: stats.accepted, icon: CheckCircle2, color: 'text-emerald-600', gradient: 'kpi-gradient-2' },
+            { label: 'Declined', value: stats.declined, icon: XCircle, color: 'text-red-600', gradient: 'from-red-500/10 to-red-500/5' },
+            { label: 'Maybe', value: stats.maybe, icon: HelpCircle, color: 'text-amber-600', gradient: 'kpi-gradient-3' },
             { label: 'Pending', value: stats.noResponse, icon: Clock, color: 'text-slate-400', gradient: '' },
-            { label: 'Plus-Ones', value: stats.totalPlusOnes, icon: UserPlus, color: 'text-pink-400', gradient: 'kpi-gradient-4' },
+            { label: 'Plus-Ones', value: stats.totalPlusOnes, icon: UserPlus, color: 'text-pink-600', gradient: 'kpi-gradient-4' },
           ].map((s, i) => (
             <motion.div
               key={s.label}
@@ -184,9 +184,9 @@ export default function RsvpTrackingPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs text-slate-400">{s.label}</p>
-                  <p className="text-2xl font-bold text-white mt-1 font-mono">{s.value}</p>
+                  <p className="text-2xl font-bold text-slate-900 mt-1 font-mono">{s.value}</p>
                 </div>
-                <div className={cn('p-2 rounded-xl bg-slate-800/60', s.color)}>
+                <div className={cn('p-2 rounded-xl bg-teal-50', s.color)}>
                   <s.icon className="w-5 h-5" />
                 </div>
               </div>
@@ -205,20 +205,20 @@ export default function RsvpTrackingPage() {
               placeholder="Search by guest name..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-colors"
             />
           </div>
           <select
             value={eventFilter}
             onChange={e => setEventFilter(e.target.value)}
-            className="px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-white focus:outline-none focus:border-violet-500/50"
+            className="px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:border-violet-500/50"
           >
             {eventNames.map(e => <option key={e} value={e}>{e === 'All' ? 'All Events' : e}</option>)}
           </select>
           <select
             value={statusFilter}
             onChange={e => setStatusFilter(e.target.value)}
-            className="px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-white focus:outline-none focus:border-violet-500/50"
+            className="px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:border-violet-500/50"
           >
             <option value="All">All Statuses</option>
             {['Accepted', 'Declined', 'Maybe', 'No Response'].map(s => <option key={s} value={s}>{s}</option>)}
@@ -232,12 +232,12 @@ export default function RsvpTrackingPage() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-slate-200/50">
-                <th className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Guest</th>
-                <th className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Event</th>
-                <th className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">RSVP Status</th>
-                <th className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Plus-Ones</th>
-                <th className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Meal Choice</th>
-                <th className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Response Date</th>
+                <th className="p-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Guest</th>
+                <th className="p-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Event</th>
+                <th className="p-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">RSVP Status</th>
+                <th className="p-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Plus-Ones</th>
+                <th className="p-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Meal Choice</th>
+                <th className="p-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Response Date</th>
               </tr>
             </thead>
             <tbody>
@@ -250,7 +250,7 @@ export default function RsvpTrackingPage() {
                   className="border-b border-slate-200 table-row-hover"
                 >
                   <td className="p-4">
-                    <p className="text-sm font-medium text-white">{rsvp.guestName}</p>
+                    <p className="text-sm font-medium text-slate-900">{rsvp.guestName}</p>
                   </td>
                   <td className="p-4">
                     <p className="text-sm text-slate-700">{rsvp.eventName}</p>
@@ -266,8 +266,8 @@ export default function RsvpTrackingPage() {
                   </td>
                   <td className="p-4">
                     {rsvp.plusOnes > 0 ? (
-                      <span className="inline-flex items-center gap-1 text-sm text-white font-mono">
-                        <UserPlus className="w-3.5 h-3.5 text-pink-400" /> +{rsvp.plusOnes}
+                      <span className="inline-flex items-center gap-1 text-sm text-slate-900 font-mono">
+                        <UserPlus className="w-3.5 h-3.5 text-pink-600" /> +{rsvp.plusOnes}
                       </span>
                     ) : (
                       <span className="text-xs text-slate-600">—</span>
@@ -276,7 +276,7 @@ export default function RsvpTrackingPage() {
                   <td className="p-4">
                     {rsvp.mealChoice ? (
                       <span className="inline-flex items-center gap-1.5 text-sm text-slate-700">
-                        <UtensilsCrossed className="w-3.5 h-3.5 text-emerald-400" /> {rsvp.mealChoice}
+                        <UtensilsCrossed className="w-3.5 h-3.5 text-emerald-600" /> {rsvp.mealChoice}
                       </span>
                     ) : (
                       <span className="text-xs text-slate-600">—</span>
@@ -284,7 +284,7 @@ export default function RsvpTrackingPage() {
                   </td>
                   <td className="p-4">
                     {rsvp.responseDate ? (
-                      <span className="text-sm text-slate-400 font-mono flex items-center gap-1.5">
+                      <span className="text-sm text-slate-600 font-mono flex items-center gap-1.5">
                         <CalendarDays className="w-3.5 h-3.5 text-slate-500" />
                         {formatDate(rsvp.responseDate)}
                       </span>

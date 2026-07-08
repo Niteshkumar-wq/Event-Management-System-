@@ -69,7 +69,7 @@ export default function DashboardLayout({
           )}
         >
           <Topbar />
-          <main className="p-4 sm:p-5 lg:p-6 min-h-[calc(100vh-64px)] max-w-[1600px] mx-auto">
+          <main className="p-4 sm:p-6 lg:p-8 min-h-[calc(100vh-64px)] w-full">
             <div className="animate-fade-in">
               {children}
             </div>

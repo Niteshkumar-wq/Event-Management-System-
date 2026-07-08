@@ -56,12 +56,19 @@ const navItems: NavItem[] = [
     title: "Hospitality", href: "/dashboard/hospitality", icon: "Hotel",
     children: [
       { title: "Overview", href: "/dashboard/hospitality" },
+      { title: "Travel", href: "/dashboard/hospitality/travel" },
+      { title: "Accommodation", href: "/dashboard/hospitality/accommodation" },
+      { title: "Transportation", href: "/dashboard/hospitality/transportation" },
+      { title: "Catering", href: "/dashboard/hospitality/catering" },
+      { title: "VIP Services", href: "/dashboard/hospitality/vip" },
+      { title: "Help Desk", href: "/dashboard/hospitality/helpdesk" },
     ],
   },
   {
     title: "Vendors", href: "/dashboard/vendors", icon: "Store",
     children: [
       { title: "Directory", href: "/dashboard/vendors" },
+      { title: "Contracts", href: "/dashboard/vendors/contracts" },
     ],
   },
   { title: "Teams", href: "/dashboard/teams", icon: "UsersRound" },
@@ -122,7 +129,7 @@ export function Sidebar() {
       <div className="flex items-center justify-between gap-3 px-4 h-16 border-b border-slate-200 shrink-0">
         <div className="flex items-center gap-3 overflow-hidden">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center shrink-0 shadow-md shadow-teal-500/20">
-            <Zap className="w-5 h-5 text-white" />
+            <Zap className="w-5 h-5 text-slate-900" />
           </div>
           {!collapsed && (
             <div className="flex flex-col overflow-hidden">
@@ -200,7 +207,7 @@ function renderNavItem(
         {hasChildren && !collapsed ? (
           <>
             <Icon className={cn("w-[18px] h-[18px] shrink-0 transition-colors", active ? "text-teal-600" : "text-slate-400 group-hover:text-slate-600")} />
-            <span className={cn("text-[13px] font-medium flex-1 transition-colors", active ? "text-teal-700" : "text-slate-600 group-hover:text-slate-900")}>
+            <span className={cn("text-sm font-medium flex-1 transition-colors", active ? "text-teal-700" : "text-slate-600 group-hover:text-slate-900")}>
               {item.title}
             </span>
             {item.badge && (
@@ -215,7 +222,7 @@ function renderNavItem(
             <Icon className={cn("w-[18px] h-[18px] shrink-0 transition-colors", active ? "text-teal-600" : "text-slate-400 group-hover:text-slate-600")} />
             {!collapsed && (
               <>
-                <span className={cn("text-[13px] font-medium flex-1 transition-colors", active ? "text-teal-700" : "text-slate-600 group-hover:text-slate-900")}>
+                <span className={cn("text-sm font-medium flex-1 transition-colors", active ? "text-teal-700" : "text-slate-600 group-hover:text-slate-900")}>
                   {item.title}
                 </span>
                 {item.badge && (
@@ -239,7 +246,7 @@ function renderNavItem(
                 href={child.href}
                 onClick={closeMobile}
                 className={cn(
-                  "block text-[12px] py-1.5 px-2.5 rounded-lg transition-all",
+                  "block text-[13px] py-2 px-2.5 rounded-lg transition-all",
                   childActive
                     ? "text-teal-700 bg-teal-50 font-medium"
                     : "text-slate-500 hover:text-slate-700 hover:bg-slate-50"

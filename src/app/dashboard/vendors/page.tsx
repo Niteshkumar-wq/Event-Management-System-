@@ -46,9 +46,9 @@ export default function VendorsPage() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: "Total Vendors", value: vendors.length.toString(), color: "text-teal-600" },
-          { label: "Preferred", value: vendors.filter((v) => v.isPreferred).length.toString(), color: "text-emerald-400" },
-          { label: "Avg Rating", value: (vendors.reduce((s, v) => s + v.rating, 0) / vendors.length).toFixed(1), color: "text-amber-400" },
-          { label: "Categories", value: categories.length.toString(), color: "text-pink-400" },
+          { label: "Preferred", value: vendors.filter((v) => v.isPreferred).length.toString(), color: "text-emerald-600" },
+          { label: "Avg Rating", value: (vendors.reduce((s, v) => s + v.rating, 0) / vendors.length).toFixed(1), color: "text-amber-600" },
+          { label: "Categories", value: categories.length.toString(), color: "text-pink-600" },
         ].map((s) => (
           <div key={s.label} className="glass-card p-4"><p className="text-xs text-slate-500">{s.label}</p><p className={cn("text-xl font-bold mt-1", s.color)}>{s.value}</p></div>
         ))}
@@ -84,8 +84,8 @@ export default function VendorsPage() {
               <input type="text" placeholder="Website" value={vForm.website} onChange={(e) => setVForm({...vForm, website: e.target.value})} className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-800 placeholder-slate-600 focus:outline-none focus:border-violet-500/50" /></div>
           </div>
           <div className="flex gap-3 mt-4">
-            <button onClick={handleAddVendor} className="px-4 py-2 bg-teal-600 hover:bg-violet-500 text-white text-sm rounded-lg flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Save Vendor</button>
-            <button onClick={() => setShowForm(false)} className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-700 text-sm rounded-lg">Cancel</button>
+            <button onClick={handleAddVendor} className="px-4 py-2 bg-teal-600 hover:bg-teal-600 text-white text-sm rounded-lg flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Save Vendor</button>
+            <button onClick={() => setShowForm(false)} className="px-4 py-2 bg-slate-100 hover:bg-slate-700 text-slate-700 text-sm rounded-lg">Cancel</button>
           </div>
         </div>
       )}
@@ -101,7 +101,7 @@ export default function VendorsPage() {
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-400">{vendor.category}</span>
                 </div>
               </div>
-              {vendor.isPreferred && <Heart className="w-4 h-4 text-pink-400 fill-pink-400" />}
+              {vendor.isPreferred && <Heart className="w-4 h-4 text-pink-600 fill-pink-400" />}
             </div>
             <div className="space-y-2 text-xs text-slate-400">
               <div className="flex items-center gap-2"><Mail className="w-3 h-3 text-slate-500" />{vendor.email}</div>
@@ -111,7 +111,7 @@ export default function VendorsPage() {
             <div className="flex items-center justify-between mt-4 pt-3 border-t border-slate-200">
               <div className="flex items-center gap-1">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className={cn("w-3 h-3", i < Math.floor(vendor.rating) ? "text-amber-400 fill-amber-400" : "text-slate-700")} />
+                  <Star key={i} className={cn("w-3 h-3", i < Math.floor(vendor.rating) ? "text-amber-600 fill-amber-400" : "text-slate-700")} />
                 ))}
                 <span className="text-xs text-slate-400 ml-1">{vendor.rating}</span>
               </div>

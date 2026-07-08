@@ -30,14 +30,14 @@ export default function VendorDetailPage() {
         <div className="flex-1">
           <div className="flex items-center gap-3">
             <h1 className="text-2xl font-bold text-slate-900">{vendor.name}</h1>
-            {vendor.isPreferred && <Heart className="w-5 h-5 text-pink-400 fill-pink-400" />}
+            {vendor.isPreferred && <Heart className="w-5 h-5 text-pink-600 fill-pink-400" />}
           </div>
           <div className="flex items-center gap-3 mt-1">
             <span className="text-xs px-2 py-0.5 rounded-full bg-teal-50 text-teal-600 border border-violet-500/20">{vendor.category}</span>
-            <div className="flex items-center gap-0.5">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className={cn("w-3 h-3", i < Math.floor(vendor.rating) ? "text-amber-400 fill-amber-400" : "text-slate-700")} />)}<span className="text-xs text-slate-400 ml-1">{vendor.rating}</span></div>
+            <div className="flex items-center gap-0.5">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className={cn("w-3 h-3", i < Math.floor(vendor.rating) ? "text-amber-600 fill-amber-400" : "text-slate-700")} />)}<span className="text-xs text-slate-400 ml-1">{vendor.rating}</span></div>
           </div>
         </div>
-        <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-100 rounded-lg"><Edit className="w-4 h-4" /></button>
+        <button className="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-lg"><Edit className="w-4 h-4" /></button>
       </div>
 
       <div className="flex gap-1 border-b border-slate-200/50">
@@ -75,9 +75,9 @@ export default function VendorDetailPage() {
             <div className="space-y-3">
               {[
                 { label: "Total Bookings", value: "12", color: "text-teal-600" },
-                { label: "Active Contracts", value: "2", color: "text-emerald-400" },
-                { label: "Total Revenue", value: formatCurrency(183000), color: "text-amber-400" },
-                { label: "Avg Rating", value: `${vendor.rating}/5.0`, color: "text-pink-400" },
+                { label: "Active Contracts", value: "2", color: "text-emerald-600" },
+                { label: "Total Revenue", value: formatCurrency(183000), color: "text-amber-600" },
+                { label: "Avg Rating", value: `${vendor.rating}/5.0`, color: "text-pink-600" },
               ].map((s) => (
                 <div key={s.label} className="flex items-center justify-between p-2 rounded-lg bg-slate-50">
                   <span className="text-xs text-slate-500">{s.label}</span>
@@ -99,10 +99,10 @@ export default function VendorDetailPage() {
               {bookings.map((b) => (
                 <tr key={b.id} className="border-b border-slate-100 table-row-hover">
                   <td className="px-4 py-3 text-sm text-slate-800">{b.event}</td>
-                  <td className="px-4 py-3 text-sm text-slate-400">{b.service}</td>
+                  <td className="px-4 py-3 text-sm text-slate-600">{b.service}</td>
                   <td className="px-4 py-3 text-xs text-slate-500">{b.dates}</td>
                   <td className="px-4 py-3 text-sm font-mono text-slate-800">{formatCurrency(b.price)}</td>
-                  <td className="px-4 py-3"><span className={cn("text-[10px] px-2 py-0.5 rounded-full border", b.status === "Completed" ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-blue-500/10 text-blue-400 border-blue-500/20")}>{b.status}</span></td>
+                  <td className="px-4 py-3"><span className={cn("text-[10px] px-2 py-0.5 rounded-full border", b.status === "Completed" ? "bg-emerald-500/10 text-emerald-600 border-emerald-500/20" : "bg-blue-500/10 text-blue-600 border-blue-500/20")}>{b.status}</span></td>
                 </tr>
               ))}
             </tbody>
@@ -115,12 +115,12 @@ export default function VendorDetailPage() {
           {contracts.map((c) => (
             <div key={c.id} className="glass-card p-5 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="p-2.5 rounded-xl bg-purple-500/10"><FileText className="w-5 h-5 text-purple-400" /></div>
+                <div className="p-2.5 rounded-xl bg-purple-500/10"><FileText className="w-5 h-5 text-purple-600" /></div>
                 <div><h4 className="text-sm font-semibold text-slate-800">{c.title}</h4><p className="text-xs text-slate-500 mt-0.5">{c.start} → {c.end}</p></div>
               </div>
               <div className="text-right">
                 <p className="text-base font-bold text-slate-900 font-mono">{formatCurrency(c.value)}</p>
-                <span className={cn("text-[10px] px-2 py-0.5 rounded-full border", c.status === "Active" ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-blue-500/10 text-blue-400 border-blue-500/20")}>{c.status}</span>
+                <span className={cn("text-[10px] px-2 py-0.5 rounded-full border", c.status === "Active" ? "bg-emerald-500/10 text-emerald-600 border-emerald-500/20" : "bg-blue-500/10 text-blue-600 border-blue-500/20")}>{c.status}</span>
               </div>
             </div>
           ))}

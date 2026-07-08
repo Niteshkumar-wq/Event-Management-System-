@@ -61,9 +61,9 @@ export default function InventoryPage() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: "Total Items", value: items.length.toString(), icon: Package, color: "text-teal-600" },
-          { label: "Low Stock", value: lowStock.length.toString(), icon: AlertTriangle, color: "text-red-400" },
-          { label: "Total Value", value: formatCurrency(totalValue), icon: DollarSign, color: "text-emerald-400" },
-          { label: "Categories", value: categories.length.toString(), icon: Layers, color: "text-amber-400" },
+          { label: "Low Stock", value: lowStock.length.toString(), icon: AlertTriangle, color: "text-red-600" },
+          { label: "Total Value", value: formatCurrency(totalValue), icon: DollarSign, color: "text-emerald-600" },
+          { label: "Categories", value: categories.length.toString(), icon: Layers, color: "text-amber-600" },
         ].map((s) => (
           <div key={s.label} className="glass-card p-4"><div className="flex items-center justify-between"><div><p className="text-xs text-slate-500">{s.label}</p><p className={cn("text-xl font-bold mt-1", s.color)}>{s.value}</p></div><s.icon className={cn("w-5 h-5", s.color)} /></div></div>
         ))}
@@ -71,7 +71,7 @@ export default function InventoryPage() {
 
       {lowStock.length > 0 && (
         <div className="glass-card p-4 border-l-4 border-red-500/50">
-          <div className="flex items-center gap-2 mb-2"><AlertTriangle className="w-4 h-4 text-red-400" /><span className="text-sm font-semibold text-red-400">Low Stock Alerts</span></div>
+          <div className="flex items-center gap-2 mb-2"><AlertTriangle className="w-4 h-4 text-red-600" /><span className="text-sm font-semibold text-red-600">Low Stock Alerts</span></div>
           <div className="flex gap-3 flex-wrap">
             {lowStock.map((item) => (
               <span key={item.id} className="text-xs bg-red-500/10 text-red-300 px-2 py-1 rounded-lg border border-red-500/20">
@@ -104,8 +104,8 @@ export default function InventoryPage() {
               <input type="number" placeholder="0.00" value={formData.costPerUnit} onChange={(e) => setFormData({...formData, costPerUnit: e.target.value})} className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-violet-500/50" /></div>
           </div>
           <div className="flex gap-3 mt-4">
-            <button onClick={handleAddItem} className="px-4 py-2 bg-teal-600 hover:bg-violet-500 text-white text-sm rounded-lg flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Save Item</button>
-            <button onClick={() => setShowForm(false)} className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-700 text-sm rounded-lg">Cancel</button>
+            <button onClick={handleAddItem} className="px-4 py-2 bg-teal-600 hover:bg-teal-600 text-white text-sm rounded-lg flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Save Item</button>
+            <button onClick={() => setShowForm(false)} className="px-4 py-2 bg-slate-100 hover:bg-slate-700 text-slate-700 text-sm rounded-lg">Cancel</button>
           </div>
         </div>
       )}
@@ -133,13 +133,13 @@ export default function InventoryPage() {
                   <td className="px-4 py-3"><span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-400">{item.category}</span></td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <span className={cn("text-sm font-mono", isLow ? "text-red-400" : "text-slate-800")}>{item.availableQty} / {item.totalQuantity}</span>
-                      <div className="w-16 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                      <span className={cn("text-sm font-mono", isLow ? "text-red-600" : "text-slate-800")}>{item.availableQty} / {item.totalQuantity}</span>
+                      <div className="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden">
                         <div className={cn("h-full rounded-full", isLow ? "bg-red-500" : pct < 50 ? "bg-amber-500" : "bg-emerald-500")} style={{ width: `${pct}%` }} />
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-3"><span className={cn("text-[10px] px-2 py-0.5 rounded-full border", item.condition === "Good" ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-amber-500/10 text-amber-400 border-amber-500/20")}>{item.condition}</span></td>
+                  <td className="px-4 py-3"><span className={cn("text-[10px] px-2 py-0.5 rounded-full border", item.condition === "Good" ? "bg-emerald-500/10 text-emerald-600 border-emerald-500/20" : "bg-amber-500/10 text-amber-600 border-amber-500/20")}>{item.condition}</span></td>
                   <td className="px-4 py-3 text-xs text-slate-500">{item.location}</td>
                   <td className="px-4 py-3 text-sm font-mono text-slate-700">{formatCurrency(item.costPerUnit || 0)}</td>
                 </tr>

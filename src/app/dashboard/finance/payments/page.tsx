@@ -35,12 +35,12 @@ export default function PaymentsPage() {
         </tr></thead><tbody>
           {filtered.map((p) => (
             <tr key={p.id} className="border-b border-slate-100 table-row-hover">
-              <td className="px-4 py-3 text-sm text-slate-400">{p.date}</td>
+              <td className="px-4 py-3 text-sm text-slate-600">{p.date}</td>
               <td className="px-4 py-3 text-sm font-mono text-teal-600">{p.invoice}</td>
               <td className="px-4 py-3 text-sm text-slate-800">{p.client}</td>
-              <td className="px-4 py-3 text-sm font-bold font-mono text-emerald-400">{formatCurrency(p.amount)}</td>
+              <td className="px-4 py-3 text-sm font-bold font-mono text-emerald-600">{formatCurrency(p.amount)}</td>
               <td className="px-4 py-3"><span className={cn("text-[10px] px-2 py-0.5 rounded-full border",
-                p.method === "Card" ? "bg-blue-500/10 text-blue-400 border-blue-500/20" : p.method === "Bank Transfer" ? "bg-purple-500/10 text-purple-400 border-purple-500/20" : p.method === "UPI" ? "bg-cyan-500/10 text-cyan-400 border-cyan-500/20" : "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                p.method === "Card" ? "bg-blue-500/10 text-blue-600 border-blue-500/20" : p.method === "Bank Transfer" ? "bg-purple-500/10 text-purple-600 border-purple-500/20" : p.method === "UPI" ? "bg-cyan-500/10 text-cyan-600 border-cyan-500/20" : "bg-emerald-500/10 text-emerald-600 border-emerald-500/20"
               )}>{p.method}</span></td>
               <td className="px-4 py-3 text-xs font-mono text-slate-500">{p.reference}</td>
             </tr>

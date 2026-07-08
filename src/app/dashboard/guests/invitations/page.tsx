@@ -40,20 +40,20 @@ function getDeliveryStatusIcon(status: string) {
 
 function getDeliveryStatusColor(status: string) {
   switch (status) {
-    case 'Sent': return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
-    case 'Delivered': return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
-    case 'Opened': return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
-    case 'Clicked': return 'bg-purple-500/10 text-purple-400 border-purple-500/20';
-    default: return 'bg-slate-500/10 text-slate-400 border-slate-500/20';
+    case 'Sent': return 'bg-blue-500/10 text-blue-700 border-blue-500/20';
+    case 'Delivered': return 'bg-emerald-500/10 text-emerald-700 border-emerald-500/20';
+    case 'Opened': return 'bg-amber-500/10 text-amber-700 border-amber-500/20';
+    case 'Clicked': return 'bg-purple-500/10 text-purple-700 border-purple-500/20';
+    default: return 'bg-slate-500/10 text-slate-600 border-slate-500/20';
   }
 }
 
 function getRsvpColor(status: string) {
   switch (status) {
-    case 'Accepted': return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
-    case 'Declined': return 'bg-red-500/10 text-red-400 border-red-500/20';
-    case 'Maybe': return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
-    default: return 'bg-slate-500/10 text-slate-400 border-slate-500/20';
+    case 'Accepted': return 'bg-emerald-500/10 text-emerald-700 border-emerald-500/20';
+    case 'Declined': return 'bg-red-500/10 text-red-700 border-red-500/20';
+    case 'Maybe': return 'bg-amber-500/10 text-amber-700 border-amber-500/20';
+    default: return 'bg-slate-500/10 text-slate-600 border-slate-500/20';
   }
 }
 
@@ -135,12 +135,12 @@ export default function InvitationsPage() {
       {/* ─── Header ─── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white">Invitation Management</h1>
-          <p className="text-slate-400 text-sm mt-1">Track and manage all guest invitations</p>
+          <h1 className="page-title">Invitation Management</h1>
+          <p className="page-subtitle">Track and manage all guest invitations</p>
         </div>
         <button
           onClick={openSendModal}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-teal-600 hover:bg-violet-500 text-white transition-colors text-sm font-medium"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-teal-600 hover:bg-teal-600 text-white transition-colors text-sm font-medium"
         >
           <Send className="w-4 h-4" /> Send Invitations
         </button>
@@ -150,9 +150,9 @@ export default function InvitationsPage() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: 'Total Sent', value: stats.total, sub: 'invitations', icon: Send, gradient: 'kpi-gradient-1', iconColor: 'text-teal-600' },
-          { label: 'Delivered Rate', value: `${stats.deliveryRate}%`, sub: `${stats.delivered} delivered`, icon: CheckCircle2, gradient: 'kpi-gradient-2', iconColor: 'text-emerald-400' },
-          { label: 'Open Rate', value: `${stats.openRate}%`, sub: `${stats.opened} opened`, icon: MailOpen, gradient: 'kpi-gradient-3', iconColor: 'text-amber-400' },
-          { label: 'RSVP Rate', value: `${stats.rsvpRate}%`, sub: `${stats.rsvped} responded`, icon: Users, gradient: 'kpi-gradient-4', iconColor: 'text-pink-400' },
+          { label: 'Delivered Rate', value: `${stats.deliveryRate}%`, sub: `${stats.delivered} delivered`, icon: CheckCircle2, gradient: 'kpi-gradient-2', iconColor: 'text-emerald-600' },
+          { label: 'Open Rate', value: `${stats.openRate}%`, sub: `${stats.opened} opened`, icon: MailOpen, gradient: 'kpi-gradient-3', iconColor: 'text-amber-600' },
+          { label: 'RSVP Rate', value: `${stats.rsvpRate}%`, sub: `${stats.rsvped} responded`, icon: Users, gradient: 'kpi-gradient-4', iconColor: 'text-pink-600' },
         ].map((s, i) => (
           <motion.div
             key={s.label}
@@ -163,11 +163,11 @@ export default function InvitationsPage() {
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-400">{s.label}</p>
-                <p className="text-2xl font-bold text-white mt-1 font-mono">{s.value}</p>
+                <p className="text-sm text-slate-600">{s.label}</p>
+                <p className="text-2xl font-bold text-slate-900 mt-1 font-mono">{s.value}</p>
                 <p className="text-xs text-slate-500 mt-0.5">{s.sub}</p>
               </div>
-              <div className={cn('p-2.5 rounded-xl bg-slate-800/60', s.iconColor)}>
+              <div className={cn('p-2.5 rounded-xl bg-teal-50', s.iconColor)}>
                 <s.icon className="w-5 h-5" />
               </div>
             </div>
@@ -185,13 +185,13 @@ export default function InvitationsPage() {
               placeholder="Search by guest or event name..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-colors"
             />
           </div>
           <select
             value={statusFilter}
             onChange={e => setStatusFilter(e.target.value)}
-            className="px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-white focus:outline-none focus:border-violet-500/50"
+            className="px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:border-violet-500/50"
           >
             <option value="All">All Statuses</option>
             {['Sent', 'Delivered', 'Opened', 'Clicked'].map(s => <option key={s} value={s}>{s}</option>)}
@@ -199,7 +199,7 @@ export default function InvitationsPage() {
           <select
             value={eventFilter}
             onChange={e => setEventFilter(e.target.value)}
-            className="px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-white focus:outline-none focus:border-violet-500/50"
+            className="px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:border-violet-500/50"
           >
             {eventNames.map(e => <option key={e} value={e}>{e === 'All' ? 'All Events' : e}</option>)}
           </select>
@@ -221,7 +221,7 @@ export default function InvitationsPage() {
                   <th
                     key={col.key}
                     onClick={() => toggleSort(col.key)}
-                    className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider cursor-pointer hover:text-slate-800 transition-colors"
+                    className="p-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:text-slate-800 transition-colors"
                   >
                     <div className="flex items-center gap-1.5">
                       {col.label}
@@ -233,8 +233,8 @@ export default function InvitationsPage() {
                     </div>
                   </th>
                 ))}
-                <th className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">RSVP Status</th>
-                <th className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Template</th>
+                <th className="p-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">RSVP Status</th>
+                <th className="p-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Template</th>
               </tr>
             </thead>
             <tbody>
@@ -247,13 +247,13 @@ export default function InvitationsPage() {
                   className="border-b border-slate-200 table-row-hover"
                 >
                   <td className="p-4">
-                    <p className="text-sm font-medium text-white">{inv.guestName}</p>
+                    <p className="text-sm font-medium text-slate-900">{inv.guestName}</p>
                   </td>
                   <td className="p-4">
                     <p className="text-sm text-slate-700">{inv.eventName}</p>
                   </td>
                   <td className="p-4">
-                    <p className="text-sm text-slate-400 font-mono">{formatDateTime(inv.sentDate)}</p>
+                    <p className="text-sm text-slate-600 font-mono">{formatDateTime(inv.sentDate)}</p>
                   </td>
                   <td className="p-4">
                     <span className={cn(
@@ -320,8 +320,8 @@ export default function InvitationsPage() {
                 {/* Steps indicator */}
                 <div className="p-6 border-b border-slate-200/50">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold text-white">Send Invitations</h3>
-                    <button onClick={() => setShowSendModal(false)} className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400">
+                    <h3 className="text-lg font-bold text-slate-900">Send Invitations</h3>
+                    <button onClick={() => setShowSendModal(false)} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400">
                       <X className="w-5 h-5" />
                     </button>
                   </div>
@@ -330,11 +330,11 @@ export default function InvitationsPage() {
                       <div key={step} className="flex items-center gap-2">
                         <div className={cn(
                           'w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors',
-                          idx <= sendStep ? 'bg-teal-600 text-white' : 'bg-slate-800 text-slate-500'
+                          idx <= sendStep ? 'bg-teal-600 text-white' : 'bg-slate-100 text-slate-500'
                         )}>
                           {idx + 1}
                         </div>
-                        <span className={cn('text-xs hidden sm:inline', idx <= sendStep ? 'text-white' : 'text-slate-500')}>{step}</span>
+                        <span className={cn('text-xs hidden sm:inline', idx <= sendStep ? 'text-slate-900' : 'text-slate-500')}>{step}</span>
                         {idx < 3 && <ArrowRight className="w-3.5 h-3.5 text-slate-600" />}
                       </div>
                     ))}
@@ -345,7 +345,7 @@ export default function InvitationsPage() {
                 <div className="p-6 min-h-[280px]">
                   {sendStep === 0 && (
                     <div className="space-y-3">
-                      <p className="text-sm text-slate-400 mb-4">Choose the event for which to send invitations:</p>
+                      <p className="text-sm text-slate-600 mb-4">Choose the event for which to send invitations:</p>
                       {demoEvents.filter(e => e.status !== 'completed').map(event => (
                         <button
                           key={event.id}
@@ -357,7 +357,7 @@ export default function InvitationsPage() {
                               : 'border-slate-200 hover:border-slate-600 bg-slate-100'
                           )}
                         >
-                          <p className="text-sm font-medium text-white">{event.name}</p>
+                          <p className="text-sm font-medium text-slate-900">{event.name}</p>
                           <p className="text-xs text-slate-400 mt-0.5">{event.type} · {formatDate(event.startDate)} · {event.expectedGuests} guests</p>
                         </button>
                       ))}
@@ -366,7 +366,7 @@ export default function InvitationsPage() {
 
                   {sendStep === 1 && (
                     <div className="space-y-3">
-                      <p className="text-sm text-slate-400 mb-4">Select guests to invite ({selectedGuestIds.size} selected):</p>
+                      <p className="text-sm text-slate-600 mb-4">Select guests to invite ({selectedGuestIds.size} selected):</p>
                       <div className="space-y-2 max-h-[280px] overflow-y-auto">
                         {demoGuests.map(guest => (
                           <label
@@ -382,10 +382,10 @@ export default function InvitationsPage() {
                               type="checkbox"
                               checked={selectedGuestIds.has(guest.id)}
                               onChange={() => toggleGuestSelection(guest.id)}
-                              className="rounded border-slate-600 bg-slate-800 text-teal-600 focus:ring-violet-500/20 focus:ring-offset-0"
+                              className="rounded border-slate-600 bg-slate-100 text-teal-600 focus:ring-violet-500/20 focus:ring-offset-0"
                             />
                             <div className="flex-1">
-                              <p className="text-sm text-white">{guest.firstName} {guest.lastName}</p>
+                              <p className="text-sm text-slate-900">{guest.firstName} {guest.lastName}</p>
                               <p className="text-xs text-slate-500">{guest.email} · {guest.company}</p>
                             </div>
                             <span className="text-xs text-slate-500">{guest.category}</span>
@@ -397,7 +397,7 @@ export default function InvitationsPage() {
 
                   {sendStep === 2 && (
                     <div className="space-y-3">
-                      <p className="text-sm text-slate-400 mb-4">Choose an invitation template:</p>
+                      <p className="text-sm text-slate-600 mb-4">Choose an invitation template:</p>
                       <div className="grid grid-cols-2 gap-3">
                         {TEMPLATES.map(tmpl => (
                           <button
@@ -411,7 +411,7 @@ export default function InvitationsPage() {
                             )}
                           >
                             <Mail className="w-5 h-5 text-teal-600 mb-2" />
-                            <p className="text-sm font-medium text-white">{tmpl}</p>
+                            <p className="text-sm font-medium text-slate-900">{tmpl}</p>
                           </button>
                         ))}
                       </div>
@@ -420,19 +420,19 @@ export default function InvitationsPage() {
 
                   {sendStep === 3 && (
                     <div className="space-y-4">
-                      <p className="text-sm text-slate-400">Review and send your invitations:</p>
+                      <p className="text-sm text-slate-600">Review and send your invitations:</p>
                       <div className="p-4 rounded-xl bg-slate-100 border border-slate-200 space-y-3">
                         <div className="flex justify-between">
                           <span className="text-xs text-slate-400">Event</span>
-                          <span className="text-sm text-white">{demoEvents.find(e => e.id === selectedEvent)?.name || 'Not selected'}</span>
+                          <span className="text-sm text-slate-900">{demoEvents.find(e => e.id === selectedEvent)?.name || 'Not selected'}</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-xs text-slate-400">Recipients</span>
-                          <span className="text-sm text-white">{selectedGuestIds.size} guests</span>
+                          <span className="text-sm text-slate-900">{selectedGuestIds.size} guests</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-xs text-slate-400">Template</span>
-                          <span className="text-sm text-white">{selectedTemplate || 'Not selected'}</span>
+                          <span className="text-sm text-slate-900">{selectedTemplate || 'Not selected'}</span>
                         </div>
                       </div>
 
@@ -442,10 +442,10 @@ export default function InvitationsPage() {
                           <Sparkles className="w-4 h-4 text-teal-600" />
                           <span className="text-xs font-medium text-teal-700 uppercase tracking-wider">Email Preview</span>
                         </div>
-                        <p className="text-white font-medium text-sm">You&apos;re Invited! 🎉</p>
-                        <p className="text-sm text-slate-400 mt-2">
+                        <p className="text-slate-900 font-medium text-sm">You&apos;re Invited! 🎉</p>
+                        <p className="text-sm text-slate-600 mt-2">
                           Dear Guest, you are cordially invited to{' '}
-                          <span className="text-white">{demoEvents.find(e => e.id === selectedEvent)?.name || '[Event Name]'}</span>.
+                          <span className="text-slate-900">{demoEvents.find(e => e.id === selectedEvent)?.name || '[Event Name]'}</span>.
                           Please RSVP at your earliest convenience.
                         </p>
                         <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-teal-600/20 text-teal-700 text-xs font-medium">
@@ -462,7 +462,7 @@ export default function InvitationsPage() {
                   {sendStep > 0 && (
                     <button
                       onClick={() => setSendStep(s => s - 1)}
-                      className="px-4 py-2.5 rounded-lg border border-slate-700 text-slate-700 hover:bg-slate-800 transition-colors text-sm"
+                      className="px-4 py-2.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-50 transition-colors text-sm"
                     >
                       Back
                     </button>
@@ -470,14 +470,14 @@ export default function InvitationsPage() {
                   {sendStep < 3 ? (
                     <button
                       onClick={() => setSendStep(s => s + 1)}
-                      className="px-6 py-2.5 rounded-lg bg-teal-600 hover:bg-violet-500 text-white transition-colors text-sm font-medium"
+                      className="px-6 py-2.5 rounded-lg bg-teal-600 hover:bg-teal-600 text-white transition-colors text-sm font-medium"
                     >
                       Continue
                     </button>
                   ) : (
                     <button
                       onClick={() => setShowSendModal(false)}
-                      className="px-6 py-2.5 rounded-lg bg-teal-600 hover:bg-violet-500 text-white transition-colors text-sm font-medium flex items-center gap-2"
+                      className="px-6 py-2.5 rounded-lg bg-teal-600 hover:bg-teal-600 text-white transition-colors text-sm font-medium flex items-center gap-2"
                     >
                       <Send className="w-4 h-4" /> Send {selectedGuestIds.size} Invitations
                     </button>

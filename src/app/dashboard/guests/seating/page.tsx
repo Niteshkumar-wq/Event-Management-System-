@@ -39,9 +39,9 @@ function getCategoryDot(category: string) {
 
 function getCategoryBgColor(category: string) {
   switch (category) {
-    case 'VIP': return 'bg-amber-500/20 text-amber-400 border-amber-500/30';
-    case 'Speaker': return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
-    case 'Media': return 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30';
+    case 'VIP': return 'bg-amber-500/20 text-amber-600 border-amber-500/30';
+    case 'Speaker': return 'bg-purple-500/20 text-purple-600 border-purple-500/30';
+    case 'Media': return 'bg-cyan-500/20 text-cyan-600 border-cyan-500/30';
     default: return 'bg-slate-700/50 text-slate-700 border-slate-600/30';
   }
 }
@@ -135,20 +135,20 @@ export default function SeatingPlannerPage() {
       {/* ─── Header ─── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white">Seating Planner</h1>
+          <h1 className="text-2xl font-bold text-slate-900">Seating Planner</h1>
           <p className="text-slate-400 text-sm mt-1">Assign guests to tables for your events</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 border border-slate-200">
             <Users className="w-4 h-4 text-slate-400" />
-            <span className="text-sm text-white font-mono">{totalAssigned}</span>
+            <span className="text-sm text-slate-900 font-mono">{totalAssigned}</span>
             <span className="text-sm text-slate-500">/</span>
-            <span className="text-sm text-slate-400 font-mono">{totalSeats}</span>
+            <span className="text-sm text-slate-600 font-mono">{totalSeats}</span>
             <span className="text-xs text-slate-500">seats filled</span>
           </div>
           <button
             onClick={autoAssign}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-teal-600 hover:bg-violet-500 text-white transition-colors text-sm font-medium"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-teal-600 hover:bg-teal-600 text-white transition-colors text-sm font-medium"
           >
             <Wand2 className="w-4 h-4" /> Auto Assign
           </button>
@@ -203,10 +203,10 @@ export default function SeatingPlannerPage() {
                     {/* Circle table */}
                     <div className={cn(
                       'w-24 h-24 rounded-full border-2 flex items-center justify-center relative',
-                      isFull ? 'border-emerald-500/40 bg-emerald-500/10' : 'border-slate-600 bg-slate-800/60'
+                      isFull ? 'border-emerald-500/40 bg-emerald-500/10' : 'border-slate-600 bg-teal-50'
                     )}>
                       <div className="text-center">
-                        <p className="text-sm font-bold text-white">{table.name}</p>
+                        <p className="text-sm font-bold text-slate-900">{table.name}</p>
                         <p className="text-xs font-mono text-slate-400">{table.guests.length}/{table.capacity}</p>
                       </div>
 
@@ -262,7 +262,7 @@ export default function SeatingPlannerPage() {
                           {guest.firstName[0]}{guest.lastName[0]}
                           <button
                             onClick={e => { e.stopPropagation(); removeGuest(table.id, guest.id); }}
-                            className="ml-0.5 hover:text-red-400 transition-colors"
+                            className="ml-0.5 hover:text-red-600 transition-colors"
                           >
                             <X className="w-2.5 h-2.5" />
                           </button>
@@ -272,8 +272,8 @@ export default function SeatingPlannerPage() {
 
                     {isFull && (
                       <div className="flex items-center gap-1 mt-2">
-                        <Check className="w-3 h-3 text-emerald-400" />
-                        <span className="text-[10px] text-emerald-400 font-medium">Full</span>
+                        <Check className="w-3 h-3 text-emerald-600" />
+                        <span className="text-[10px] text-emerald-600 font-medium">Full</span>
                       </div>
                     )}
                   </div>
@@ -285,7 +285,7 @@ export default function SeatingPlannerPage() {
 
         {/* Guest Sidebar */}
         <div className="lg:col-span-1 glass-card p-4 space-y-4">
-          <h3 className="text-sm font-semibold text-white">Unassigned Guests</h3>
+          <h3 className="text-sm font-semibold text-slate-900">Unassigned Guests</h3>
           <p className="text-xs text-slate-500">{unassignedGuests.length} guests remaining</p>
 
           <div className="relative">
@@ -295,7 +295,7 @@ export default function SeatingPlannerPage() {
               placeholder="Search guests..."
               value={sidebarSearch}
               onChange={e => setSidebarSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 bg-slate-100 border border-slate-200 rounded-md text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
+              className="w-full pl-9 pr-3 py-2 bg-slate-100 border border-slate-200 rounded-md text-xs text-slate-900 placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
             />
           </div>
 
@@ -306,18 +306,18 @@ export default function SeatingPlannerPage() {
                 draggable
                 onDragStart={() => setDraggedGuest(guest)}
                 onDragEnd={() => setDraggedGuest(null)}
-                className="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 bg-slate-100 hover:bg-slate-800/60 cursor-grab active:cursor-grabbing transition-colors group"
+                className="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 bg-slate-100 hover:bg-teal-50 cursor-grab active:cursor-grabbing transition-colors group"
               >
                 <GripVertical className="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-400 shrink-0" />
                 <div className={cn('w-2 h-2 rounded-full shrink-0', getCategoryDot(guest.category))} />
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-white truncate">{guest.firstName} {guest.lastName}</p>
+                  <p className="text-xs font-medium text-slate-900 truncate">{guest.firstName} {guest.lastName}</p>
                   <p className="text-[10px] text-slate-500 truncate">{guest.company}</p>
                 </div>
                 {selectedTable && (
                   <button
                     onClick={() => assignGuest(selectedTable, guest)}
-                    className="p-1 rounded hover:bg-violet-500/20 text-slate-500 hover:text-teal-600 transition-colors"
+                    className="p-1 rounded hover:bg-teal-600/20 text-slate-500 hover:text-teal-600 transition-colors"
                     title={`Assign to ${tables.find(t => t.id === selectedTable)?.name}`}
                   >
                     <ChevronRight className="w-3.5 h-3.5" />
@@ -328,7 +328,7 @@ export default function SeatingPlannerPage() {
 
             {unassignedGuests.length === 0 && (
               <div className="py-8 text-center">
-                <Check className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
+                <Check className="w-8 h-8 text-emerald-600 mx-auto mb-2" />
                 <p className="text-xs text-slate-400">All guests assigned!</p>
               </div>
             )}

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { cn, formatCurrency, getStatusColor } from "@/lib/utils";
-import { demoEvents } from "@/lib/demo-data";
+import { useEvents } from "@/lib/data-store";
 import {
   Search, Plus, LayoutGrid, Calendar as CalIcon, Filter,
   MapPin, Users, DollarSign, Clock, ChevronLeft, ChevronRight,
@@ -12,13 +12,14 @@ import {
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 export default function EventsPage() {
+  const { events } = useEvents();
   const [view, setView] = useState<"grid" | "calendar">("grid");
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [calMonth, setCalMonth] = useState(6); // July
   const [calYear] = useState(2026);
 
-  const filtered = demoEvents.filter((e) => {
+  const filtered = events.filter((e) => {
     const matchSearch = e.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchStatus = filterStatus === "all" || e.status === filterStatus;
     return matchSearch && matchStatus;
@@ -51,9 +52,9 @@ export default function EventsPage() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: "Total Events", value: filtered.length.toString(), color: "text-teal-600" },
-          { label: "Active Events", value: activeCount.toString(), color: "text-emerald-400" },
-          { label: "Upcoming", value: filtered.filter((e) => e.status === "planning").length.toString(), color: "text-amber-400" },
-          { label: "Total Budget", value: formatCurrency(totalRevenue), color: "text-pink-400" },
+          { label: "Active Events", value: activeCount.toString(), color: "text-emerald-600" },
+          { label: "Upcoming", value: filtered.filter((e) => e.status === "planning").length.toString(), color: "text-amber-600" },
+          { label: "Total Budget", value: formatCurrency(totalRevenue), color: "text-pink-600" },
         ].map((s) => (
           <div key={s.label} className="glass-card p-4">
             <p className="text-xs text-slate-500">{s.label}</p>
@@ -125,9 +126,9 @@ export default function EventsPage() {
                   <div className="mt-3">
                     <div className="flex items-center justify-between text-[10px] mb-1">
                       <span className="text-slate-500">Budget spent</span>
-                      <span className={cn(budgetPercent > 90 ? "text-red-400" : "text-slate-400")}>{budgetPercent}%</span>
+                      <span className={cn(budgetPercent > 90 ? "text-red-600" : "text-slate-400")}>{budgetPercent}%</span>
                     </div>
-                    <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
                       <div className={cn("h-full rounded-full transition-all", budgetPercent > 90 ? "bg-red-500" : budgetPercent > 70 ? "bg-amber-500" : "bg-violet-500")}
                         style={{ width: `${Math.min(budgetPercent, 100)}%` }} />
                     </div>
@@ -162,7 +163,7 @@ export default function EventsPage() {
               <div key={d} className="text-center text-xs text-slate-500 font-medium py-2">{d}</div>
             ))}
             {calDays.map((day, i) => {
-              const dayEvents = day ? demoEvents.filter((e) => {
+              const dayEvents = day ? events.filter((e) => {
                 const d = new Date(e.startDate);
                 return d.getMonth() === calMonth && d.getDate() === day;
               }) : [];
@@ -172,7 +173,7 @@ export default function EventsPage() {
                     <>
                       <span className={cn("text-xs", day === new Date().getDate() && calMonth === new Date().getMonth() ? "text-teal-600 font-bold" : "text-slate-500")}>{day}</span>
                       {dayEvents.map((e) => (
-                        <Link key={e.id} href={`/dashboard/events/${e.id}`} className="block mt-1 text-[9px] bg-violet-500/20 text-teal-700 px-1 py-0.5 rounded truncate hover:bg-violet-500/30 transition-colors">
+                        <Link key={e.id} href={`/dashboard/events/${e.id}`} className="block mt-1 text-[9px] bg-violet-500/20 text-teal-700 px-1 py-0.5 rounded truncate hover:bg-teal-600/30 transition-colors">
                           {e.name}
                         </Link>
                       ))}

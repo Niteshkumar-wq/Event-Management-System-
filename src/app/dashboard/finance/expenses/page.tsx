@@ -42,7 +42,7 @@ export default function ExpensesPage() {
                 <div><label className="text-xs text-slate-500 block mb-1">Category</label><select className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-700 focus:outline-none focus:border-violet-500/50"><option>Venue</option><option>Catering</option><option>AV/Tech</option><option>Decoration</option><option>Security</option><option>Other</option></select></div>
                 <div><label className="text-xs text-slate-500 block mb-1">Receipt</label><div className="flex items-center gap-2 p-2 border border-dashed border-slate-700 rounded-lg"><Upload className="w-4 h-4 text-slate-500" /><span className="text-xs text-slate-500">Upload receipt</span></div></div>
               </div>
-              <div className="flex gap-3 mt-4"><button className="px-4 py-2 bg-teal-600 text-white text-sm rounded-lg">Save</button><button onClick={() => setShowForm(false)} className="px-4 py-2 bg-slate-800 text-slate-700 text-sm rounded-lg">Cancel</button></div>
+              <div className="flex gap-3 mt-4"><button className="px-4 py-2 bg-teal-600 text-white text-sm rounded-lg">Save</button><button onClick={() => setShowForm(false)} className="px-4 py-2 bg-slate-100 text-slate-700 text-sm rounded-lg">Cancel</button></div>
             </div>
           )}
           <div className="flex items-center gap-3 mb-4">
@@ -60,7 +60,7 @@ export default function ExpensesPage() {
                   <td className="px-4 py-3 text-xs text-slate-500">{e.event}</td>
                   <td className="px-4 py-3 text-sm font-bold font-mono text-slate-800">{formatCurrency(e.amount)}</td>
                   <td className="px-4 py-3 text-xs text-slate-400">{e.paidBy}</td>
-                  <td className="px-4 py-3"><span className={cn("text-[10px] px-2 py-0.5 rounded-full border", e.status === "Paid" ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : e.status === "Approved" ? "bg-blue-500/10 text-blue-400 border-blue-500/20" : "bg-amber-500/10 text-amber-400 border-amber-500/20")}>{e.status}</span></td>
+                  <td className="px-4 py-3"><span className={cn("text-[10px] px-2 py-0.5 rounded-full border", e.status === "Paid" ? "bg-emerald-500/10 text-emerald-600 border-emerald-500/20" : e.status === "Approved" ? "bg-blue-500/10 text-blue-600 border-blue-500/20" : "bg-amber-500/10 text-amber-600 border-amber-500/20")}>{e.status}</span></td>
                 </tr>
               ))}
             </tbody></table>

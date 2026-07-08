@@ -2,7 +2,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { createLeadFromForm, saveLead, type NewLeadForm } from "@/lib/data-store";
 import { ArrowLeft, ArrowRight, Check, User, Calendar, DollarSign, Eye } from "lucide-react";
+
+const emptyForm: NewLeadForm = {
+  clientName: "", clientEmail: "", clientPhone: "", clientCompany: "",
+  eventType: "", eventDate: "", eventLocation: "", estimatedGuests: "",
+  estimatedBudget: "", source: "", priority: "medium", notes: "",
+};
 
 const steps = [
   { id: 1, title: "Client Info", icon: User },
@@ -14,30 +21,53 @@ const steps = [
 export default function NewLeadPage() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({
-    clientName: "", clientEmail: "", clientPhone: "", clientCompany: "",
-    eventType: "", eventDate: "", eventLocation: "", estimatedGuests: "",
-    estimatedBudget: "", source: "", priority: "medium", notes: "",
-  });
+  const [createdId, setCreatedId] = useState("");
+  const [error, setError] = useState("");
+  const [form, setForm] = useState<NewLeadForm>(emptyForm);
 
-  const update = (key: string, value: string) => setForm((p) => ({ ...p, [key]: value }));
+  const update = (key: keyof NewLeadForm, value: string) => setForm((p) => ({ ...p, [key]: value }));
+
+  const handleSubmit = () => {
+    if (!form.clientName.trim() || !form.clientEmail.trim()) {
+      setError("Please fill in client name and email before submitting.");
+      setStep(1);
+      return;
+    }
+    const lead = saveLead(createLeadFromForm(form));
+    setCreatedId(lead.id);
+    setSubmitted(true);
+    setError("");
+  };
+
+  const resetForm = () => {
+    setSubmitted(false);
+    setStep(1);
+    setForm(emptyForm);
+    setCreatedId("");
+    setError("");
+  };
 
   if (submitted) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="glass-card p-8 text-center max-w-md w-full animate-fade-in">
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
-            <Check className="w-8 h-8 text-emerald-400" />
+            <Check className="w-8 h-8 text-emerald-600" />
           </div>
           <h2 className="text-xl font-bold text-slate-900">Lead Created Successfully!</h2>
-          <p className="text-sm text-slate-400 mt-2">
+          <p className="text-sm text-slate-600 mt-2">
             {form.clientName || "New lead"} has been added to your pipeline.
           </p>
-          <div className="flex gap-3 mt-6 justify-center">
-            <Link href="/dashboard/crm" className="px-5 py-2.5 bg-teal-600 hover:bg-violet-500 text-white text-sm rounded-xl font-medium transition-colors">
+          <div className="flex gap-3 mt-6 justify-center flex-wrap">
+            <Link href="/dashboard/crm" className="btn-primary">
               View Pipeline
             </Link>
-            <button onClick={() => { setSubmitted(false); setStep(1); setForm({ clientName: "", clientEmail: "", clientPhone: "", clientCompany: "", eventType: "", eventDate: "", eventLocation: "", estimatedGuests: "", estimatedBudget: "", source: "", priority: "medium", notes: "" }); }} className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-700 text-sm rounded-xl transition-colors">
+            {createdId && (
+              <Link href={`/dashboard/crm/${createdId}`} className="btn-secondary">
+                View Lead
+              </Link>
+            )}
+            <button onClick={resetForm} className="btn-secondary">
               Add Another
             </button>
           </div>
@@ -58,13 +88,17 @@ export default function NewLeadPage() {
         {steps.map((s, i) => (
           <div key={s.id} className="flex items-center gap-2 flex-1">
             <div className={cn("w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors",
-              step > s.id ? "bg-emerald-600 text-white" : step === s.id ? "bg-teal-600 text-white" : "bg-slate-800 text-slate-500"
+              step > s.id ? "bg-emerald-600 text-white" : step === s.id ? "bg-teal-600 text-white" : "bg-slate-100 text-slate-500"
             )}>{step > s.id ? <Check className="w-4 h-4" /> : <s.icon className="w-4 h-4" />}</div>
             <span className={cn("text-xs hidden sm:block", step >= s.id ? "text-slate-700" : "text-slate-600")}>{s.title}</span>
-            {i < steps.length - 1 && <div className={cn("h-0.5 flex-1", step > s.id ? "bg-emerald-600" : "bg-slate-800")} />}
+            {i < steps.length - 1 && <div className={cn("h-0.5 flex-1", step > s.id ? "bg-emerald-600" : "bg-slate-100")} />}
           </div>
         ))}
       </div>
+
+      {error && (
+        <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-sm text-red-600">{error}</div>
+      )}
 
       <div className="glass-card p-6">
         {step === 1 && (
@@ -78,7 +112,7 @@ export default function NewLeadPage() {
                 { key: "clientCompany", label: "Company", type: "text" },
               ].map((f) => (
                 <div key={f.key}><label className="text-xs text-slate-500 block mb-1">{f.label}</label>
-                  <input type={f.type} value={(form as any)[f.key]} onChange={(e) => update(f.key, e.target.value)}
+                  <input type={f.type} value={form[f.key as keyof NewLeadForm]} onChange={(e) => update(f.key as keyof NewLeadForm, e.target.value)}
                     className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-800 placeholder-slate-600 focus:outline-none focus:border-violet-500/50" /></div>
               ))}
             </div>
@@ -135,12 +169,12 @@ export default function NewLeadPage() {
 
         <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-200">
           <button onClick={() => setStep((p) => Math.max(1, p - 1))} disabled={step === 1}
-            className="flex items-center gap-2 px-4 py-2 bg-slate-800 text-slate-700 text-sm rounded-lg disabled:opacity-30"><ArrowLeft className="w-4 h-4" /> Back</button>
+            className="flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 text-sm rounded-lg disabled:opacity-30"><ArrowLeft className="w-4 h-4" /> Back</button>
           {step < 4 ? (
-            <button onClick={() => setStep((p) => Math.min(4, p + 1))} className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-violet-500 text-white text-sm rounded-lg">
+            <button onClick={() => setStep((p) => Math.min(4, p + 1))} className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-600 text-white text-sm rounded-lg">
               Next <ArrowRight className="w-4 h-4" /></button>
           ) : (
-            <button onClick={() => setSubmitted(true)} className="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm rounded-xl font-medium transition-colors shadow-lg shadow-emerald-500/20">
+            <button onClick={handleSubmit} className="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm rounded-xl font-medium transition-colors shadow-lg shadow-emerald-500/20">
               <Check className="w-4 h-4" /> Submit Lead</button>
           )}
         </div>

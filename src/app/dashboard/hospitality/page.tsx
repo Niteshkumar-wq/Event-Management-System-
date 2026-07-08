@@ -27,7 +27,7 @@ const modules = [
     href: "/dashboard/hospitality/travel",
     stats: { total: 12, confirmed: 8, pending: 4 },
     color: "from-blue-500/20 to-blue-600/10",
-    iconColor: "text-blue-400",
+    iconColor: "text-blue-600",
     borderColor: "border-blue-500/20",
   },
   {
@@ -37,7 +37,7 @@ const modules = [
     href: "/dashboard/hospitality/accommodation",
     stats: { total: 18, confirmed: 14, pending: 4 },
     color: "from-purple-500/20 to-purple-600/10",
-    iconColor: "text-purple-400",
+    iconColor: "text-purple-600",
     borderColor: "border-purple-500/20",
   },
   {
@@ -47,7 +47,7 @@ const modules = [
     href: "/dashboard/hospitality/transportation",
     stats: { total: 8, confirmed: 5, pending: 3 },
     color: "from-cyan-500/20 to-cyan-600/10",
-    iconColor: "text-cyan-400",
+    iconColor: "text-cyan-600",
     borderColor: "border-cyan-500/20",
   },
   {
@@ -57,7 +57,7 @@ const modules = [
     href: "/dashboard/hospitality/catering",
     stats: { total: 6, confirmed: 4, pending: 2 },
     color: "from-amber-500/20 to-amber-600/10",
-    iconColor: "text-amber-400",
+    iconColor: "text-amber-600",
     borderColor: "border-amber-500/20",
   },
   {
@@ -67,7 +67,7 @@ const modules = [
     href: "/dashboard/hospitality/vip",
     stats: { total: 15, confirmed: 12, pending: 3 },
     color: "from-pink-500/20 to-pink-600/10",
-    iconColor: "text-pink-400",
+    iconColor: "text-pink-600",
     borderColor: "border-pink-500/20",
   },
   {
@@ -77,7 +77,7 @@ const modules = [
     href: "/dashboard/hospitality/helpdesk",
     stats: { total: 5, confirmed: 2, pending: 3 },
     color: "from-emerald-500/20 to-emerald-600/10",
-    iconColor: "text-emerald-400",
+    iconColor: "text-emerald-600",
     borderColor: "border-emerald-500/20",
   },
 ];
@@ -96,9 +96,9 @@ export default function HospitalityPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: "Total Bookings", value: "53", icon: Users, color: "text-teal-600", change: "+8 this week" },
-          { label: "Confirmed", value: "39", icon: CheckCircle2, color: "text-emerald-400", change: "73.6% rate" },
-          { label: "Pending Action", value: "14", icon: Clock, color: "text-amber-400", change: "5 urgent" },
-          { label: "Total Spend", value: formatCurrency(48500), icon: TrendingUp, color: "text-pink-400", change: "Under budget" },
+          { label: "Confirmed", value: "39", icon: CheckCircle2, color: "text-emerald-600", change: "73.6% rate" },
+          { label: "Pending Action", value: "14", icon: Clock, color: "text-amber-600", change: "5 urgent" },
+          { label: "Total Spend", value: formatCurrency(48500), icon: TrendingUp, color: "text-pink-600", change: "Under budget" },
         ].map((stat) => (
           <div key={stat.label} className="glass-card p-4">
             <div className="flex items-center justify-between">
@@ -140,11 +140,11 @@ export default function HospitalityPage() {
                 </div>
                 <div className="flex items-center gap-1">
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                  <span className="text-[10px] text-emerald-400">{mod.stats.confirmed} confirmed</span>
+                  <span className="text-[10px] text-emerald-600">{mod.stats.confirmed} confirmed</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                  <span className="text-[10px] text-amber-400">{mod.stats.pending} pending</span>
+                  <span className="text-[10px] text-amber-600">{mod.stats.pending} pending</span>
                 </div>
               </div>
             </div>
@@ -161,7 +161,7 @@ export default function HospitalityPage() {
             {demoTravelBookings.map((booking) => (
               <div key={booking.id} className="flex items-center gap-3 p-3 rounded-lg bg-slate-50">
                 <div className="p-2 rounded-lg bg-blue-500/10">
-                  <Plane className="w-4 h-4 text-blue-400" />
+                  <Plane className="w-4 h-4 text-blue-600" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-slate-800">{booking.guestName}</p>
@@ -170,9 +170,9 @@ export default function HospitalityPage() {
                 <div className="text-right">
                   <span className={cn(
                     "text-[10px] px-2 py-0.5 rounded-full border",
-                    booking.status === "Confirmed" ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" :
-                    booking.status === "Booked" ? "bg-blue-500/10 text-blue-400 border-blue-500/20" :
-                    "bg-amber-500/10 text-amber-400 border-amber-500/20"
+                    booking.status === "Confirmed" ? "bg-emerald-500/10 text-emerald-600 border-emerald-500/20" :
+                    booking.status === "Booked" ? "bg-blue-500/10 text-blue-600 border-blue-500/20" :
+                    "bg-amber-500/10 text-amber-600 border-amber-500/20"
                   )}>
                     {booking.status}
                   </span>
@@ -205,9 +205,9 @@ export default function HospitalityPage() {
                 </div>
                 <span className={cn(
                   "text-[10px] px-2 py-0.5 rounded-full border shrink-0",
-                  ticket.status === "Resolved" ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" :
-                  ticket.status === "In Progress" ? "bg-blue-500/10 text-blue-400 border-blue-500/20" :
-                  "bg-amber-500/10 text-amber-400 border-amber-500/20"
+                  ticket.status === "Resolved" ? "bg-emerald-500/10 text-emerald-600 border-emerald-500/20" :
+                  ticket.status === "In Progress" ? "bg-blue-500/10 text-blue-600 border-blue-500/20" :
+                  "bg-amber-500/10 text-amber-600 border-amber-500/20"
                 )}>
                   {ticket.status}
                 </span>
