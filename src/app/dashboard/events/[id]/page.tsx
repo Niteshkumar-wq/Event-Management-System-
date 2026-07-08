@@ -56,9 +56,9 @@ export default function EventDetailPage() {
     <div className="space-y-6 animate-fade-in">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Link href="/dashboard/events" className="p-2 rounded-lg hover:bg-slate-800/50 transition-colors"><ArrowLeft className="w-5 h-5 text-slate-400" /></Link>
+          <Link href="/dashboard/events" className="p-2 rounded-lg hover:bg-slate-100 transition-colors"><ArrowLeft className="w-5 h-5 text-slate-400" /></Link>
           <div>
-            <h1 className="text-2xl font-bold text-slate-100">{event.name}</h1>
+            <h1 className="text-2xl font-bold text-slate-900">{event.name}</h1>
             <div className="flex items-center gap-3 mt-1">
               <span className={cn("text-[10px] px-2 py-0.5 rounded-full border font-medium", getStatusColor(event.status))}>{event.status.replace("_", " ")}</span>
               <span className="text-xs text-slate-500">{event.type}</span>
@@ -66,16 +66,16 @@ export default function EventDetailPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm rounded-lg transition-colors">Change Status</button>
-          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-lg"><Edit className="w-4 h-4" /></button>
+          <button className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-800 text-sm rounded-lg transition-colors">Change Status</button>
+          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-100 rounded-lg"><Edit className="w-4 h-4" /></button>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 border-b border-slate-800/50">
+      <div className="flex gap-1 border-b border-slate-200/50">
         {tabs.map((tab) => (
           <button key={tab} onClick={() => setActiveTab(tab)}
-            className={cn("px-4 py-2.5 text-sm font-medium capitalize transition-colors relative", activeTab === tab ? "text-violet-400" : "text-slate-500 hover:text-slate-300")}>
+            className={cn("px-4 py-2.5 text-sm font-medium capitalize transition-colors relative", activeTab === tab ? "text-teal-600" : "text-slate-500 hover:text-slate-700")}>
             {tab}
             {activeTab === tab && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-violet-500 rounded-t" />}
           </button>
@@ -87,27 +87,27 @@ export default function EventDetailPage() {
         <div className="space-y-6 animate-fade-in">
           {/* Status Timeline */}
           <div className="glass-card p-5">
-            <h3 className="text-sm font-semibold text-slate-300 mb-4">Event Progress</h3>
+            <h3 className="text-sm font-semibold text-slate-700 mb-4">Event Progress</h3>
             <div className="flex items-center gap-2">
               {statusSteps.map((step, i) => (
                 <div key={step} className="flex items-center gap-2 flex-1">
                   <div className={cn("w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0",
-                    i < currentStep ? "bg-violet-600 text-white" : i === currentStep ? "bg-violet-600/50 text-violet-300 ring-2 ring-violet-500/50" : "bg-slate-800 text-slate-500"
+                    i < currentStep ? "bg-teal-600 text-white" : i === currentStep ? "bg-teal-600/50 text-teal-700 ring-2 ring-violet-500/50" : "bg-slate-800 text-slate-500"
                   )}>{i + 1}</div>
-                  {i < statusSteps.length - 1 && <div className={cn("h-0.5 flex-1", i < currentStep ? "bg-violet-600" : "bg-slate-800")} />}
+                  {i < statusSteps.length - 1 && <div className={cn("h-0.5 flex-1", i < currentStep ? "bg-teal-600" : "bg-slate-800")} />}
                 </div>
               ))}
             </div>
             <div className="flex justify-between mt-2">
               {statusSteps.map((step, i) => (
-                <span key={step} className={cn("text-[9px] text-center", i < currentStep ? "text-violet-400" : "text-slate-600")} style={{ width: `${100 / statusSteps.length}%` }}>{step}</span>
+                <span key={step} className={cn("text-[9px] text-center", i < currentStep ? "text-teal-600" : "text-slate-600")} style={{ width: `${100 / statusSteps.length}%` }}>{step}</span>
               ))}
             </div>
           </div>
           {/* Key Metrics */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { label: "Venue", value: event.venueName?.split(",")[0] || "TBD", icon: MapPin, color: "text-violet-400" },
+              { label: "Venue", value: event.venueName?.split(",")[0] || "TBD", icon: MapPin, color: "text-teal-600" },
               { label: "Date", value: event.startDate, icon: Calendar, color: "text-purple-400" },
               { label: "Expected Guests", value: event.expectedGuests?.toString() || "0", icon: Users, color: "text-cyan-400" },
               { label: "Budget", value: formatCurrency(event.totalBudget), icon: DollarSign, color: "text-emerald-400" },
@@ -117,13 +117,13 @@ export default function EventDetailPage() {
                   <m.icon className={cn("w-4 h-4", m.color)} />
                   <span className="text-xs text-slate-500">{m.label}</span>
                 </div>
-                <p className="text-base font-bold text-slate-100 mt-2">{m.value}</p>
+                <p className="text-base font-bold text-slate-900 mt-2">{m.value}</p>
               </div>
             ))}
           </div>
           {/* Tasks Summary */}
           <div className="glass-card p-5">
-            <h3 className="text-sm font-semibold text-slate-300 mb-3">Task Summary</h3>
+            <h3 className="text-sm font-semibold text-slate-700 mb-3">Task Summary</h3>
             <div className="flex items-center gap-6">
               {[
                 { label: "Completed", count: eventTasks.filter((t) => t.status === "completed").length, color: "text-emerald-400" },
@@ -144,8 +144,8 @@ export default function EventDetailPage() {
       {activeTab === "timeline" && (
         <div className="glass-card p-5">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-base font-semibold text-slate-200">Event Day Timeline</h3>
-            <button className="flex items-center gap-1 text-xs text-violet-400 hover:text-violet-300"><Plus className="w-3 h-3" /> Add Item</button>
+            <h3 className="text-base font-semibold text-slate-800">Event Day Timeline</h3>
+            <button className="flex items-center gap-1 text-xs text-teal-600 hover:text-teal-700"><Plus className="w-3 h-3" /> Add Item</button>
           </div>
           <div className="space-y-0">
             {timeline.map((item, i) => (
@@ -156,11 +156,11 @@ export default function EventDetailPage() {
                   )} />
                   {i < timeline.length - 1 && <div className="w-px flex-1 bg-slate-800 mt-1" />}
                 </div>
-                <div className="flex-1 pb-4 border-b border-slate-800/20 last:border-0">
+                <div className="flex-1 pb-4 border-b border-slate-100 last:border-0">
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-sm font-mono font-bold text-violet-400 mr-3">{item.time}</span>
-                      <span className="text-sm font-medium text-slate-200">{item.title}</span>
+                      <span className="text-sm font-mono font-bold text-teal-600 mr-3">{item.time}</span>
+                      <span className="text-sm font-medium text-slate-800">{item.title}</span>
                     </div>
                     <span className={cn("text-[10px] px-2 py-0.5 rounded-full border", getStatusColor(item.status))}>{item.status.replace("_", " ")}</span>
                   </div>
@@ -176,7 +176,7 @@ export default function EventDetailPage() {
       {activeTab === "budget" && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 glass-card p-5">
-            <h3 className="text-base font-semibold text-slate-200 mb-4">Budget vs Actual</h3>
+            <h3 className="text-base font-semibold text-slate-800 mb-4">Budget vs Actual</h3>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={budgetData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
@@ -189,7 +189,7 @@ export default function EventDetailPage() {
             </ResponsiveContainer>
           </div>
           <div className="glass-card p-5">
-            <h3 className="text-base font-semibold text-slate-200 mb-4">Allocation</h3>
+            <h3 className="text-base font-semibold text-slate-800 mb-4">Allocation</h3>
             <ResponsiveContainer width="100%" height={200}>
               <PieChart>
                 <Pie data={pieData} cx="50%" cy="50%" innerRadius={50} outerRadius={75} paddingAngle={3} dataKey="value">
@@ -201,7 +201,7 @@ export default function EventDetailPage() {
               {budgetData.map((b, i) => (
                 <div key={b.category} className="flex items-center justify-between text-xs">
                   <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full" style={{ backgroundColor: pieColors[i] }} /><span className="text-slate-400">{b.category}</span></div>
-                  <span className="text-slate-300 font-mono">{formatCurrency(b.estimated)}</span>
+                  <span className="text-slate-700 font-mono">{formatCurrency(b.estimated)}</span>
                 </div>
               ))}
             </div>
@@ -212,23 +212,23 @@ export default function EventDetailPage() {
       {/* Tasks */}
       {activeTab === "tasks" && (
         <div className="glass-card overflow-hidden">
-          <div className="flex items-center justify-between p-4 border-b border-slate-800/50">
-            <h3 className="text-base font-semibold text-slate-200">Tasks</h3>
-            <button className="flex items-center gap-1 text-xs text-violet-400 hover:text-violet-300 px-3 py-1.5 bg-violet-600/10 rounded-lg"><Plus className="w-3 h-3" /> Add Task</button>
+          <div className="flex items-center justify-between p-4 border-b border-slate-200/50">
+            <h3 className="text-base font-semibold text-slate-800">Tasks</h3>
+            <button className="flex items-center gap-1 text-xs text-teal-600 hover:text-teal-700 px-3 py-1.5 bg-teal-600/10 rounded-lg"><Plus className="w-3 h-3" /> Add Task</button>
           </div>
           <table className="w-full">
-            <thead><tr className="border-b border-slate-800/50">
+            <thead><tr className="border-b border-slate-200/50">
               {["Task", "Category", "Priority", "Assignee", "Due Date", "Status"].map((h) => (
                 <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase">{h}</th>
               ))}
             </tr></thead>
             <tbody>
               {eventTasks.map((task) => (
-                <tr key={task.id} className="border-b border-slate-800/20 table-row-hover">
-                  <td className="px-4 py-3 text-sm text-slate-200">{task.title}</td>
+                <tr key={task.id} className="border-b border-slate-100 table-row-hover">
+                  <td className="px-4 py-3 text-sm text-slate-800">{task.title}</td>
                   <td className="px-4 py-3 text-xs text-slate-400">{task.category}</td>
                   <td className="px-4 py-3"><span className={cn("text-[10px] px-2 py-0.5 rounded-full border", getPriorityColor(task.priority))}>{task.priority}</span></td>
-                  <td className="px-4 py-3"><div className="flex items-center gap-2"><div className="w-5 h-5 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-[8px] font-bold text-white">{getInitials(task.assignee)}</div><span className="text-xs text-slate-400">{task.assignee}</span></div></td>
+                  <td className="px-4 py-3"><div className="flex items-center gap-2"><div className="w-5 h-5 rounded-full bg-gradient-to-br from-teal-500 to-purple-600 flex items-center justify-center text-[8px] font-bold text-white">{getInitials(task.assignee)}</div><span className="text-xs text-slate-400">{task.assignee}</span></div></td>
                   <td className="px-4 py-3 text-xs text-slate-500">{task.dueDate}</td>
                   <td className="px-4 py-3"><span className={cn("text-[10px] px-2 py-0.5 rounded-full border", getStatusColor(task.status))}>{task.status.replace("_", " ")}</span></td>
                 </tr>
@@ -242,20 +242,20 @@ export default function EventDetailPage() {
       {/* Risks */}
       {activeTab === "risks" && (
         <div className="glass-card overflow-hidden">
-          <div className="flex items-center justify-between p-4 border-b border-slate-800/50">
-            <h3 className="text-base font-semibold text-slate-200">Risk Assessment</h3>
-            <button className="flex items-center gap-1 text-xs text-violet-400 hover:text-violet-300 px-3 py-1.5 bg-violet-600/10 rounded-lg"><Plus className="w-3 h-3" /> Add Risk</button>
+          <div className="flex items-center justify-between p-4 border-b border-slate-200/50">
+            <h3 className="text-base font-semibold text-slate-800">Risk Assessment</h3>
+            <button className="flex items-center gap-1 text-xs text-teal-600 hover:text-teal-700 px-3 py-1.5 bg-teal-600/10 rounded-lg"><Plus className="w-3 h-3" /> Add Risk</button>
           </div>
           <table className="w-full">
-            <thead><tr className="border-b border-slate-800/50">
+            <thead><tr className="border-b border-slate-200/50">
               {["Risk", "Likelihood", "Impact", "Mitigation", "Status"].map((h) => (
                 <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase">{h}</th>
               ))}
             </tr></thead>
             <tbody>
               {risks.map((r, i) => (
-                <tr key={i} className="border-b border-slate-800/20 table-row-hover">
-                  <td className="px-4 py-3 text-sm text-slate-200">{r.risk}</td>
+                <tr key={i} className="border-b border-slate-100 table-row-hover">
+                  <td className="px-4 py-3 text-sm text-slate-800">{r.risk}</td>
                   <td className="px-4 py-3"><span className={cn("text-[10px] px-2 py-0.5 rounded-full border",
                     r.likelihood === "High" ? "bg-red-500/10 text-red-400 border-red-500/20" : r.likelihood === "Medium" ? "bg-amber-500/10 text-amber-400 border-amber-500/20" : "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
                   )}>{r.likelihood}</span></td>

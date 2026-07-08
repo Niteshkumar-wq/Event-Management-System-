@@ -30,12 +30,12 @@ const budgetAccuracy = [
 export default function AnalyticsPage() {
   return (
     <div className="space-y-6 animate-fade-in">
-      <div><h1 className="text-2xl font-bold text-slate-100">Analytics</h1><p className="text-sm text-slate-500 mt-0.5">Deep insights into your event operations</p></div>
+      <div><h1 className="text-2xl font-bold text-slate-900">Analytics</h1><p className="text-sm text-slate-500 mt-0.5">Deep insights into your event operations</p></div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: "Avg Satisfaction", value: "4.6/5", icon: TrendingUp, color: "text-emerald-400", change: "+0.3 vs last quarter" },
-          { label: "Guest Retention", value: "78%", icon: Users, color: "text-violet-400", change: "+5% YoY" },
+          { label: "Guest Retention", value: "78%", icon: Users, color: "text-teal-600", change: "+5% YoY" },
           { label: "On-time Delivery", value: "92%", icon: Clock, color: "text-cyan-400", change: "+3% vs last month" },
           { label: "Budget Accuracy", value: "96.2%", icon: Percent, color: "text-amber-400", change: "Avg across events" },
         ].map((s) => (
@@ -50,7 +50,7 @@ export default function AnalyticsPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="glass-card p-5">
-          <h3 className="text-base font-semibold text-slate-200 mb-4">Guest Satisfaction Trend</h3>
+          <h3 className="text-base font-semibold text-slate-800 mb-4">Guest Satisfaction Trend</h3>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={satisfactionData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
@@ -62,7 +62,7 @@ export default function AnalyticsPage() {
           </ResponsiveContainer>
         </div>
         <div className="glass-card p-5">
-          <h3 className="text-base font-semibold text-slate-200 mb-4">Guest Growth</h3>
+          <h3 className="text-base font-semibold text-slate-800 mb-4">Guest Growth</h3>
           <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={guestGrowth}>
               <defs><linearGradient id="guestG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#6366f1" stopOpacity={0.3} /><stop offset="100%" stopColor="#6366f1" stopOpacity={0} /></linearGradient></defs>
@@ -78,14 +78,14 @@ export default function AnalyticsPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="glass-card p-5">
-          <h3 className="text-base font-semibold text-slate-200 mb-4">Task Completion</h3>
+          <h3 className="text-base font-semibold text-slate-800 mb-4">Task Completion</h3>
           <ResponsiveContainer width="100%" height={180}>
             <PieChart><Pie data={taskCompletion} cx="50%" cy="50%" innerRadius={55} outerRadius={75} paddingAngle={3} dataKey="value">{taskCompletion.map((d, i) => <Cell key={i} fill={d.color} />)}</Pie></PieChart>
           </ResponsiveContainer>
-          <div className="space-y-1.5 mt-3">{taskCompletion.map((c) => (<div key={c.name} className="flex items-center justify-between"><div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full" style={{ backgroundColor: c.color }} /><span className="text-xs text-slate-400">{c.name}</span></div><span className="text-xs text-slate-300">{c.value}%</span></div>))}</div>
+          <div className="space-y-1.5 mt-3">{taskCompletion.map((c) => (<div key={c.name} className="flex items-center justify-between"><div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full" style={{ backgroundColor: c.color }} /><span className="text-xs text-slate-400">{c.name}</span></div><span className="text-xs text-slate-700">{c.value}%</span></div>))}</div>
         </div>
         <div className="lg:col-span-2 glass-card p-5">
-          <h3 className="text-base font-semibold text-slate-200 mb-4">Budget Accuracy by Event</h3>
+          <h3 className="text-base font-semibold text-slate-800 mb-4">Budget Accuracy by Event</h3>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={budgetAccuracy}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />

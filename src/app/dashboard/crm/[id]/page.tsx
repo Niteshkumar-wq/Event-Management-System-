@@ -47,11 +47,11 @@ export default function LeadDetailPage() {
       {/* Breadcrumb & Actions */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Link href="/dashboard/crm" className="p-2 rounded-lg hover:bg-slate-800/50 transition-colors">
+          <Link href="/dashboard/crm" className="p-2 rounded-lg hover:bg-slate-100 transition-colors">
             <ArrowLeft className="w-5 h-5 text-slate-400" />
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-slate-100">{lead.title}</h1>
+            <h1 className="text-2xl font-bold text-slate-900">{lead.title}</h1>
             <div className="flex items-center gap-3 mt-1">
               <span className={cn("text-[10px] px-2 py-0.5 rounded-full border font-medium", getStatusColor(lead.status))}>{lead.status.replace(/_/g, " ")}</span>
               <span className={cn("text-[10px] px-2 py-0.5 rounded-full border font-medium", getPriorityColor(lead.priority))}>{lead.priority}</span>
@@ -63,16 +63,16 @@ export default function LeadDetailPage() {
           <button className="flex items-center gap-2 px-3 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm rounded-lg transition-colors">
             <ArrowRightLeft className="w-4 h-4" /> Convert to Event
           </button>
-          <button className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 transition-colors"><Edit className="w-4 h-4" /></button>
+          <button className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-100 transition-colors"><Edit className="w-4 h-4" /></button>
           <button className="p-2 rounded-lg text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors"><Trash2 className="w-4 h-4" /></button>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 border-b border-slate-800/50">
+      <div className="flex gap-1 border-b border-slate-200/50">
         {tabs.map((tab) => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-            className={cn("px-4 py-2.5 text-sm font-medium transition-colors relative", activeTab === tab.id ? "text-violet-400" : "text-slate-500 hover:text-slate-300")}>
+            className={cn("px-4 py-2.5 text-sm font-medium transition-colors relative", activeTab === tab.id ? "text-teal-600" : "text-slate-500 hover:text-slate-700")}>
             {tab.label}
             {activeTab === tab.id && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-violet-500 rounded-t" />}
           </button>
@@ -85,7 +85,7 @@ export default function LeadDetailPage() {
           <div className="lg:col-span-2 space-y-6">
             {/* Client Info */}
             <div className="glass-card p-5">
-              <h3 className="text-base font-semibold text-slate-200 mb-4">Client Information</h3>
+              <h3 className="text-base font-semibold text-slate-800 mb-4">Client Information</h3>
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { icon: Building2, label: "Company", value: lead.clientCompany || "N/A" },
@@ -94,10 +94,10 @@ export default function LeadDetailPage() {
                   { icon: Users, label: "Contact", value: lead.clientName },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-slate-800/50"><item.icon className="w-4 h-4 text-slate-400" /></div>
+                    <div className="p-2 rounded-lg bg-slate-100"><item.icon className="w-4 h-4 text-slate-400" /></div>
                     <div>
                       <p className="text-[10px] text-slate-500 uppercase">{item.label}</p>
-                      <p className="text-sm text-slate-200">{item.value}</p>
+                      <p className="text-sm text-slate-800">{item.value}</p>
                     </div>
                   </div>
                 ))}
@@ -105,7 +105,7 @@ export default function LeadDetailPage() {
             </div>
             {/* Event Requirements */}
             <div className="glass-card p-5">
-              <h3 className="text-base font-semibold text-slate-200 mb-4">Event Requirements</h3>
+              <h3 className="text-base font-semibold text-slate-800 mb-4">Event Requirements</h3>
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { icon: Calendar, label: "Event Type", value: lead.eventType || "TBD" },
@@ -116,10 +116,10 @@ export default function LeadDetailPage() {
                   { icon: MessageSquare, label: "Source", value: lead.source },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-slate-800/50"><item.icon className="w-4 h-4 text-slate-400" /></div>
+                    <div className="p-2 rounded-lg bg-slate-100"><item.icon className="w-4 h-4 text-slate-400" /></div>
                     <div>
                       <p className="text-[10px] text-slate-500 uppercase">{item.label}</p>
-                      <p className="text-sm text-slate-200">{item.value}</p>
+                      <p className="text-sm text-slate-800">{item.value}</p>
                     </div>
                   </div>
                 ))}
@@ -129,24 +129,24 @@ export default function LeadDetailPage() {
           {/* Sidebar */}
           <div className="space-y-6 animate-fade-in">
             <div className="glass-card p-5">
-              <h3 className="text-base font-semibold text-slate-200 mb-3">Assigned To</h3>
+              <h3 className="text-base font-semibold text-slate-800 mb-3">Assigned To</h3>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-sm font-bold text-white">{getInitials(lead.assignedTo || "?")}</div>
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-purple-600 flex items-center justify-center text-sm font-bold text-white">{getInitials(lead.assignedTo || "?")}</div>
                 <div>
-                  <p className="text-sm font-medium text-slate-200">{lead.assignedTo}</p>
+                  <p className="text-sm font-medium text-slate-800">{lead.assignedTo}</p>
                   <p className="text-xs text-slate-500">Event Director</p>
                 </div>
               </div>
             </div>
             <div className="glass-card p-5">
-              <h3 className="text-base font-semibold text-slate-200 mb-3">Next Follow-up</h3>
+              <h3 className="text-base font-semibold text-slate-800 mb-3">Next Follow-up</h3>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-amber-400" />
-                <span className="text-sm text-slate-200">{lead.nextFollowUp || "Not scheduled"}</span>
+                <span className="text-sm text-slate-800">{lead.nextFollowUp || "Not scheduled"}</span>
               </div>
             </div>
             <div className="glass-card p-5">
-              <h3 className="text-base font-semibold text-slate-200 mb-3">Quick Actions</h3>
+              <h3 className="text-base font-semibold text-slate-800 mb-3">Quick Actions</h3>
               <div className="space-y-2">
                 {[
                   { icon: Mail, label: "Send Email", color: "text-blue-400 hover:bg-blue-500/10" },
@@ -167,23 +167,23 @@ export default function LeadDetailPage() {
       {/* Meetings Tab */}
       {activeTab === "meetings" && (
         <div className="space-y-4">
-          <button className="flex items-center gap-2 px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white text-sm rounded-lg transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-violet-500 text-white text-sm rounded-lg transition-colors">
             <Calendar className="w-4 h-4" /> Schedule Meeting
           </button>
           {meetings.map((m) => (
             <div key={m.id} className="glass-card p-5">
               <div className="flex items-start justify-between">
                 <div>
-                  <h4 className="text-sm font-semibold text-slate-200">{m.title}</h4>
+                  <h4 className="text-sm font-semibold text-slate-800">{m.title}</h4>
                   <div className="flex items-center gap-3 mt-1">
                     <span className="text-xs text-slate-500">{m.date}</span>
-                    <span className="text-xs text-violet-400">{m.type}</span>
+                    <span className="text-xs text-teal-600">{m.type}</span>
                     <span className="text-xs text-slate-500">{m.duration}</span>
                   </div>
                 </div>
                 <CheckCircle2 className="w-5 h-5 text-emerald-400" />
               </div>
-              <p className="text-sm text-slate-400 mt-3 border-t border-slate-800/30 pt-3">{m.outcome}</p>
+              <p className="text-sm text-slate-400 mt-3 border-t border-slate-200 pt-3">{m.outcome}</p>
             </div>
           ))}
         </div>
@@ -192,7 +192,7 @@ export default function LeadDetailPage() {
       {/* Proposals Tab */}
       {activeTab === "proposals" && (
         <div className="space-y-4">
-          <button className="flex items-center gap-2 px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white text-sm rounded-lg transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-violet-500 text-white text-sm rounded-lg transition-colors">
             <FileText className="w-4 h-4" /> Create New Proposal
           </button>
           {proposals.map((p) => (
@@ -200,19 +200,19 @@ export default function LeadDetailPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="flex items-center gap-2">
-                    <h4 className="text-sm font-semibold text-slate-200">{p.title}</h4>
-                    <span className="text-[10px] bg-slate-800/50 text-slate-400 px-1.5 py-0.5 rounded">v{p.version}</span>
+                    <h4 className="text-sm font-semibold text-slate-800">{p.title}</h4>
+                    <span className="text-[10px] bg-slate-100 text-slate-400 px-1.5 py-0.5 rounded">v{p.version}</span>
                   </div>
                   <p className="text-xs text-slate-500 mt-1">Created {p.date}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-lg font-bold text-slate-100 font-mono">{formatCurrency(p.total)}</p>
+                  <p className="text-lg font-bold text-slate-900 font-mono">{formatCurrency(p.total)}</p>
                   <span className={cn("text-[10px] px-2 py-0.5 rounded-full border", p.status === "Sent" ? "bg-blue-500/10 text-blue-400 border-blue-500/20" : "bg-slate-500/10 text-slate-400 border-slate-500/20")}>{p.status}</span>
                 </div>
               </div>
-              <div className="flex items-center gap-2 mt-4 pt-3 border-t border-slate-800/30">
-                <button className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1"><Eye className="w-3 h-3" /> View</button>
-                <button className="text-xs text-slate-400 hover:text-slate-300 flex items-center gap-1 ml-3"><Edit className="w-3 h-3" /> Edit</button>
+              <div className="flex items-center gap-2 mt-4 pt-3 border-t border-slate-200">
+                <button className="text-xs text-teal-600 hover:text-teal-700 flex items-center gap-1"><Eye className="w-3 h-3" /> View</button>
+                <button className="text-xs text-slate-400 hover:text-slate-700 flex items-center gap-1 ml-3"><Edit className="w-3 h-3" /> Edit</button>
                 <button className="text-xs text-emerald-400 hover:text-emerald-300 flex items-center gap-1 ml-3"><Send className="w-3 h-3" /> Send to Client</button>
               </div>
             </div>
@@ -225,12 +225,12 @@ export default function LeadDetailPage() {
         <div className="glass-card p-5">
           <div className="space-y-0">
             {activities.map((a, i) => (
-              <div key={a.id} className="flex gap-3 py-3 border-b border-slate-800/20 last:border-0">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center text-xs font-bold text-violet-400 shrink-0">
+              <div key={a.id} className="flex gap-3 py-3 border-b border-slate-100 last:border-0">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-500/20 to-purple-500/20 flex items-center justify-center text-xs font-bold text-teal-600 shrink-0">
                   {getInitials(a.user)}
                 </div>
                 <div>
-                  <p className="text-sm text-slate-300">{a.action}</p>
+                  <p className="text-sm text-slate-700">{a.action}</p>
                   <p className="text-[10px] text-slate-500 mt-0.5">by {a.user} · {formatDate(a.date)}</p>
                 </div>
               </div>

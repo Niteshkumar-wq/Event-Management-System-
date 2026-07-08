@@ -86,7 +86,7 @@ export default function HospitalityPage() {
   return (
     <div className="space-y-6 animate-fade-in">
       <div>
-        <h1 className="text-2xl font-bold text-slate-100">Hospitality Management</h1>
+        <h1 className="text-2xl font-bold text-slate-900">Hospitality Management</h1>
         <p className="text-sm text-slate-500 mt-0.5">
           Manage travel, accommodation, catering, and guest services
         </p>
@@ -95,7 +95,7 @@ export default function HospitalityPage() {
       {/* Overview Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: "Total Bookings", value: "53", icon: Users, color: "text-violet-400", change: "+8 this week" },
+          { label: "Total Bookings", value: "53", icon: Users, color: "text-teal-600", change: "+8 this week" },
           { label: "Confirmed", value: "39", icon: CheckCircle2, color: "text-emerald-400", change: "73.6% rate" },
           { label: "Pending Action", value: "14", icon: Clock, color: "text-amber-400", change: "5 urgent" },
           { label: "Total Spend", value: formatCurrency(48500), icon: TrendingUp, color: "text-pink-400", change: "Under budget" },
@@ -104,7 +104,7 @@ export default function HospitalityPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-slate-500">{stat.label}</p>
-                <p className="text-xl font-bold text-slate-100 mt-1">{stat.value}</p>
+                <p className="text-xl font-bold text-slate-900 mt-1">{stat.value}</p>
                 <p className="text-[10px] text-slate-500 mt-1">{stat.change}</p>
               </div>
               <stat.icon className={cn("w-5 h-5", stat.color)} />
@@ -126,16 +126,16 @@ export default function HospitalityPage() {
             <div className={cn("absolute inset-0 bg-gradient-to-br opacity-50", mod.color)} />
             <div className="relative z-10">
               <div className="flex items-start justify-between">
-                <div className={cn("p-2.5 rounded-xl bg-slate-800/50", mod.iconColor)}>
+                <div className={cn("p-2.5 rounded-xl bg-slate-100", mod.iconColor)}>
                   <mod.icon className="w-5 h-5" />
                 </div>
-                <ArrowRight className="w-4 h-4 text-slate-600 group-hover:text-slate-300 group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-4 h-4 text-slate-600 group-hover:text-slate-700 group-hover:translate-x-1 transition-all" />
               </div>
-              <h3 className="text-base font-semibold text-slate-200 mt-3">{mod.title}</h3>
+              <h3 className="text-base font-semibold text-slate-800 mt-3">{mod.title}</h3>
               <p className="text-xs text-slate-500 mt-1">{mod.description}</p>
               <div className="flex items-center gap-4 mt-4">
                 <div className="flex items-center gap-1">
-                  <span className="text-sm font-bold text-slate-200">{mod.stats.total}</span>
+                  <span className="text-sm font-bold text-slate-800">{mod.stats.total}</span>
                   <span className="text-[10px] text-slate-500">total</span>
                 </div>
                 <div className="flex items-center gap-1">
@@ -156,15 +156,15 @@ export default function HospitalityPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Travel */}
         <div className="glass-card p-5">
-          <h2 className="text-base font-semibold text-slate-200 mb-4">Recent Travel Bookings</h2>
+          <h2 className="text-base font-semibold text-slate-800 mb-4">Recent Travel Bookings</h2>
           <div className="space-y-3">
             {demoTravelBookings.map((booking) => (
-              <div key={booking.id} className="flex items-center gap-3 p-3 rounded-lg bg-slate-900/30">
+              <div key={booking.id} className="flex items-center gap-3 p-3 rounded-lg bg-slate-50">
                 <div className="p-2 rounded-lg bg-blue-500/10">
                   <Plane className="w-4 h-4 text-blue-400" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-slate-200">{booking.guestName}</p>
+                  <p className="text-sm font-medium text-slate-800">{booking.guestName}</p>
                   <p className="text-xs text-slate-500">{booking.route}</p>
                 </div>
                 <div className="text-right">
@@ -185,16 +185,16 @@ export default function HospitalityPage() {
 
         {/* Help Desk Tickets */}
         <div className="glass-card p-5">
-          <h2 className="text-base font-semibold text-slate-200 mb-4">Active Help Desk Tickets</h2>
+          <h2 className="text-base font-semibold text-slate-800 mb-4">Active Help Desk Tickets</h2>
           <div className="space-y-3">
             {demoTickets.map((ticket) => (
-              <div key={ticket.id} className="flex items-start gap-3 p-3 rounded-lg bg-slate-900/30">
+              <div key={ticket.id} className="flex items-start gap-3 p-3 rounded-lg bg-slate-50">
                 <div className={cn(
                   "w-2 h-2 rounded-full mt-2 shrink-0",
                   ticket.priority === "urgent" ? "bg-red-500 animate-pulse" : "bg-amber-500"
                 )} />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-slate-200">{ticket.subject}</p>
+                  <p className="text-sm font-medium text-slate-800">{ticket.subject}</p>
                   <p className="text-xs text-slate-500 mt-0.5">{ticket.eventName} · {ticket.category}</p>
                   <div className="flex items-center gap-2 mt-1">
                     <span className="text-[10px] text-slate-600">Reported by: {ticket.reportedBy}</span>

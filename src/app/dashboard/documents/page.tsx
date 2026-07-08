@@ -22,18 +22,18 @@ export default function DocumentsPage() {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="flex items-center justify-between">
-        <div><h1 className="text-2xl font-bold text-slate-100">Documents</h1><p className="text-sm text-slate-500 mt-0.5">Manage all event documents and files</p></div>
-        <button onClick={() => setShowUpload(!showUpload)} className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-violet-500 hover:from-violet-500 hover:to-violet-400 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-violet-500/20 hover:shadow-violet-500/30"><Upload className="w-4 h-4" /> Upload</button>
+        <div><h1 className="text-2xl font-bold text-slate-900">Documents</h1><p className="text-sm text-slate-500 mt-0.5">Manage all event documents and files</p></div>
+        <button onClick={() => setShowUpload(!showUpload)} className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-teal-500/20 hover:shadow-teal-500/30"><Upload className="w-4 h-4" /> Upload</button>
       </div>
 
       {showUpload && (
         <div className="glass-card p-6">
           <div className="border-2 border-dashed border-slate-700 rounded-xl p-10 text-center hover:border-violet-500/50 transition-colors cursor-pointer">
             <Upload className="w-10 h-10 text-slate-500 mx-auto mb-3" />
-            <p className="text-sm text-slate-300">Drag & drop files here or click to browse</p>
+            <p className="text-sm text-slate-700">Drag & drop files here or click to browse</p>
             <p className="text-xs text-slate-500 mt-1">PDF, DOCX, Images up to 50MB</p>
           </div>
-          <div className="flex gap-3 mt-4"><button className="px-4 py-2 bg-violet-600 text-white text-sm rounded-lg">Upload Files</button><button onClick={() => setShowUpload(false)} className="px-4 py-2 bg-slate-800 text-slate-300 text-sm rounded-lg">Cancel</button></div>
+          <div className="flex gap-3 mt-4"><button className="px-4 py-2 bg-teal-600 text-white text-sm rounded-lg">Upload Files</button><button onClick={() => setShowUpload(false)} className="px-4 py-2 bg-slate-800 text-slate-700 text-sm rounded-lg">Cancel</button></div>
         </div>
       )}
 
@@ -41,7 +41,7 @@ export default function DocumentsPage() {
         {/* Sidebar */}
         <div className="w-48 shrink-0 space-y-1">
           {folders.map((f) => (
-            <button key={f} onClick={() => setActiveFolder(f)} className={cn("w-full flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors text-left", activeFolder === f ? "bg-violet-600/15 text-violet-400" : "text-slate-400 hover:bg-slate-800/30 hover:text-slate-200")}>
+            <button key={f} onClick={() => setActiveFolder(f)} className={cn("w-full flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors text-left", activeFolder === f ? "bg-teal-600/15 text-teal-600" : "text-slate-400 hover:bg-slate-100 hover:text-slate-800")}>
               <FolderOpen className="w-4 h-4" />{f}
             </button>
           ))}
@@ -50,10 +50,10 @@ export default function DocumentsPage() {
         <div className="flex-1 space-y-4">
           <div className="flex items-center justify-between gap-3">
             <div className="relative max-w-xs w-full"><Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-              <input type="text" placeholder="Search documents..." value={search} onChange={(e) => setSearch(e.target.value)} className="w-full bg-slate-900/40 border border-slate-800/40 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-violet-500/50" /></div>
-            <div className="flex items-center gap-1 bg-slate-900/40 border border-slate-800/40 rounded-xl p-1">
-              <button onClick={() => setView("grid")} className={cn("p-1.5 rounded-md transition-colors", view === "grid" ? "bg-violet-600 text-white" : "text-slate-400")}><LayoutGrid className="w-4 h-4" /></button>
-              <button onClick={() => setView("list")} className={cn("p-1.5 rounded-md transition-colors", view === "list" ? "bg-violet-600 text-white" : "text-slate-400")}><List className="w-4 h-4" /></button>
+              <input type="text" placeholder="Search documents..." value={search} onChange={(e) => setSearch(e.target.value)} className="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-800 placeholder-slate-500 focus:outline-none focus:border-violet-500/50" /></div>
+            <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-xl p-1">
+              <button onClick={() => setView("grid")} className={cn("p-1.5 rounded-md transition-colors", view === "grid" ? "bg-teal-600 text-white" : "text-slate-400")}><LayoutGrid className="w-4 h-4" /></button>
+              <button onClick={() => setView("list")} className={cn("p-1.5 rounded-md transition-colors", view === "list" ? "bg-teal-600 text-white" : "text-slate-400")}><List className="w-4 h-4" /></button>
             </div>
           </div>
 
@@ -64,19 +64,19 @@ export default function DocumentsPage() {
                 return (
                   <div key={doc.id} className="glass-card p-4 group cursor-pointer">
                     <div className="flex items-start justify-between">
-                      <div className="p-2.5 rounded-xl bg-violet-500/10"><Icon className="w-5 h-5 text-violet-400" /></div>
+                      <div className="p-2.5 rounded-xl bg-teal-50"><Icon className="w-5 h-5 text-teal-600" /></div>
                       <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button className="p-1 rounded hover:bg-slate-800/50"><Eye className="w-3.5 h-3.5 text-slate-400" /></button>
-                        <button className="p-1 rounded hover:bg-slate-800/50"><Download className="w-3.5 h-3.5 text-slate-400" /></button>
+                        <button className="p-1 rounded hover:bg-slate-100"><Eye className="w-3.5 h-3.5 text-slate-400" /></button>
+                        <button className="p-1 rounded hover:bg-slate-100"><Download className="w-3.5 h-3.5 text-slate-400" /></button>
                         <button className="p-1 rounded hover:bg-red-500/10"><Trash2 className="w-3.5 h-3.5 text-red-400" /></button>
                       </div>
                     </div>
-                    <h4 className="text-sm font-medium text-slate-200 mt-3 line-clamp-1">{doc.name}</h4>
+                    <h4 className="text-sm font-medium text-slate-800 mt-3 line-clamp-1">{doc.name}</h4>
                     <div className="flex items-center gap-2 mt-2">
-                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-800/50 text-slate-500">{doc.type}</span>
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500">{doc.type}</span>
                       <span className="text-[10px] text-slate-600">{doc.size}</span>
                     </div>
-                    <div className="flex items-center justify-between mt-3 pt-2 border-t border-slate-800/30 text-[10px] text-slate-600">
+                    <div className="flex items-center justify-between mt-3 pt-2 border-t border-slate-200 text-[10px] text-slate-600">
                       <span>{doc.uploadedBy}</span><span>{doc.createdAt}</span>
                     </div>
                   </div>
@@ -85,13 +85,13 @@ export default function DocumentsPage() {
             </div>
           ) : (
             <div className="glass-card overflow-hidden">
-              <table className="w-full"><thead><tr className="border-b border-slate-800/50">
+              <table className="w-full"><thead><tr className="border-b border-slate-200/50">
                 {["Name", "Type", "Size", "Uploaded By", "Event", "Date"].map((h) => <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase">{h}</th>)}
               </tr></thead><tbody>
                 {filtered.map((doc) => (
-                  <tr key={doc.id} className="border-b border-slate-800/20 table-row-hover">
-                    <td className="px-4 py-3"><div className="flex items-center gap-2"><FileText className="w-4 h-4 text-violet-400" /><span className="text-sm text-slate-200">{doc.name}</span></div></td>
-                    <td className="px-4 py-3"><span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800/50 text-slate-400">{doc.type}</span></td>
+                  <tr key={doc.id} className="border-b border-slate-100 table-row-hover">
+                    <td className="px-4 py-3"><div className="flex items-center gap-2"><FileText className="w-4 h-4 text-teal-600" /><span className="text-sm text-slate-800">{doc.name}</span></div></td>
+                    <td className="px-4 py-3"><span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-400">{doc.type}</span></td>
                     <td className="px-4 py-3 text-xs text-slate-500">{doc.size}</td>
                     <td className="px-4 py-3 text-xs text-slate-400">{doc.uploadedBy}</td>
                     <td className="px-4 py-3 text-xs text-slate-500">{doc.eventName || "General"}</td>

@@ -127,7 +127,7 @@ export default function RsvpTrackingPage() {
           transition={{ delay: 0.1, duration: 0.35 }}
           className="glass-card p-6 lg:col-span-1"
         >
-          <h3 className="text-sm font-semibold text-slate-300 mb-4">Response Breakdown</h3>
+          <h3 className="text-sm font-semibold text-slate-700 mb-4">Response Breakdown</h3>
           <div className="h-[220px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -167,7 +167,7 @@ export default function RsvpTrackingPage() {
         {/* Stats cards */}
         <div className="lg:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-4">
           {[
-            { label: 'Total Invited', value: stats.total, icon: Users, color: 'text-violet-400', gradient: 'kpi-gradient-1' },
+            { label: 'Total Invited', value: stats.total, icon: Users, color: 'text-teal-600', gradient: 'kpi-gradient-1' },
             { label: 'Accepted', value: stats.accepted, icon: CheckCircle2, color: 'text-emerald-400', gradient: 'kpi-gradient-2' },
             { label: 'Declined', value: stats.declined, icon: XCircle, color: 'text-red-400', gradient: 'from-red-500/10 to-red-500/5' },
             { label: 'Maybe', value: stats.maybe, icon: HelpCircle, color: 'text-amber-400', gradient: 'kpi-gradient-3' },
@@ -205,20 +205,20 @@ export default function RsvpTrackingPage() {
               placeholder="Search by guest name..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-colors"
             />
           </div>
           <select
             value={eventFilter}
             onChange={e => setEventFilter(e.target.value)}
-            className="px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg text-sm text-white focus:outline-none focus:border-violet-500/50"
+            className="px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-white focus:outline-none focus:border-violet-500/50"
           >
             {eventNames.map(e => <option key={e} value={e}>{e === 'All' ? 'All Events' : e}</option>)}
           </select>
           <select
             value={statusFilter}
             onChange={e => setStatusFilter(e.target.value)}
-            className="px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg text-sm text-white focus:outline-none focus:border-violet-500/50"
+            className="px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-white focus:outline-none focus:border-violet-500/50"
           >
             <option value="All">All Statuses</option>
             {['Accepted', 'Declined', 'Maybe', 'No Response'].map(s => <option key={s} value={s}>{s}</option>)}
@@ -231,7 +231,7 @@ export default function RsvpTrackingPage() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-slate-800/50">
+              <tr className="border-b border-slate-200/50">
                 <th className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Guest</th>
                 <th className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Event</th>
                 <th className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">RSVP Status</th>
@@ -247,13 +247,13 @@ export default function RsvpTrackingPage() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.02 }}
-                  className="border-b border-slate-800/30 table-row-hover"
+                  className="border-b border-slate-200 table-row-hover"
                 >
                   <td className="p-4">
                     <p className="text-sm font-medium text-white">{rsvp.guestName}</p>
                   </td>
                   <td className="p-4">
-                    <p className="text-sm text-slate-300">{rsvp.eventName}</p>
+                    <p className="text-sm text-slate-700">{rsvp.eventName}</p>
                   </td>
                   <td className="p-4">
                     <span className={cn(
@@ -275,7 +275,7 @@ export default function RsvpTrackingPage() {
                   </td>
                   <td className="p-4">
                     {rsvp.mealChoice ? (
-                      <span className="inline-flex items-center gap-1.5 text-sm text-slate-300">
+                      <span className="inline-flex items-center gap-1.5 text-sm text-slate-700">
                         <UtensilsCrossed className="w-3.5 h-3.5 text-emerald-400" /> {rsvp.mealChoice}
                       </span>
                     ) : (
@@ -306,10 +306,10 @@ export default function RsvpTrackingPage() {
           </div>
         )}
 
-        <div className="px-4 py-3 border-t border-slate-800/50">
+        <div className="px-4 py-3 border-t border-slate-200/50">
           <p className="text-xs text-slate-500">
-            Showing <span className="font-medium text-slate-300">{filtered.length}</span> of{' '}
-            <span className="font-medium text-slate-300">{demoRsvps.length}</span> responses
+            Showing <span className="font-medium text-slate-700">{filtered.length}</span> of{' '}
+            <span className="font-medium text-slate-700">{demoRsvps.length}</span> responses
           </p>
         </div>
       </div>

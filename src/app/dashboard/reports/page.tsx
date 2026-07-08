@@ -40,8 +40,8 @@ export default function ReportsPage() {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="flex items-center justify-between">
-        <div><h1 className="text-2xl font-bold text-slate-100">Reports & Analytics</h1><p className="text-sm text-slate-500 mt-0.5">Comprehensive reporting and insights</p></div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm rounded-lg"><Download className="w-4 h-4" /> Export All</button>
+        <div><h1 className="text-2xl font-bold text-slate-900">Reports & Analytics</h1><p className="text-sm text-slate-500 mt-0.5">Comprehensive reporting and insights</p></div>
+        <button className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-800 text-sm rounded-lg"><Download className="w-4 h-4" /> Export All</button>
       </div>
 
       {/* Report Type Tabs */}
@@ -52,7 +52,7 @@ export default function ReportsPage() {
           { id: "leads", label: "Lead Analytics" },
           { id: "guest", label: "Guest Insights" },
         ].map((tab) => (
-          <button key={tab.id} onClick={() => setSelectedReport(tab.id)} className={cn("px-4 py-2 text-sm rounded-lg transition-colors", selectedReport === tab.id ? "bg-violet-600 text-white" : "bg-slate-800/50 text-slate-400 hover:text-white")}>{tab.label}</button>
+          <button key={tab.id} onClick={() => setSelectedReport(tab.id)} className={cn("px-4 py-2 text-sm rounded-lg transition-colors", selectedReport === tab.id ? "bg-teal-600 text-white" : "bg-slate-100 text-slate-400 hover:text-white")}>{tab.label}</button>
         ))}
       </div>
 
@@ -60,7 +60,7 @@ export default function ReportsPage() {
         <div className="space-y-6 animate-fade-in">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="glass-card p-5">
-              <h3 className="text-base font-semibold text-slate-200 mb-4">Events & Revenue Trend</h3>
+              <h3 className="text-base font-semibold text-slate-800 mb-4">Events & Revenue Trend</h3>
               <ResponsiveContainer width="100%" height={280}>
                 <AreaChart data={monthlyTrend}>
                   <defs><linearGradient id="revG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#6366f1" stopOpacity={0.3} /><stop offset="100%" stopColor="#6366f1" stopOpacity={0} /></linearGradient></defs>
@@ -73,15 +73,15 @@ export default function ReportsPage() {
               </ResponsiveContainer>
             </div>
             <div className="glass-card p-5">
-              <h3 className="text-base font-semibold text-slate-200 mb-4">Lead Sources</h3>
+              <h3 className="text-base font-semibold text-slate-800 mb-4">Lead Sources</h3>
               <ResponsiveContainer width="100%" height={200}>
                 <PieChart><Pie data={channelData} cx="50%" cy="50%" innerRadius={55} outerRadius={80} paddingAngle={3} dataKey="value">{channelData.map((d, i) => <Cell key={i} fill={d.color} />)}</Pie></PieChart>
               </ResponsiveContainer>
-              <div className="space-y-1.5 mt-2">{channelData.map((c) => (<div key={c.name} className="flex items-center justify-between"><div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full" style={{ backgroundColor: c.color }} /><span className="text-xs text-slate-400">{c.name}</span></div><span className="text-xs text-slate-300">{c.value}%</span></div>))}</div>
+              <div className="space-y-1.5 mt-2">{channelData.map((c) => (<div key={c.name} className="flex items-center justify-between"><div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full" style={{ backgroundColor: c.color }} /><span className="text-xs text-slate-400">{c.name}</span></div><span className="text-xs text-slate-700">{c.value}%</span></div>))}</div>
             </div>
           </div>
           <div className="glass-card p-5">
-            <h3 className="text-base font-semibold text-slate-200 mb-4">Event Performance Comparison</h3>
+            <h3 className="text-base font-semibold text-slate-800 mb-4">Event Performance Comparison</h3>
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={eventPerformance}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
@@ -99,23 +99,23 @@ export default function ReportsPage() {
       {selectedReport !== "performance" && (
         <div className="glass-card p-10 text-center">
           <TrendingUp className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-          <h3 className="text-lg font-semibold text-slate-300">Report: {selectedReport}</h3>
+          <h3 className="text-lg font-semibold text-slate-700">Report: {selectedReport}</h3>
           <p className="text-sm text-slate-500 mt-2">Select filters and date range to generate this report</p>
-          <button className="mt-4 px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white text-sm rounded-lg">Generate Report</button>
+          <button className="mt-4 px-4 py-2 bg-teal-600 hover:bg-violet-500 text-white text-sm rounded-lg">Generate Report</button>
         </div>
       )}
 
       {/* Downloadable Reports */}
       <div>
-        <h3 className="text-base font-semibold text-slate-200 mb-3">Available Reports</h3>
+        <h3 className="text-base font-semibold text-slate-800 mb-3">Available Reports</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {reports.map((r) => (
             <div key={r.name} className="glass-card p-4 flex items-center justify-between group cursor-pointer">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-violet-500/10"><FileText className="w-4 h-4 text-violet-400" /></div>
-                <div><h4 className="text-sm font-medium text-slate-200">{r.name}</h4><div className="flex gap-2 mt-0.5"><span className="text-[10px] text-slate-500">{r.date}</span><span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-800/50 text-slate-500">{r.type}</span></div></div>
+                <div className="p-2 rounded-lg bg-teal-50"><FileText className="w-4 h-4 text-teal-600" /></div>
+                <div><h4 className="text-sm font-medium text-slate-800">{r.name}</h4><div className="flex gap-2 mt-0.5"><span className="text-[10px] text-slate-500">{r.date}</span><span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500">{r.type}</span></div></div>
               </div>
-              <Download className="w-4 h-4 text-slate-600 group-hover:text-violet-400 transition-colors" />
+              <Download className="w-4 h-4 text-slate-600 group-hover:text-teal-600 transition-colors" />
             </div>
           ))}
         </div>

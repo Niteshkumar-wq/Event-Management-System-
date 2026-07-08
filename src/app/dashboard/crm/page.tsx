@@ -45,10 +45,10 @@ export default function CRMPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-100">Lead Pipeline</h1>
+          <h1 className="text-2xl font-bold text-slate-900">Lead Pipeline</h1>
           <p className="text-sm text-slate-500 mt-0.5">Manage and convert your leads</p>
         </div>
-        <Link href="/dashboard/crm/new" className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-violet-500 hover:from-violet-500 hover:to-violet-400 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-violet-500/20 hover:shadow-violet-500/30">
+        <Link href="/dashboard/crm/new" className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-teal-500/20 hover:shadow-teal-500/30">
           <Plus className="w-4 h-4" /> New Lead
         </Link>
       </div>
@@ -56,7 +56,7 @@ export default function CRMPage() {
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: "Total Leads", value: filtered.length, icon: Target, color: "text-violet-400" },
+          { label: "Total Leads", value: filtered.length, icon: Target, color: "text-teal-600" },
           { label: "Pipeline Value", value: formatCurrency(totalPipeline), icon: DollarSign, color: "text-emerald-400" },
           { label: "Conversion Rate", value: `${filtered.length > 0 ? Math.round((approvedLeads / filtered.length) * 100) : 0}%`, icon: TrendingUp, color: "text-amber-400" },
           { label: "Avg Deal Size", value: formatCurrency(filtered.length > 0 ? totalPipeline / filtered.length : 0), icon: UserCheck, color: "text-pink-400" },
@@ -65,7 +65,7 @@ export default function CRMPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-slate-500">{s.label}</p>
-                <p className="text-xl font-bold text-slate-100 mt-1">{s.value}</p>
+                <p className="text-xl font-bold text-slate-900 mt-1">{s.value}</p>
               </div>
               <s.icon className={cn("w-5 h-5", s.color)} />
             </div>
@@ -79,10 +79,10 @@ export default function CRMPage() {
           <div className="relative max-w-xs w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
             <input type="text" placeholder="Search leads..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-slate-900/40 border border-slate-800/40 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-violet-500/50" />
+              className="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-800 placeholder-slate-500 focus:outline-none focus:border-violet-500/50" />
           </div>
           <select value={filterPriority} onChange={(e) => setFilterPriority(e.target.value)}
-            className="bg-slate-900/40 border border-slate-800/40 rounded-xl px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-violet-500/50">
+            className="bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-700 focus:outline-none focus:border-violet-500/50">
             <option value="all">All Priority</option>
             <option value="urgent">Urgent</option>
             <option value="high">High</option>
@@ -90,7 +90,7 @@ export default function CRMPage() {
             <option value="low">Low</option>
           </select>
           <select value={filterSource} onChange={(e) => setFilterSource(e.target.value)}
-            className="bg-slate-900/40 border border-slate-800/40 rounded-xl px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-violet-500/50">
+            className="bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-700 focus:outline-none focus:border-violet-500/50">
             <option value="all">All Sources</option>
             <option value="Website">Website</option>
             <option value="Referral">Referral</option>
@@ -101,11 +101,11 @@ export default function CRMPage() {
             <option value="Partner">Partner</option>
           </select>
         </div>
-        <div className="flex items-center gap-1 bg-slate-900/40 border border-slate-800/40 rounded-xl p-1">
-          <button onClick={() => setView("kanban")} className={cn("p-1.5 rounded-md transition-colors", view === "kanban" ? "bg-violet-600 text-white" : "text-slate-400 hover:text-white")}>
+        <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-xl p-1">
+          <button onClick={() => setView("kanban")} className={cn("p-1.5 rounded-md transition-colors", view === "kanban" ? "bg-teal-600 text-white" : "text-slate-400 hover:text-white")}>
             <LayoutGrid className="w-4 h-4" />
           </button>
-          <button onClick={() => setView("table")} className={cn("p-1.5 rounded-md transition-colors", view === "table" ? "bg-violet-600 text-white" : "text-slate-400 hover:text-white")}>
+          <button onClick={() => setView("table")} className={cn("p-1.5 rounded-md transition-colors", view === "table" ? "bg-teal-600 text-white" : "text-slate-400 hover:text-white")}>
             <List className="w-4 h-4" />
           </button>
         </div>
@@ -119,8 +119,8 @@ export default function CRMPage() {
             return (
               <div key={col.key} className="min-w-[280px] w-[280px] shrink-0">
                 <div className={cn("flex items-center gap-2 mb-3 pb-2 border-b-2", col.color)}>
-                  <span className="text-sm font-semibold text-slate-300">{col.label}</span>
-                  <span className="text-xs bg-slate-800/50 text-slate-400 px-1.5 py-0.5 rounded-full">{colLeads.length}</span>
+                  <span className="text-sm font-semibold text-slate-700">{col.label}</span>
+                  <span className="text-xs bg-slate-100 text-slate-400 px-1.5 py-0.5 rounded-full">{colLeads.length}</span>
                 </div>
                 <div className="space-y-3 kanban-column">
                   {colLeads.map((lead) => (
@@ -132,15 +132,15 @@ export default function CRMPage() {
                         </span>
                         <span className="text-[10px] text-slate-600">{lead.source}</span>
                       </div>
-                      <h4 className="text-sm font-semibold text-slate-200 mb-1 line-clamp-1">{lead.title}</h4>
+                      <h4 className="text-sm font-semibold text-slate-800 mb-1 line-clamp-1">{lead.title}</h4>
                       <p className="text-xs text-slate-500 mb-3">{lead.clientName}{lead.clientCompany ? ` · ${lead.clientCompany}` : ""}</p>
                       <div className="flex items-center justify-between text-[10px] text-slate-500">
                         <span className="flex items-center gap-1"><DollarSign className="w-3 h-3" />{formatCurrency(lead.estimatedBudget || 0)}</span>
                         <span className="flex items-center gap-1"><Users className="w-3 h-3" />{lead.estimatedGuests || 0}</span>
                         <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{lead.eventDate ? new Date(lead.eventDate).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "TBD"}</span>
                       </div>
-                      <div className="flex items-center gap-2 mt-3 pt-2 border-t border-slate-800/30">
-                        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-[8px] font-bold text-white">
+                      <div className="flex items-center gap-2 mt-3 pt-2 border-t border-slate-200">
+                        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-teal-500 to-purple-600 flex items-center justify-center text-[8px] font-bold text-white">
                           {getInitials(lead.assignedTo || "?")}
                         </div>
                         <span className="text-[10px] text-slate-500">{lead.assignedTo}</span>
@@ -163,7 +163,7 @@ export default function CRMPage() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-800/50">
+                <tr className="border-b border-slate-200/50">
                   {["Lead", "Client", "Event Type", "Budget", "Guests", "Status", "Priority", "Assigned", "Date"].map((h) => (
                     <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">{h}</th>
                   ))}
@@ -171,16 +171,16 @@ export default function CRMPage() {
               </thead>
               <tbody>
                 {filtered.map((lead) => (
-                  <tr key={lead.id} className="border-b border-slate-800/20 table-row-hover">
+                  <tr key={lead.id} className="border-b border-slate-100 table-row-hover">
                     <td className="px-4 py-3">
-                      <Link href={`/dashboard/crm/${lead.id}`} className="text-sm font-medium text-slate-200 hover:text-violet-400 transition-colors">{lead.title}</Link>
+                      <Link href={`/dashboard/crm/${lead.id}`} className="text-sm font-medium text-slate-800 hover:text-teal-600 transition-colors">{lead.title}</Link>
                     </td>
                     <td className="px-4 py-3">
-                      <p className="text-sm text-slate-300">{lead.clientName}</p>
+                      <p className="text-sm text-slate-700">{lead.clientName}</p>
                       <p className="text-xs text-slate-500">{lead.clientCompany}</p>
                     </td>
                     <td className="px-4 py-3 text-sm text-slate-400">{lead.eventType}</td>
-                    <td className="px-4 py-3 text-sm font-medium text-slate-200 font-mono">{formatCurrency(lead.estimatedBudget || 0)}</td>
+                    <td className="px-4 py-3 text-sm font-medium text-slate-800 font-mono">{formatCurrency(lead.estimatedBudget || 0)}</td>
                     <td className="px-4 py-3 text-sm text-slate-400">{lead.estimatedGuests}</td>
                     <td className="px-4 py-3">
                       <span className={cn("text-[10px] px-2 py-0.5 rounded-full border font-medium", getStatusColor(lead.status))}>{lead.status.replace(/_/g, " ")}</span>
@@ -190,7 +190,7 @@ export default function CRMPage() {
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-[8px] font-bold text-white">{getInitials(lead.assignedTo || "?")}</div>
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-teal-500 to-purple-600 flex items-center justify-center text-[8px] font-bold text-white">{getInitials(lead.assignedTo || "?")}</div>
                         <span className="text-xs text-slate-400">{lead.assignedTo}</span>
                       </div>
                     </td>

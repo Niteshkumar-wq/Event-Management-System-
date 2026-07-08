@@ -36,7 +36,7 @@ function getCategoryColor(category: string) {
     case 'VIP': return 'bg-amber-500/20 text-amber-400';
     case 'Speaker': return 'bg-purple-500/20 text-purple-400';
     case 'Media': return 'bg-cyan-500/20 text-cyan-400';
-    default: return 'bg-slate-700/50 text-slate-300';
+    default: return 'bg-slate-700/50 text-slate-700';
   }
 }
 
@@ -136,7 +136,7 @@ export default function CheckInDashboardPage() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: 'Checked In', value: checkedInCount, total: totalGuests, icon: UserCheck, color: 'text-emerald-400', gradient: 'kpi-gradient-2', showTotal: true },
-          { label: 'Remaining', value: notCheckedIn, total: totalGuests, icon: Users, color: 'text-violet-400', gradient: 'kpi-gradient-1', showTotal: false },
+          { label: 'Remaining', value: notCheckedIn, total: totalGuests, icon: Users, color: 'text-teal-600', gradient: 'kpi-gradient-1', showTotal: false },
           { label: 'Arrival Rate', value: `${arrivalRate}`, total: 0, icon: TrendingUp, color: 'text-amber-400', gradient: 'kpi-gradient-3', showTotal: false, suffix: '/min' },
           { label: 'Check-in %', value: `${checkinPercent}`, total: 0, icon: Zap, color: 'text-pink-400', gradient: 'kpi-gradient-4', showTotal: false, suffix: '%' },
         ].map((s, i) => (
@@ -173,14 +173,14 @@ export default function CheckInDashboardPage() {
       >
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-white">Check-in Progress</h3>
-          <span className="text-sm font-bold font-mono text-violet-400">{checkinPercent}%</span>
+          <span className="text-sm font-bold font-mono text-teal-600">{checkinPercent}%</span>
         </div>
         <div className="h-4 rounded-full bg-slate-800 overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${checkinPercent}%` }}
             transition={{ duration: 1.2, ease: 'easeOut' }}
-            className="h-full rounded-full bg-gradient-to-r from-violet-600 via-violet-500 to-emerald-500 relative"
+            className="h-full rounded-full bg-gradient-to-r from-teal-600 via-violet-500 to-emerald-500 relative"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/10 rounded-full" />
           </motion.div>
@@ -202,7 +202,7 @@ export default function CheckInDashboardPage() {
         >
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-              <QrCode className="w-4 h-4 text-violet-400" /> QR Scanner
+              <QrCode className="w-4 h-4 text-teal-600" /> QR Scanner
             </h3>
             <button
               onClick={() => setScannerActive(!scannerActive)}
@@ -222,7 +222,7 @@ export default function CheckInDashboardPage() {
             'aspect-square rounded-xl border-2 border-dashed flex items-center justify-center relative overflow-hidden transition-colors',
             scannerActive
               ? 'border-violet-500/40 bg-violet-500/5'
-              : 'border-slate-700 bg-slate-800/30'
+              : 'border-slate-700 bg-slate-100'
           )}>
             {scannerActive && (
               <>
@@ -243,7 +243,7 @@ export default function CheckInDashboardPage() {
             <div className="text-center z-10">
               <Scan className={cn(
                 'w-12 h-12 mx-auto mb-2',
-                scannerActive ? 'text-violet-400' : 'text-slate-600'
+                scannerActive ? 'text-teal-600' : 'text-slate-600'
               )} />
               <p className="text-sm text-slate-400">
                 {scannerActive ? 'Ready to scan' : 'Scanner paused'}
@@ -257,7 +257,7 @@ export default function CheckInDashboardPage() {
             className={cn(
               'w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-colors',
               scannerActive
-                ? 'bg-violet-600 hover:bg-violet-500 text-white'
+                ? 'bg-teal-600 hover:bg-violet-500 text-white'
                 : 'bg-slate-800 text-slate-500 cursor-not-allowed'
             )}
           >
@@ -281,7 +281,7 @@ export default function CheckInDashboardPage() {
             )}
           </AnimatePresence>
 
-          <div className="flex items-center gap-2 p-2 rounded-lg bg-slate-800/50">
+          <div className="flex items-center gap-2 p-2 rounded-lg bg-slate-100">
             <Wifi className="w-3.5 h-3.5 text-emerald-400" />
             <span className="text-xs text-slate-400">Scanner connected · Camera 1</span>
           </div>
@@ -311,7 +311,7 @@ export default function CheckInDashboardPage() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.03 }}
-                  className="flex items-center gap-3 p-3 rounded-lg bg-slate-800/30 border border-slate-700/30 hover:bg-slate-800/50 transition-colors"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-slate-100 border border-slate-200 hover:bg-slate-100 transition-colors"
                 >
                   <div className={cn(
                     'w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0',
@@ -330,7 +330,7 @@ export default function CheckInDashboardPage() {
                     <span className={cn(
                       'inline-block mt-0.5 px-1.5 py-0.5 rounded text-[9px] font-medium',
                       ci.method === 'QR Code'
-                        ? 'bg-violet-500/20 text-violet-400'
+                        ? 'bg-violet-500/20 text-teal-600'
                         : 'bg-amber-500/20 text-amber-400'
                     )}>
                       {ci.method}
@@ -361,7 +361,7 @@ export default function CheckInDashboardPage() {
               placeholder="Search by name, email, or company..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-colors"
             />
           </div>
 
@@ -376,7 +376,7 @@ export default function CheckInDashboardPage() {
             {searchResults.map(guest => (
               <div
                 key={guest.id}
-                className="flex items-center gap-3 p-3 rounded-lg bg-slate-800/30 border border-slate-700/30 hover:bg-slate-800/50 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-lg bg-slate-100 border border-slate-200 hover:bg-slate-100 transition-colors"
               >
                 <div className={cn(
                   'w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0',
@@ -407,7 +407,7 @@ export default function CheckInDashboardPage() {
           </div>
 
           {/* Already checked-in count */}
-          <div className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/50">
+          <div className="p-3 rounded-lg bg-slate-100 border border-slate-200">
             <div className="flex items-center justify-between">
               <span className="text-xs text-slate-400">Already checked in</span>
               <span className="text-xs font-bold text-emerald-400 font-mono">{checkedInCount} guests</span>

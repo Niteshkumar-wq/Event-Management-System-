@@ -51,11 +51,11 @@ const revenueData = [
 
 // Event types breakdown
 const eventTypeData = [
-  { name: "Corporate", value: 35, color: "#6366f1" },
-  { name: "Wedding", value: 25, color: "#8b5cf6" },
-  { name: "Conference", value: 20, color: "#a78bfa" },
-  { name: "Festival", value: 10, color: "#c4b5fd" },
-  { name: "Other", value: 10, color: "#e0e7ff" },
+  { name: "Corporate", value: 35, color: "#0d9488" },
+  { name: "Wedding", value: 25, color: "#0891b2" },
+  { name: "Conference", value: 20, color: "#0284c7" },
+  { name: "Festival", value: 10, color: "#14b8a6" },
+  { name: "Other", value: 10, color: "#94a3b8" },
 ];
 
 // Lead conversion funnel
@@ -70,7 +70,7 @@ const funnelData = [
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="glass rounded-lg px-3 py-2 shadow-xl border border-slate-700/50">
+      <div className="glass rounded-lg px-3 py-2 shadow-xl border border-slate-200">
         <p className="text-xs text-slate-400">{label}</p>
         {payload.map((item: any, idx: number) => (
           <p key={idx} className="text-sm font-semibold" style={{ color: item.color }}>
@@ -99,7 +99,7 @@ export default function DashboardPage() {
       trend: "up",
       icon: Calendar,
       gradient: "kpi-gradient-1",
-      iconColor: "text-violet-400",
+      iconColor: "text-teal-600",
       link: "/dashboard/events",
     },
     {
@@ -137,18 +137,18 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
+      <div className="page-header">
         <div>
-          <h1 className="text-2xl font-bold text-slate-100">Good evening, John 👋</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900">Good evening, John 👋</h1>
           <p className="text-sm text-slate-500 mt-1">
             Here&apos;s what&apos;s happening across your events today.
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
           <select
             value={selectedPeriod}
             onChange={(e) => setSelectedPeriod(e.target.value)}
-            className="bg-slate-900/40 border border-slate-800/40 rounded-xl px-3.5 py-2 text-sm text-slate-300 focus:outline-none"
+            className="bg-white border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-700 focus:outline-none"
           >
             <option>Today</option>
             <option>This Week</option>
@@ -158,7 +158,7 @@ export default function DashboardPage() {
           </select>
           <Link
             href="/dashboard/events/new"
-            className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-violet-600 to-violet-500 hover:from-violet-500 hover:to-violet-400 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-violet-500/20 hover:shadow-violet-500/30"
+            className="btn-primary justify-center sm:justify-start"
           >
             <Plus className="w-4 h-4" />
             New Event
@@ -180,7 +180,7 @@ export default function DashboardPage() {
             <div className="flex items-start justify-between">
               <div>
                 <p className="text-sm text-slate-400">{card.title}</p>
-                <p className="text-2xl font-bold text-slate-100 mt-1">{card.value}</p>
+                <p className="text-2xl font-bold text-slate-900 mt-1">{card.value}</p>
                 <div className="flex items-center gap-1 mt-2">
                   {card.trend === "up" ? (
                     <ArrowUpRight className="w-3 h-3 text-emerald-400" />
@@ -192,7 +192,7 @@ export default function DashboardPage() {
                   </span>
                 </div>
               </div>
-              <div className={cn("p-2.5 rounded-xl bg-slate-800/50 group-hover:scale-110 transition-transform", card.iconColor)}>
+              <div className={cn("p-2.5 rounded-xl bg-slate-100 group-hover:scale-110 transition-transform", card.iconColor)}>
                 <card.icon className="w-5 h-5" />
               </div>
             </div>
@@ -205,7 +205,7 @@ export default function DashboardPage() {
         {/* Revenue Chart */}
         <div className="lg:col-span-2 glass-card p-5">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-slate-200">Revenue Overview</h2>
+            <h2 className="text-lg font-semibold text-slate-800">Revenue Overview</h2>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1.5">
                 <div className="w-2.5 h-2.5 rounded-full bg-violet-500" />
@@ -232,7 +232,7 @@ export default function DashboardPage() {
 
         {/* Event Types Pie */}
         <div className="glass-card p-5">
-          <h2 className="text-lg font-semibold text-slate-200 mb-4">Events by Type</h2>
+          <h2 className="text-lg font-semibold text-slate-800 mb-4">Events by Type</h2>
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
               <Pie
@@ -252,8 +252,8 @@ export default function DashboardPage() {
                 content={({ active, payload }) => {
                   if (active && payload?.length) {
                     return (
-                      <div className="glass rounded-lg px-3 py-2 border border-slate-700/50">
-                        <p className="text-sm text-slate-200">{payload[0].name}: {payload[0].value}%</p>
+                      <div className="glass rounded-lg px-3 py-2 border border-slate-200">
+                        <p className="text-sm text-slate-800">{payload[0].name}: {payload[0].value}%</p>
                       </div>
                     );
                   }
@@ -269,7 +269,7 @@ export default function DashboardPage() {
                   <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: item.color }} />
                   <span className="text-xs text-slate-400">{item.name}</span>
                 </div>
-                <span className="text-xs font-medium text-slate-300">{item.value}%</span>
+                <span className="text-xs font-medium text-slate-700">{item.value}%</span>
               </div>
             ))}
           </div>
@@ -280,7 +280,7 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Lead Funnel */}
         <div className="glass-card p-5">
-          <h2 className="text-lg font-semibold text-slate-200 mb-4">Lead Conversion Funnel</h2>
+          <h2 className="text-lg font-semibold text-slate-800 mb-4">Lead Conversion Funnel</h2>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={funnelData} layout="vertical" barCategoryGap={8}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" horizontal={false} />
@@ -295,8 +295,8 @@ export default function DashboardPage() {
         {/* Upcoming Events */}
         <div className="glass-card p-5">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-slate-200">Upcoming Events</h2>
-            <Link href="/dashboard/events" className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1">
+            <h2 className="text-lg font-semibold text-slate-800">Upcoming Events</h2>
+            <Link href="/dashboard/events" className="text-xs text-teal-600 hover:text-teal-700 flex items-center gap-1">
               View all <ChevronRight className="w-3 h-3" />
             </Link>
           </div>
@@ -308,13 +308,13 @@ export default function DashboardPage() {
                 <Link
                   key={event.id}
                   href={`/dashboard/events/${event.id}`}
-                  className="flex items-center gap-3 p-3 rounded-lg bg-slate-900/30 hover:bg-slate-800/50 transition-colors group"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center shrink-0">
-                    <Calendar className="w-5 h-5 text-violet-400" />
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500/20 to-purple-500/20 flex items-center justify-center shrink-0">
+                    <Calendar className="w-5 h-5 text-teal-600" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-slate-200 truncate group-hover:text-violet-300 transition-colors">
+                    <p className="text-sm font-medium text-slate-800 truncate group-hover:text-teal-700 transition-colors">
                       {event.name}
                     </p>
                     <p className="text-xs text-slate-500 mt-0.5">{event.startDate} · {event.venueName}</p>
@@ -330,7 +330,7 @@ export default function DashboardPage() {
         {/* Recent Tasks */}
         <div className="glass-card p-5">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-slate-200">Priority Tasks</h2>
+            <h2 className="text-lg font-semibold text-slate-800">Priority Tasks</h2>
             <span className="text-xs text-amber-400 flex items-center gap-1">
               <AlertTriangle className="w-3 h-3" /> {pendingTasks} pending
             </span>
@@ -342,7 +342,7 @@ export default function DashboardPage() {
               .map((task) => (
                 <div
                   key={task.id}
-                  className="flex items-start gap-3 p-3 rounded-lg bg-slate-900/30 hover:bg-slate-800/50 transition-colors"
+                  className="flex items-start gap-3 p-3 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors"
                 >
                   <div className={cn(
                     "w-2 h-2 rounded-full mt-1.5 shrink-0",
@@ -351,7 +351,7 @@ export default function DashboardPage() {
                     task.priority === "medium" ? "bg-blue-500" : "bg-slate-500"
                   )} />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-slate-200 truncate">{task.title}</p>
+                    <p className="text-sm text-slate-800 truncate">{task.title}</p>
                     <div className="flex items-center gap-2 mt-1">
                       <span className="text-[10px] text-slate-500">{task.assignee}</span>
                       <span className="text-[10px] text-slate-600">·</span>
@@ -374,21 +374,21 @@ export default function DashboardPage() {
         {/* Activity Feed */}
         <div className="lg:col-span-2 glass-card p-5">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-slate-200">Recent Activity</h2>
+            <h2 className="text-lg font-semibold text-slate-800">Recent Activity</h2>
             <Activity className="w-4 h-4 text-slate-500" />
           </div>
           <div className="space-y-0">
             {demoActivities.map((activity, idx) => (
-              <div key={activity.id} className="flex items-start gap-3 py-3 border-b border-slate-800/30 last:border-0">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center shrink-0 text-xs font-bold text-violet-400">
+              <div key={activity.id} className="flex items-start gap-3 py-3 border-b border-slate-200 last:border-0">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-500/20 to-purple-500/20 flex items-center justify-center shrink-0 text-xs font-bold text-teal-600">
                   {getInitials(activity.user)}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-slate-300">
-                    <span className="font-medium text-slate-200">{activity.user}</span>{" "}
+                  <p className="text-sm text-slate-700">
+                    <span className="font-medium text-slate-800">{activity.user}</span>{" "}
                     <span className="text-slate-500">{activity.action}</span>{" "}
                     <span className="text-slate-400">{activity.entity}</span>{" "}
-                    <span className="text-violet-400 font-medium">{activity.entityName}</span>
+                    <span className="text-teal-600 font-medium">{activity.entityName}</span>
                   </p>
                   {activity.detail && (
                     <p className="text-xs text-slate-500 mt-0.5">{activity.detail}</p>
@@ -402,10 +402,10 @@ export default function DashboardPage() {
 
         {/* Quick Stats */}
         <div className="glass-card p-5">
-          <h2 className="text-lg font-semibold text-slate-200 mb-4">Quick Stats</h2>
+          <h2 className="text-lg font-semibold text-slate-800 mb-4">Quick Stats</h2>
           <div className="space-y-4">
             {[
-              { label: "Events This Month", value: "5", icon: Calendar, color: "text-violet-400", bg: "bg-violet-500/10" },
+              { label: "Events This Month", value: "5", icon: Calendar, color: "text-teal-600", bg: "bg-teal-50" },
               { label: "Guests Managed", value: "2,450", icon: Users, color: "text-purple-400", bg: "bg-purple-500/10" },
               { label: "Vendors Active", value: "24", icon: UserCheck, color: "text-cyan-400", bg: "bg-cyan-500/10" },
               { label: "Check-in Rate", value: "94.2%", icon: Zap, color: "text-emerald-400", bg: "bg-emerald-500/10" },
@@ -419,7 +419,7 @@ export default function DashboardPage() {
                 <div className="flex-1">
                   <p className="text-xs text-slate-500">{stat.label}</p>
                 </div>
-                <p className="text-sm font-bold text-slate-200">{stat.value}</p>
+                <p className="text-sm font-bold text-slate-800">{stat.value}</p>
               </div>
             ))}
           </div>

@@ -39,10 +39,10 @@ export default function EventsPage() {
     <div className="space-y-6 animate-fade-in">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-100">Events</h1>
+          <h1 className="text-2xl font-bold text-slate-900">Events</h1>
           <p className="text-sm text-slate-500 mt-0.5">Manage all your events in one place</p>
         </div>
-        <Link href="/dashboard/events/new" className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-violet-500 hover:from-violet-500 hover:to-violet-400 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-violet-500/20 hover:shadow-violet-500/30">
+        <Link href="/dashboard/events/new" className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-teal-500/20 hover:shadow-teal-500/30">
           <Plus className="w-4 h-4" /> Create Event
         </Link>
       </div>
@@ -50,7 +50,7 @@ export default function EventsPage() {
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: "Total Events", value: filtered.length.toString(), color: "text-violet-400" },
+          { label: "Total Events", value: filtered.length.toString(), color: "text-teal-600" },
           { label: "Active Events", value: activeCount.toString(), color: "text-emerald-400" },
           { label: "Upcoming", value: filtered.filter((e) => e.status === "planning").length.toString(), color: "text-amber-400" },
           { label: "Total Budget", value: formatCurrency(totalRevenue), color: "text-pink-400" },
@@ -68,10 +68,10 @@ export default function EventsPage() {
           <div className="relative max-w-xs w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
             <input type="text" placeholder="Search events..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-slate-900/40 border border-slate-800/40 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-violet-500/50" />
+              className="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-800 placeholder-slate-500 focus:outline-none focus:border-violet-500/50" />
           </div>
           <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}
-            className="bg-slate-900/40 border border-slate-800/40 rounded-xl px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-violet-500/50">
+            className="bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-700 focus:outline-none focus:border-violet-500/50">
             <option value="all">All Status</option>
             <option value="draft">Draft</option>
             <option value="planning">Planning</option>
@@ -81,11 +81,11 @@ export default function EventsPage() {
             <option value="completed">Completed</option>
           </select>
         </div>
-        <div className="flex items-center gap-1 bg-slate-900/40 border border-slate-800/40 rounded-xl p-1">
-          <button onClick={() => setView("grid")} className={cn("p-1.5 rounded-md transition-colors", view === "grid" ? "bg-violet-600 text-white" : "text-slate-400 hover:text-white")}>
+        <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-xl p-1">
+          <button onClick={() => setView("grid")} className={cn("p-1.5 rounded-md transition-colors", view === "grid" ? "bg-teal-600 text-white" : "text-slate-400 hover:text-white")}>
             <LayoutGrid className="w-4 h-4" />
           </button>
-          <button onClick={() => setView("calendar")} className={cn("p-1.5 rounded-md transition-colors", view === "calendar" ? "bg-violet-600 text-white" : "text-slate-400 hover:text-white")}>
+          <button onClick={() => setView("calendar")} className={cn("p-1.5 rounded-md transition-colors", view === "calendar" ? "bg-teal-600 text-white" : "text-slate-400 hover:text-white")}>
             <CalIcon className="w-4 h-4" />
           </button>
         </div>
@@ -99,7 +99,7 @@ export default function EventsPage() {
             return (
               <Link key={event.id} href={`/dashboard/events/${event.id}`} className="glass-card overflow-hidden group cursor-pointer">
                 {/* Cover gradient */}
-                <div className="h-32 bg-gradient-to-br from-violet-600/30 via-purple-600/20 to-pink-600/10 relative">
+                <div className="h-32 bg-gradient-to-br from-teal-600/30 via-purple-600/20 to-pink-600/10 relative">
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent" />
                   <div className="absolute bottom-3 left-4 right-4">
                     <div className="flex items-center justify-between">
@@ -107,12 +107,12 @@ export default function EventsPage() {
                         {event.status === "live" && <span className="inline-block w-1.5 h-1.5 bg-emerald-500 rounded-full mr-1 animate-pulse" />}
                         {event.status.replace("_", " ")}
                       </span>
-                      <span className="text-[10px] text-slate-400 bg-slate-900/60 px-2 py-0.5 rounded">{event.type}</span>
+                      <span className="text-[10px] text-slate-400 bg-slate-100 px-2 py-0.5 rounded">{event.type}</span>
                     </div>
                   </div>
                 </div>
                 <div className="p-4">
-                  <h3 className="text-base font-semibold text-slate-200 group-hover:text-violet-300 transition-colors line-clamp-1">{event.name}</h3>
+                  <h3 className="text-base font-semibold text-slate-800 group-hover:text-teal-700 transition-colors line-clamp-1">{event.name}</h3>
                   <div className="flex items-center gap-3 mt-2 text-xs text-slate-500">
                     <span className="flex items-center gap-1"><CalIcon className="w-3 h-3" />{event.startDate}</span>
                     <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{event.venueName?.split(",")[0]}</span>
@@ -132,8 +132,8 @@ export default function EventsPage() {
                         style={{ width: `${Math.min(budgetPercent, 100)}%` }} />
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 mt-3 pt-2 border-t border-slate-800/30">
-                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-[8px] font-bold text-white">
+                  <div className="flex items-center gap-2 mt-3 pt-2 border-t border-slate-200">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-teal-500 to-purple-600 flex items-center justify-center text-[8px] font-bold text-white">
                       {event.manager ? event.manager[0] : "?"}
                     </div>
                     <span className="text-[10px] text-slate-500">{event.manager}</span>
@@ -149,11 +149,11 @@ export default function EventsPage() {
       {view === "calendar" && (
         <div className="glass-card p-5">
           <div className="flex items-center justify-between mb-4">
-            <button onClick={() => setCalMonth((p) => Math.max(0, p - 1))} className="p-1.5 hover:bg-slate-800/50 rounded-lg transition-colors">
+            <button onClick={() => setCalMonth((p) => Math.max(0, p - 1))} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors">
               <ChevronLeft className="w-4 h-4 text-slate-400" />
             </button>
-            <h3 className="text-lg font-semibold text-slate-200">{months[calMonth]} {calYear}</h3>
-            <button onClick={() => setCalMonth((p) => Math.min(11, p + 1))} className="p-1.5 hover:bg-slate-800/50 rounded-lg transition-colors">
+            <h3 className="text-lg font-semibold text-slate-800">{months[calMonth]} {calYear}</h3>
+            <button onClick={() => setCalMonth((p) => Math.min(11, p + 1))} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors">
               <ChevronRight className="w-4 h-4 text-slate-400" />
             </button>
           </div>
@@ -167,12 +167,12 @@ export default function EventsPage() {
                 return d.getMonth() === calMonth && d.getDate() === day;
               }) : [];
               return (
-                <div key={i} className={cn("min-h-[80px] p-1 border border-slate-800/20 rounded-md", day ? "bg-slate-900/20" : "bg-transparent")}>
+                <div key={i} className={cn("min-h-[80px] p-1 border border-slate-100 rounded-md", day ? "bg-slate-50" : "bg-transparent")}>
                   {day && (
                     <>
-                      <span className={cn("text-xs", day === new Date().getDate() && calMonth === new Date().getMonth() ? "text-violet-400 font-bold" : "text-slate-500")}>{day}</span>
+                      <span className={cn("text-xs", day === new Date().getDate() && calMonth === new Date().getMonth() ? "text-teal-600 font-bold" : "text-slate-500")}>{day}</span>
                       {dayEvents.map((e) => (
-                        <Link key={e.id} href={`/dashboard/events/${e.id}`} className="block mt-1 text-[9px] bg-violet-500/20 text-violet-300 px-1 py-0.5 rounded truncate hover:bg-violet-500/30 transition-colors">
+                        <Link key={e.id} href={`/dashboard/events/${e.id}`} className="block mt-1 text-[9px] bg-violet-500/20 text-teal-700 px-1 py-0.5 rounded truncate hover:bg-violet-500/30 transition-colors">
                           {e.name}
                         </Link>
                       ))}

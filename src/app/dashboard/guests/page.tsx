@@ -159,8 +159,8 @@ export default function GuestDatabasePage() {
   const SortIcon = ({ field }: { field: SortField }) => {
     if (sortField !== field) return <ChevronDown className="w-3.5 h-3.5 text-slate-600" />;
     return sortDir === 'asc'
-      ? <ChevronUp className="w-3.5 h-3.5 text-violet-400" />
-      : <ChevronDown className="w-3.5 h-3.5 text-violet-400" />;
+      ? <ChevronUp className="w-3.5 h-3.5 text-teal-600" />
+      : <ChevronDown className="w-3.5 h-3.5 text-teal-600" />;
   };
 
   return (
@@ -179,13 +179,13 @@ export default function GuestDatabasePage() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setShowImportModal(true)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors text-sm"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-slate-700 text-slate-700 hover:bg-slate-800 transition-colors text-sm"
           >
             <Upload className="w-4 h-4" /> Import CSV
           </button>
           <button
             onClick={() => setShowAddPanel(true)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-violet-600 hover:bg-violet-500 text-white transition-colors text-sm font-medium"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-teal-600 hover:bg-violet-500 text-white transition-colors text-sm font-medium"
           >
             <Plus className="w-4 h-4" /> Add Guest
           </button>
@@ -195,7 +195,7 @@ export default function GuestDatabasePage() {
       {/* ─── Stats ─── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: 'Total Guests', value: stats.total, icon: Users, gradient: 'kpi-gradient-1', iconColor: 'text-violet-400' },
+          { label: 'Total Guests', value: stats.total, icon: Users, gradient: 'kpi-gradient-1', iconColor: 'text-teal-600' },
           { label: 'VIP Guests', value: stats.vips, icon: Crown, gradient: 'kpi-gradient-3', iconColor: 'text-amber-400' },
           { label: 'Speakers', value: stats.speakers, icon: Mic2, gradient: 'kpi-gradient-4', iconColor: 'text-pink-400' },
           { label: 'Dietary Requirements', value: stats.withDietary, icon: UtensilsCrossed, gradient: 'kpi-gradient-2', iconColor: 'text-emerald-400' },
@@ -230,7 +230,7 @@ export default function GuestDatabasePage() {
               placeholder="Search by name, email, or company..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-colors"
             />
           </div>
           <button
@@ -238,7 +238,7 @@ export default function GuestDatabasePage() {
             className={cn(
               'flex items-center gap-2 px-4 py-2.5 rounded-lg border text-sm transition-colors',
               showFilters
-                ? 'border-violet-500/50 text-violet-400 bg-violet-500/10'
+                ? 'border-violet-500/50 text-teal-600 bg-teal-50'
                 : 'border-slate-700 text-slate-400 hover:bg-slate-800'
             )}
           >
@@ -260,13 +260,13 @@ export default function GuestDatabasePage() {
               transition={{ duration: 0.25 }}
               className="overflow-hidden"
             >
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-slate-800/50">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-slate-200/50">
                 <div>
                   <label className="block text-xs font-medium text-slate-400 mb-1.5">Category</label>
                   <select
                     value={categoryFilter}
                     onChange={e => setCategoryFilter(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-800/50 border border-slate-700/50 rounded-md text-sm text-white focus:outline-none focus:border-violet-500/50"
+                    className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-md text-sm text-white focus:outline-none focus:border-violet-500/50"
                   >
                     {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
@@ -276,7 +276,7 @@ export default function GuestDatabasePage() {
                   <select
                     value={dietaryFilter}
                     onChange={e => setDietaryFilter(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-800/50 border border-slate-700/50 rounded-md text-sm text-white focus:outline-none focus:border-violet-500/50"
+                    className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-md text-sm text-white focus:outline-none focus:border-violet-500/50"
                   >
                     {DIETARY_OPTIONS.map(d => <option key={d} value={d}>{d}</option>)}
                   </select>
@@ -286,7 +286,7 @@ export default function GuestDatabasePage() {
                   <select
                     value={tagFilter}
                     onChange={e => setTagFilter(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-800/50 border border-slate-700/50 rounded-md text-sm text-white focus:outline-none focus:border-violet-500/50"
+                    className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-md text-sm text-white focus:outline-none focus:border-violet-500/50"
                   >
                     <option value="">All Tags</option>
                     {allTags.map(t => <option key={t} value={t}>{t}</option>)}
@@ -304,17 +304,17 @@ export default function GuestDatabasePage() {
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              className="flex items-center gap-3 py-2 px-3 rounded-lg bg-violet-500/10 border border-violet-500/20"
+              className="flex items-center gap-3 py-2 px-3 rounded-lg bg-teal-50 border border-violet-500/20"
             >
-              <span className="text-sm text-violet-300 font-medium">{selectedIds.size} selected</span>
+              <span className="text-sm text-teal-700 font-medium">{selectedIds.size} selected</span>
               <div className="h-4 w-px bg-violet-500/30" />
-              <button className="flex items-center gap-1.5 text-sm text-slate-300 hover:text-violet-400 transition-colors">
+              <button className="flex items-center gap-1.5 text-sm text-slate-700 hover:text-teal-600 transition-colors">
                 <Send className="w-3.5 h-3.5" /> Send Invitation
               </button>
-              <button className="flex items-center gap-1.5 text-sm text-slate-300 hover:text-emerald-400 transition-colors">
+              <button className="flex items-center gap-1.5 text-sm text-slate-700 hover:text-emerald-400 transition-colors">
                 <Download className="w-3.5 h-3.5" /> Export CSV
               </button>
-              <button onClick={handleDeleteSelected} className="flex items-center gap-1.5 text-sm text-slate-300 hover:text-red-400 transition-colors">
+              <button onClick={handleDeleteSelected} className="flex items-center gap-1.5 text-sm text-slate-700 hover:text-red-400 transition-colors">
                 <Trash2 className="w-3.5 h-3.5" /> Delete
               </button>
             </motion.div>
@@ -327,13 +327,13 @@ export default function GuestDatabasePage() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-slate-800/50">
+              <tr className="border-b border-slate-200/50">
                 <th className="p-4 w-10">
                   <input
                     type="checkbox"
                     checked={selectedIds.size === filtered.length && filtered.length > 0}
                     onChange={toggleAll}
-                    className="rounded border-slate-600 bg-slate-800 text-violet-500 focus:ring-violet-500/20 focus:ring-offset-0"
+                    className="rounded border-slate-600 bg-slate-800 text-teal-600 focus:ring-violet-500/20 focus:ring-offset-0"
                   />
                 </th>
                 {[
@@ -345,7 +345,7 @@ export default function GuestDatabasePage() {
                   <th
                     key={col.key}
                     onClick={() => toggleSort(col.key)}
-                    className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider cursor-pointer hover:text-slate-200 transition-colors"
+                    className="p-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider cursor-pointer hover:text-slate-800 transition-colors"
                   >
                     <div className="flex items-center gap-1.5">
                       {col.label}
@@ -364,14 +364,14 @@ export default function GuestDatabasePage() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.02 }}
-                  className="border-b border-slate-800/30 table-row-hover"
+                  className="border-b border-slate-200 table-row-hover"
                 >
                   <td className="p-4">
                     <input
                       type="checkbox"
                       checked={selectedIds.has(guest.id)}
                       onChange={() => toggleOne(guest.id)}
-                      className="rounded border-slate-600 bg-slate-800 text-violet-500 focus:ring-violet-500/20 focus:ring-offset-0"
+                      className="rounded border-slate-600 bg-slate-800 text-teal-600 focus:ring-violet-500/20 focus:ring-offset-0"
                     />
                   </td>
                   <td className="p-4">
@@ -381,7 +381,7 @@ export default function GuestDatabasePage() {
                         guest.category === 'VIP' ? 'bg-amber-500/20 text-amber-400' :
                         guest.category === 'Speaker' ? 'bg-purple-500/20 text-purple-400' :
                         guest.category === 'Media' ? 'bg-cyan-500/20 text-cyan-400' :
-                        'bg-slate-700/50 text-slate-300'
+                        'bg-slate-700/50 text-slate-700'
                       )}>
                         {getInitials(`${guest.firstName} ${guest.lastName}`)}
                       </div>
@@ -392,7 +392,7 @@ export default function GuestDatabasePage() {
                   </td>
                   <td className="p-4">
                     <div className="space-y-0.5">
-                      <div className="flex items-center gap-1.5 text-sm text-slate-300">
+                      <div className="flex items-center gap-1.5 text-sm text-slate-700">
                         <Mail className="w-3.5 h-3.5 text-slate-500" /> {guest.email}
                       </div>
                       <div className="flex items-center gap-1.5 text-xs text-slate-500">
@@ -401,7 +401,7 @@ export default function GuestDatabasePage() {
                     </div>
                   </td>
                   <td className="p-4">
-                    <div className="flex items-center gap-1.5 text-sm text-slate-300">
+                    <div className="flex items-center gap-1.5 text-sm text-slate-700">
                       <Building2 className="w-3.5 h-3.5 text-slate-500" /> {guest.company}
                     </div>
                   </td>
@@ -426,7 +426,7 @@ export default function GuestDatabasePage() {
                   <td className="p-4">
                     <div className="flex flex-wrap gap-1">
                       {guest.tags.slice(0, 3).map(tag => (
-                        <span key={tag} className="px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 text-xs border border-slate-700/50">
+                        <span key={tag} className="px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 text-xs border border-slate-200">
                           {tag}
                         </span>
                       ))}
@@ -449,10 +449,10 @@ export default function GuestDatabasePage() {
           </div>
         )}
 
-        <div className="px-4 py-3 border-t border-slate-800/50 flex items-center justify-between">
+        <div className="px-4 py-3 border-t border-slate-200/50 flex items-center justify-between">
           <p className="text-xs text-slate-500">
-            Showing <span className="font-medium text-slate-300">{filtered.length}</span> of{' '}
-            <span className="font-medium text-slate-300">{extendedGuests.length}</span> guests
+            Showing <span className="font-medium text-slate-700">{filtered.length}</span> of{' '}
+            <span className="font-medium text-slate-700">{extendedGuests.length}</span> guests
           </p>
         </div>
       </div>
@@ -473,7 +473,7 @@ export default function GuestDatabasePage() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed right-0 top-0 h-full w-full max-w-lg bg-slate-900 border-l border-slate-800 z-50 overflow-y-auto"
+              className="fixed right-0 top-0 h-full w-full max-w-lg bg-white border-l border-slate-200 z-50 overflow-y-auto"
             >
               <div className="p-6 space-y-6">
                 <div className="flex items-center justify-between">
@@ -490,7 +490,7 @@ export default function GuestDatabasePage() {
                       <input
                         type="text" value={formData.firstName}
                         onChange={e => setFormData({ ...formData, firstName: e.target.value })}
-                        className="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-md text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
+                        className="w-full px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-md text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
                         placeholder="Robert"
                       />
                     </div>
@@ -499,7 +499,7 @@ export default function GuestDatabasePage() {
                       <input
                         type="text" value={formData.lastName}
                         onChange={e => setFormData({ ...formData, lastName: e.target.value })}
-                        className="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-md text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
+                        className="w-full px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-md text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
                         placeholder="Anderson"
                       />
                     </div>
@@ -510,7 +510,7 @@ export default function GuestDatabasePage() {
                     <input
                       type="email" value={formData.email}
                       onChange={e => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-md text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
+                      className="w-full px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-md text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
                       placeholder="robert@company.com"
                     />
                   </div>
@@ -521,7 +521,7 @@ export default function GuestDatabasePage() {
                       <input
                         type="tel" value={formData.phone}
                         onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-md text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
+                        className="w-full px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-md text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
                         placeholder="+1 555-0000"
                       />
                     </div>
@@ -530,7 +530,7 @@ export default function GuestDatabasePage() {
                       <select
                         value={formData.title}
                         onChange={e => setFormData({ ...formData, title: e.target.value })}
-                        className="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-md text-sm text-white focus:outline-none focus:border-violet-500/50"
+                        className="w-full px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-md text-sm text-white focus:outline-none focus:border-violet-500/50"
                       >
                         <option value="">Select</option>
                         <option value="Mr.">Mr.</option>
@@ -547,7 +547,7 @@ export default function GuestDatabasePage() {
                     <input
                       type="text" value={formData.company}
                       onChange={e => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-md text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
+                      className="w-full px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-md text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
                       placeholder="TechCorp Industries"
                     />
                   </div>
@@ -558,7 +558,7 @@ export default function GuestDatabasePage() {
                       <select
                         value={formData.category}
                         onChange={e => setFormData({ ...formData, category: e.target.value })}
-                        className="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-md text-sm text-white focus:outline-none focus:border-violet-500/50"
+                        className="w-full px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-md text-sm text-white focus:outline-none focus:border-violet-500/50"
                       >
                         {['Regular', 'VIP', 'Speaker', 'Media'].map(c => <option key={c} value={c}>{c}</option>)}
                       </select>
@@ -568,7 +568,7 @@ export default function GuestDatabasePage() {
                       <select
                         value={formData.dietaryReqs}
                         onChange={e => setFormData({ ...formData, dietaryReqs: e.target.value })}
-                        className="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-md text-sm text-white focus:outline-none focus:border-violet-500/50"
+                        className="w-full px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-md text-sm text-white focus:outline-none focus:border-violet-500/50"
                       >
                         {['None', 'Vegetarian', 'Vegan', 'Gluten-free', 'Halal', 'Kosher', 'Lactose-free'].map(d => <option key={d} value={d}>{d}</option>)}
                       </select>
@@ -580,22 +580,22 @@ export default function GuestDatabasePage() {
                     <input
                       type="text" value={formData.tags}
                       onChange={e => setFormData({ ...formData, tags: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-md text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
+                      className="w-full px-3 py-2.5 bg-slate-100 border border-slate-200 rounded-md text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50"
                       placeholder="VIP, Speaker, Keynote"
                     />
                   </div>
                 </div>
 
-                <div className="flex gap-3 pt-4 border-t border-slate-800">
+                <div className="flex gap-3 pt-4 border-t border-slate-200">
                   <button
                     onClick={() => setShowAddPanel(false)}
-                    className="flex-1 px-4 py-2.5 rounded-lg border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors text-sm"
+                    className="flex-1 px-4 py-2.5 rounded-lg border border-slate-700 text-slate-700 hover:bg-slate-800 transition-colors text-sm"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleAddGuest}
-                    className="flex-1 px-4 py-2.5 rounded-lg bg-violet-600 hover:bg-violet-500 text-white transition-colors text-sm font-medium"
+                    className="flex-1 px-4 py-2.5 rounded-lg bg-teal-600 hover:bg-violet-500 text-white transition-colors text-sm font-medium"
                   >
                     <span className="flex items-center justify-center gap-2"><CheckCircle2 className="w-4 h-4" /> Save Guest</span>
                   </button>
@@ -623,7 +623,7 @@ export default function GuestDatabasePage() {
               exit={{ opacity: 0, scale: 0.95 }}
               className="fixed inset-0 flex items-center justify-center z-50 p-4"
             >
-              <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 space-y-5 shadow-2xl">
+              <div className="bg-white border border-slate-200 rounded-2xl w-full max-w-md p-6 space-y-5 shadow-2xl">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-bold text-white">Import Guests from CSV</h3>
                   <button onClick={() => setShowImportModal(false)} className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400">
@@ -633,11 +633,11 @@ export default function GuestDatabasePage() {
 
                 <div className="border-2 border-dashed border-slate-700 rounded-xl p-8 text-center hover:border-violet-500/50 transition-colors cursor-pointer">
                   <Upload className="w-10 h-10 text-slate-600 mx-auto mb-3" />
-                  <p className="text-sm text-slate-300 font-medium">Drop your CSV file here or click to browse</p>
+                  <p className="text-sm text-slate-700 font-medium">Drop your CSV file here or click to browse</p>
                   <p className="text-xs text-slate-500 mt-1">Supports .csv files up to 10MB</p>
                 </div>
 
-                <div className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/50">
+                <div className="p-3 rounded-lg bg-slate-100 border border-slate-200">
                   <p className="text-xs text-slate-400 flex items-start gap-2">
                     <AlertCircle className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
                     CSV must contain headers: firstName, lastName, email. Optional: phone, company, category, dietaryReqs, tags
@@ -645,10 +645,10 @@ export default function GuestDatabasePage() {
                 </div>
 
                 <div className="flex gap-3">
-                  <button onClick={() => setShowImportModal(false)} className="flex-1 px-4 py-2.5 rounded-lg border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors text-sm">
+                  <button onClick={() => setShowImportModal(false)} className="flex-1 px-4 py-2.5 rounded-lg border border-slate-700 text-slate-700 hover:bg-slate-800 transition-colors text-sm">
                     Cancel
                   </button>
-                  <button onClick={() => setShowImportModal(false)} className="flex-1 px-4 py-2.5 rounded-lg bg-violet-600 hover:bg-violet-500 text-white transition-colors text-sm font-medium">
+                  <button onClick={() => setShowImportModal(false)} className="flex-1 px-4 py-2.5 rounded-lg bg-teal-600 hover:bg-violet-500 text-white transition-colors text-sm font-medium">
                     <span className="flex items-center justify-center gap-2"><Upload className="w-4 h-4" /> Import</span>
                   </button>
                 </div>
